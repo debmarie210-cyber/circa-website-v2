@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circa AI Group — AI Consulting for SMB Founders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #0B1526;
+      color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    ::selection { background: #0B1526; color: #C9A84C; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #f6f6f6;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .navbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      margin-right: 48px;
+    }
+    .nav-logo img { height: 80px; }
+    .nav-logo-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #8A93A2;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+      margin-right: 40px;
+    }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1C1C1C;
+      transition: opacity 0.2s ease;
+    }
+    .nav-links a:hover { opacity: 0.5; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 11px 22px;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      color: #0B1526;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    @media (max-width: 768px) {
+      .navbar-inner { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-logo { margin-right: auto; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 80% 15%, rgba(201,168,76,0.09) 0%, transparent 42%),
+        radial-gradient(ellipse at 60% 40%, #1a2d52 0%, #0B1526 52%, #060d18 100%);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-geo {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .geo-arc {
+      position: absolute;
+      width: 62vw;
+      height: 110vw;
+      border: 1.5px solid rgba(255,255,255,0.045);
+      border-radius: 110vw 0 0 110vw;
+      top: 50%;
+      right: -4%;
+      transform: translateY(-50%);
+      transition: transform 0.08s ease-out;
+    }
+    .geo-arc-2 {
+      position: absolute;
+      width: 42vw;
+      height: 80vw;
+      border: 1px solid rgba(255,255,255,0.028);
+      border-radius: 80vw 0 0 80vw;
+      top: 50%;
+      right: 10%;
+      transform: translateY(-50%);
+      transition: transform 0.08s ease-out;
+    }
+    .geo-ring {
+      position: absolute;
+      width: 88vw;
+      height: 88vw;
+      border: 1px solid rgba(255,255,255,0.025);
+      border-radius: 50%;
+      top: -22%;
+      left: -14%;
+      transition: transform 0.08s ease-out;
+    }
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 80px 80px;
+      position: relative;
+      z-index: 10;
+      max-width: 1196px;
+      margin: 0 auto;
+      width: 100%;
+      align-self: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+    .hero-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.58);
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      border-radius: 99px;
+      padding: 2px 10px 2px 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #C9A84C;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #C9A84C;
+      flex-shrink: 0;
+      animation: livePulse 1.8s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.75); }
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      color: #0B1526;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 10px;
+      transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-gold:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(201,168,76,0.28);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 31px;
+      background: transparent;
+      color: #C9A84C;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      border: 1.5px solid #C9A84C;
+      border-radius: 10px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .btn-ghost:hover {
+      background: rgba(201,168,76,0.08);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 768px) {
+      .hero-content { padding: 48px 24px 64px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── AI GAP / SOCIAL PROOF ── */
+    .ai-gap {
+      background: #f0f0ee;
+      padding: 96px 48px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .ai-gap-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #A67C2E;
+      margin-bottom: 14px;
+    }
+    .ai-gap-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: #0B1526;
+      max-width: 660px;
+      margin: 0 auto 56px;
+    }
+    .sp-glass {
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.92);
+      border-radius: 20px;
+      padding: 56px 48px;
+      box-shadow:
+        0 8px 48px rgba(11,21,38,0.07),
+        0 2px 8px rgba(11,21,38,0.04);
+    }
+    .sp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .sp-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .sp-stat.sp-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .sp-stat:nth-child(1) { transition-delay: 0.05s; }
+    .sp-stat:nth-child(2) { transition-delay: 0.15s; }
+    .sp-stat:nth-child(3) { transition-delay: 0.25s; }
+    .sp-stat:nth-child(4) { transition-delay: 0.35s; }
+    .gap-num {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(30px, 3.5vw, 48px);
+      font-weight: 500;
+      color: #C9A84C;
+      line-height: 1;
+    }
+    .gap-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #1C1C1C;
+      line-height: 1.55;
+    }
+    .gap-source {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: #8A93A2;
+      margin-top: 2px;
+    }
+    @media (max-width: 768px) {
+      .ai-gap { padding: 56px 24px; }
+      .sp-glass { padding: 36px 20px; }
+      .sp-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    }
+
+    /* ── APPROACH SECTION ── */
+    .approach-section {
+      background:
+        radial-gradient(ellipse at 85% 30%, rgba(201,168,76,0.07) 0%, transparent 52%),
+        radial-gradient(ellipse at 15% 75%, rgba(26,45,82,0.5) 0%, transparent 48%),
+        #0B1526;
+      padding: 96px 48px;
+      color: #FFFFFF;
+    }
+    .approach-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 88px;
+      align-items: start;
+    }
+    .section-label-mono {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #8A93A2;
+      margin-bottom: 32px;
+    }
+    .approach-side-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+    }
+    .approach-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+    }
+    .approach-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.62);
+    }
+    .approach-body span { color: #C9A84C; }
+    @media (max-width: 768px) {
+      .approach-section { padding: 64px 24px; }
+      .approach-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── SERVICES / FLIP CARD ROADMAP ── */
+    .services-section {
+      background:
+        radial-gradient(ellipse at 90% 10%, rgba(201,168,76,0.06) 0%, transparent 45%),
+        #0B1526;
+      padding: 96px 48px;
+      color: #FFFFFF;
+    }
+    .services-inner { max-width: 1300px; margin: 0 auto; }
+    .services-header-block {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .services-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: #FFFFFF;
+      margin-top: 12px;
+    }
+    .flip-track {
+      display: flex;
+      align-items: center;
+    }
+    .flip-connector {
+      flex: 0 0 24px;
+      height: 3px;
+      background: rgba(201,168,76,0.35);
+      position: relative;
+      overflow: hidden;
+      align-self: center;
+    }
+    .flip-connector::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, #E8C97A 40%, #fff8dc 50%, #E8C97A 60%, transparent 100%);
+      animation: elec-pulse 1.6s ease-in-out infinite;
+    }
+    .flip-connector:nth-child(2)::after  { animation-delay: 0s; }
+    .flip-connector:nth-child(4)::after  { animation-delay: 0.4s; }
+    .flip-connector:nth-child(6)::after  { animation-delay: 0.8s; }
+    .flip-connector:nth-child(8)::after  { animation-delay: 1.2s; }
+    @keyframes elec-pulse {
+      0%   { left: -100%; }
+      100% { left: 200%; }
+    }
+    .flip-cards-row {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      position: relative;
+      z-index: 1;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .flip-cards-row::-webkit-scrollbar { display: none; }
+    .flip-card-wrap {
+      flex: 1 1 0;
+      min-width: 200px;
+      perspective: 900px;
+      height: 360px;
+    }
+    .flip-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+    .flip-card-wrap:hover .flip-card,
+    .flip-card-wrap:focus-within .flip-card {
+      transform: rotateY(180deg);
+    }
+    .flip-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .flip-front {
+      background: #122040;
+      border: 1px solid rgba(255,255,255,0.08);
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .flip-back {
+      background: linear-gradient(145deg, #1a2f58, #0d1e3c);
+      border: 1px solid rgba(201,168,76,0.3);
+      transform: rotateY(180deg);
+      justify-content: space-between;
+    }
+    .flip-stage-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: #C9A84C;
+      text-transform: uppercase;
+    }
+    .flip-icon {
+      width: 36px;
+      height: 36px;
+      color: rgba(255,255,255,0.65);
+      flex-shrink: 0;
+    }
+    .flip-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+    .flip-hint {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.03em;
+    }
+    .flip-back-stage {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: #C9A84C;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .flip-back-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .flip-back-detail {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.62);
+      flex: 1;
+    }
+    .flip-back-outcome {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #C9A84C;
+      border-top: 1px solid rgba(201,168,76,0.22);
+      padding-top: 10px;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+    .services-glass-note {
+      margin-top: 48px;
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 18px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.48);
+    }
+    .services-glass-note a {
+      color: #C9A84C;
+      transition: opacity 0.2s ease;
+    }
+    .services-glass-note a:hover { opacity: 0.72; }
+    @media (max-width: 900px) {
+      .services-section { padding: 64px 24px; }
+      .flip-cards-row { flex-direction: column; gap: 16px; }
+      .flip-card-wrap { height: 260px; flex: none; }
+      .flip-connector { display: none; }
+    }
+
+    /* ── RESULTS SECTION ── */
+    .results-section {
+      background:
+        radial-gradient(ellipse at 18% 50%, rgba(201,168,76,0.05) 0%, transparent 48%),
+        #0B1526;
+      padding: 96px 48px;
+      color: #FFFFFF;
+    }
+    .results-inner { max-width: 1100px; margin: 0 auto; }
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .results-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #FFFFFF;
+      margin-top: 10px;
+    }
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .data-card {
+      background: #0B1526;
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: background 0.2s ease;
+    }
+    .data-card:hover { background: #122040; }
+    .data-client {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #8A93A2;
+    }
+    .data-metric {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 500;
+      color: #C9A84C;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .data-context {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+    }
+    @media (max-width: 768px) {
+      .results-section { padding: 64px 24px; }
+      .evidence-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CASE STUDY ── */
+    .cs-section {
+      background: #f6f6f6;
+      padding: 96px 48px;
+      color: #0a0a0a;
+    }
+    .cs-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .cs-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 36px;
+    }
+    .cs-label-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #C9A84C;
+      flex-shrink: 0;
+      animation: livePulse 1.8s ease-in-out infinite;
+    }
+    .cs-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 3.8vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #0B1526;
+      margin-bottom: 14px;
+    }
+    .cs-client {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #8A93A2;
+      letter-spacing: 0.01em;
+      margin-bottom: 56px;
+    }
+    .cs-body-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .cs-narrative p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: #3a4455;
+      margin-bottom: 28px;
+    }
+    .cs-deliverables {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-deliverables li {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #3a4455;
+      padding-left: 20px;
+      position: relative;
+    }
+    .cs-deliverables li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #C9A84C;
+      font-weight: 600;
+    }
+    .cs-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .cs-stat-card {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(11,21,38,0.06);
+    }
+    .cs-stat-card--gold {
+      background: linear-gradient(135deg, #0B1526, #1a2d52);
+      border-color: rgba(201,168,76,0.25);
+    }
+    .cs-stat-card--gold .cs-stat-num { color: #E8C97A; }
+    .cs-stat-card--gold .cs-stat-label { color: rgba(255,255,255,0.6); }
+    .cs-stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0B1526;
+      margin-bottom: 8px;
+    }
+    .cs-stat-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #8A93A2;
+    }
+    @media (max-width: 768px) {
+      .cs-section { padding: 64px 24px; }
+      .cs-body-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cs-stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: #0B1526;
+      padding: 10rem 4rem;
+      color: #FFFFFF;
+    }
+    .faq-label {
+      font-size: 0.75rem;
+      font-family: 'DM Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #C9A84C;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .faq-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: #FFFFFF;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-top: 1px solid rgba(201,168,76,0.35);
+      padding: 2rem 0;
+    }
+    .faq-item:last-child {
+      border-bottom: 1px solid rgba(201,168,76,0.35);
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
+    .faq-toggle {
+      color: #C9A84C;
+      font-size: 1.5rem;
+      font-weight: 300;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 2rem;
+      line-height: 1;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-top: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .faq-section { padding: 6rem 1.5rem; }
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background:
+        radial-gradient(ellipse at 85% 25%, rgba(201,168,76,0.07) 0%, transparent 48%),
+        #0B1526;
+      color: #FFFFFF;
+      padding: 96px 48px 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-booking-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 48px;
+      margin-bottom: 0;
+    }
+    .footer-booking-content { min-width: 0; }
+    .footer-glow-logo {
+      width: clamp(240px, 28vw, 400px);
+      opacity: 0.92;
+      flex-shrink: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      .footer-booking-row { grid-template-columns: 1fr; }
+      .footer-glow-logo { width: 180px; margin: 0 auto; }
+    }
+    .footer-booking-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 28px;
+    }
+    .footer-cta {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4.5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: #FFFFFF;
+      max-width: 75%;
+      margin-bottom: 28px;
+    }
+    .footer-cta-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.6);
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+    .tag-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border: 1px solid rgba(201,168,76,0.45);
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      background: transparent;
+    }
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #C9A84C;
+      flex-shrink: 0;
+    }
+    .footer-ctas { margin-bottom: 80px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 60px; }
+    .footer-logo-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #8A93A2;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #8A93A2;
+    }
+    .footer-links a { transition: color 0.2s ease; }
+    .footer-links a:hover { color: #C9A84C; }
+    @media (max-width: 768px) {
+      .footer { padding: 64px 24px 40px; }
+      .footer-cta { max-width: 100%; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-logo">
+        <img src="brand_assets/NEWCIRCALOGOTRANS.png" alt="Circa">
+      </div>
+      <div class="nav-links">
+        <a href="#approach">Approach</a>
+        <a href="#results">Results</a>
+        <a href="#services">Services</a>
+      </div>
+      <button onclick="openCalModal()" class="nav-cta">Book an AI Strategy Call</button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-geo">
+      <div class="geo-arc" id="geoArc"></div>
+      <div class="geo-arc-2" id="geoArc2"></div>
+      <div class="geo-ring" id="geoRing"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">AI Consulting &middot; Custom Systems &middot; SMB Growth</p>
+      <h1 class="hero-title">Your best leads are going cold while you're handling everything else.</h1>
+      <p class="hero-sub">For service businesses losing clients to slow follow-up. Done-for-you AI systems that respond, qualify, and book. <span class="live-badge"><span class="live-dot"></span>Live In 14 Days</span></p>
+      <div class="hero-ctas">
+        <button onclick="openCalModal()" class="btn-gold">Book an AI Strategy Call &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AI GAP / SOCIAL PROOF ── -->
+  <section class="ai-gap" id="ai-gap">
+    <div class="ai-gap-inner">
+      <p class="section-eyebrow">The Data</p>
+      <h2 class="ai-gap-title">The Speed-to-Lead Gap Is Costing You Clients.</h2>
+      <div class="sp-glass">
+        <div class="sp-grid">
+          <div class="sp-stat">
+            <div class="gap-num" data-target="78" data-suffix="%">0%</div>
+            <div class="gap-label">of buyers choose the first company to respond</div>
+            <div class="gap-source">Salesforce, 2024</div>
+          </div>
+          <div class="sp-stat">
+            <div class="gap-num" data-target="21" data-suffix="x">0x</div>
+            <div class="gap-label">more likely to convert when contacted within 5 minutes vs. 30 minutes</div>
+            <div class="gap-source">InsideSales / MIT Study</div>
+          </div>
+          <div class="sp-stat">
+            <div class="gap-num" data-target="47" data-suffix=" hrs">0 hrs</div>
+            <div class="gap-label">average business response time to a new inbound lead</div>
+            <div class="gap-source">Harvard Business Review</div>
+          </div>
+          <div class="sp-stat">
+            <div class="gap-num">35&ndash;50%</div>
+            <div class="gap-label">of sales go to the vendor who responds first</div>
+            <div class="gap-source">InsideSales Research</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CAPABILITIES SECTION ── -->
+  <style>
+    .capabilities {
+      background: #ffffff;
+      color: #0a0a0a;
+      padding-bottom: 8rem;
+    }
+    .cap-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid rgba(9,9,9,0.15);
+    }
+    .cap-row {
+      display: grid;
+      grid-template-columns: 1fr 3fr 4fr 1fr;
+      padding: 3rem 4rem;
+      border-bottom: 1px solid rgba(9,9,9,0.15);
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      cursor: default;
+    }
+    .cap-row::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #C9A84C;
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+    .cap-row:hover::before {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+    .cap-row > * {
+      position: relative;
+      z-index: 1;
+      transition: color 0.15s;
+    }
+    .cap-row:hover > * { color: #ffffff; }
+    .cap-num {
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #8A93A2;
+    }
+    .cap-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0a0a0a;
+    }
+    .cap-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #4A5568;
+      padding-right: 2rem;
+    }
+    .cap-action {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px; height: 48px;
+      border: 1px solid rgba(9,9,9,0.15);
+      border-radius: 50%;
+      font-size: 1.1rem;
+      color: #0a0a0a;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .cap-row:hover .cap-action {
+      border-color: #ffffff;
+      background: #ffffff;
+      color: #C9A84C;
+    }
+    .cap-row:hover .cap-num,
+    .cap-row:hover .cap-title,
+    .cap-row:hover .cap-desc { color: #ffffff; }
+    @media (max-width: 1024px) {
+      .cap-row { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 1.5rem; }
+      .cap-action { display: none; }
+      .cap-title { font-size: 1.5rem; }
+    }
+  </style>
+
+  <section id="capabilities" class="capabilities">
+    <div style="padding: 5rem 4rem 3rem;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;color:#C9A84C;">[01. CAPABILITIES]</div>
+    </div>
+    <div class="cap-list">
+      <div class="cap-row">
+        <div class="cap-num">001</div>
+        <div class="cap-title">Instant Lead Response</div>
+        <div class="cap-desc">Your leads get a response in minutes — not hours. Before they've Googled your competitor, your system has already started the conversation.</div>
+        <div class="cap-action">↗</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-num">002</div>
+        <div class="cap-title">Automated Qualification</div>
+        <div class="cap-desc">Only sales-ready prospects reach your calendar. The tire-kickers, the not-yet-readys, and the time-wasters are filtered before they cost you an hour.</div>
+        <div class="cap-action">↗</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-num">003</div>
+        <div class="cap-title">Appointment Pipeline</div>
+        <div class="cap-desc">Your calendar fills without you touching it. Follow-ups go out automatically, no-shows drop, and every booked call arrives pre-warmed.</div>
+        <div class="cap-action">↗</div>
+      </div>
+      <div class="cap-row">
+        <div class="cap-num">004</div>
+        <div class="cap-title">Revenue Recovery</div>
+        <div class="cap-desc">The leads that used to go cold become closed clients. Every gap in your follow-up process becomes a closed loop — live in 14 days.</div>
+        <div class="cap-action">↗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── APPROACH SECTION ── -->
+  <section class="approach-section" id="approach">
+    <div class="approach-inner">
+      <div>
+        <div class="section-label-mono">[02. The Circa Method]</div>
+        <p class="approach-side-text">
+          A custom AI system built around your sales process: discovered, designed, and deployed in under three weeks.
+        </p>
+      </div>
+      <div>
+        <h2 class="approach-title">Most AI initiatives fail because execution is weak.</h2>
+        <p class="approach-body">
+          We don't sell software. We build bespoke automation and embed it in your operations, train your team, and measure real results. From lead reactivation to client retention, <span>we transform service businesses in weeks, not months.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES / FLIP CARD ROADMAP ── -->
+  <section class="services-section" id="services">
+    <div class="services-inner">
+      <div class="services-header-block">
+        <p class="section-eyebrow">The AI Execution Framework</p>
+        <h2 class="services-title">Your Path to Intelligent Growth</h2>
+      </div>
+      <div class="flip-cards-row flip-track">
+
+        <!-- Card 1: Discover -->
+        <div class="flip-card-wrap" tabindex="0">
+          <div class="flip-card">
+            <div class="flip-face flip-front">
+              <div class="flip-stage-num">Stage 01</div>
+              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <div>
+                <div class="flip-name">Discover</div>
+                <div class="flip-hint">hover to explore ↻</div>
+              </div>
+            </div>
+            <div class="flip-face flip-back">
+              <div>
+                <div class="flip-back-stage">Stage 01</div>
+                <div class="flip-back-title">Discover</div>
+                <div class="flip-back-detail">We map your entire lead flow: how prospects come in, where they stall, and what it's costing you to handle it manually. No assumptions. Just a clear picture of what's happening and what isn't.</div>
+              </div>
+              <div class="flip-back-outcome">Outcome: Full lead flow audit delivered in 72 hours</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-connector"></div>
+
+        <!-- Card 2: Diagnose -->
+        <div class="flip-card-wrap" tabindex="0">
+          <div class="flip-card">
+            <div class="flip-face flip-front">
+              <div class="flip-stage-num">Stage 02</div>
+              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 2v8L4.72 20.55A1 1 0 0 0 5.64 22h12.72a1 1 0 0 0 .92-1.45L14 10V2"/>
+                <line x1="8.5" y1="2" x2="15.5" y2="2"/>
+              </svg>
+              <div>
+                <div class="flip-name">Diagnose</div>
+                <div class="flip-hint">hover to explore ↻</div>
+              </div>
+            </div>
+            <div class="flip-face flip-back">
+              <div>
+                <div class="flip-back-stage">Stage 02</div>
+                <div class="flip-back-title">Diagnose</div>
+                <div class="flip-back-detail">We identify exactly where slow response and manual follow-up are losing you clients, and establish what automation addresses first for the fastest return.</div>
+              </div>
+              <div class="flip-back-outcome">Outcome: Prioritized AI opportunity scorecard</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-connector"></div>
+
+        <!-- Card 3: Design -->
+        <div class="flip-card-wrap" tabindex="0">
+          <div class="flip-card">
+            <div class="flip-face flip-front">
+              <div class="flip-stage-num">Stage 03</div>
+              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+              <div>
+                <div class="flip-name">Design</div>
+                <div class="flip-hint">hover to explore ↻</div>
+              </div>
+            </div>
+            <div class="flip-face flip-back">
+              <div>
+                <div class="flip-back-stage">Stage 03</div>
+                <div class="flip-back-title">Design</div>
+                <div class="flip-back-detail">Your system is architected around your sales process. Built to integrate cleanly into how your business already operates.</div>
+              </div>
+              <div class="flip-back-outcome">Outcome: System blueprint approved before a single line of code</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-connector"></div>
+
+        <!-- Card 4: Deploy -->
+        <div class="flip-card-wrap" tabindex="0">
+          <div class="flip-card">
+            <div class="flip-face flip-front">
+              <div class="flip-stage-num">Stage 04</div>
+              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              </svg>
+              <div>
+                <div class="flip-name">Deploy</div>
+                <div class="flip-hint">hover to explore ↻</div>
+              </div>
+            </div>
+            <div class="flip-face flip-back">
+              <div>
+                <div class="flip-back-stage">Stage 04</div>
+                <div class="flip-back-title">Deploy</div>
+                <div class="flip-back-detail">We build and launch your lead response and qualification system in 14 to 21 days. Embedded in your stack, monitored from day one, and tested until it runs without friction.</div>
+              </div>
+              <div class="flip-back-outcome">Outcome: Live system running in under three weeks</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-connector"></div>
+
+        <!-- Card 5: Scale -->
+        <div class="flip-card-wrap" tabindex="0">
+          <div class="flip-card">
+            <div class="flip-face flip-front">
+              <div class="flip-stage-num">Stage 05</div>
+              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                <polyline points="16 7 22 7 22 13"/>
+              </svg>
+              <div>
+                <div class="flip-name">Scale</div>
+                <div class="flip-hint">hover to explore ↻</div>
+              </div>
+            </div>
+            <div class="flip-face flip-back">
+              <div>
+                <div class="flip-back-stage">Stage 05</div>
+                <div class="flip-back-title">Scale</div>
+                <div class="flip-back-detail">We optimize and expand your system as your pipeline grows. Real benchmarks, ongoing support, and full visibility into what the system is doing and why.</div>
+              </div>
+              <div class="flip-back-outcome">Outcome: Compounding ROI month over month</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="services-glass-note">
+        Not sure where to start? <a href="#" onclick="openCalModal();return false;">Book an AI Strategy Call</a> and we'll map your first 3 AI wins in 30 minutes.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESULTS SECTION ── -->
+  <section class="results-section" id="results">
+    <div class="results-inner">
+      <div class="results-header">
+        <div>
+          <div class="section-label-mono">[03. Real Metrics]</div>
+          <h2 class="results-title">Results That Show Up in the Numbers</h2>
+        </div>
+        <a href="#case-study" class="btn-gold">See the Case Study &rarr;</a>
+      </div>
+      <div class="evidence-grid">
+        <div class="data-card">
+          <div class="data-client">Client.Operations</div>
+          <div class="data-metric">35&ndash;45%</div>
+          <div class="data-context">Workflow time reduction achieved within two weeks of deployment.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-client">Client.Revenue</div>
+          <div class="data-metric">$120K+</div>
+          <div class="data-context">Projected annual revenue unlocked through targeted automation.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-client">BCG / McKinsey</div>
+          <div class="data-metric">70%</div>
+          <div class="data-context">Of AI initiatives fail due to poor execution, not the technology itself.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CASE STUDY SECTION ── -->
+  <section id="case-study" class="cs-section">
+    <div class="cs-inner">
+
+      <div class="cs-eyebrow">
+        <span class="cs-label-dot"></span>
+        REAL RESULTS &nbsp;·&nbsp; CLIENT CASE STUDY
+      </div>
+
+      <div class="cs-hero-text">
+        <h2 class="cs-title">$120,000 in Annual Revenue Potential.</h2>
+        <p class="cs-client">Tosha Scott — Launching a sole-proprietor accounting practice</p>
+      </div>
+
+      <div class="cs-body-grid">
+        <div class="cs-narrative">
+          <p>Tosha Scott was preparing to launch her own accounting practice. Her entire operation was manual — client intake, document collection, onboarding, follow-ups, and deadline tracking all required her personal attention. Without AI systems in place from day one, her capacity ceiling was built into the foundation of her business.</p>
+          <ul class="cs-deliverables">
+            <li>AI-powered document upload portal with automated checklist</li>
+            <li>Standardized onboarding with automated welcome sequence</li>
+            <li>Centralized practice management with AI-driven deadline alerts</li>
+          </ul>
+        </div>
+
+        <div class="cs-stats-grid">
+          <div class="cs-stat-card">
+            <div class="cs-stat-num">35–45%</div>
+            <div class="cs-stat-label">Reduction in manual workflow overhead from Day 1</div>
+          </div>
+          <div class="cs-stat-card">
+            <div class="cs-stat-num">8 hrs/wk</div>
+            <div class="cs-stat-label">Reclaimed at full AI implementation</div>
+          </div>
+          <div class="cs-stat-card cs-stat-card--gold">
+            <div class="cs-stat-num">$5K/mo</div>
+            <div class="cs-stat-label">Projected revenue by Month 4</div>
+          </div>
+          <div class="cs-stat-card cs-stat-card--gold">
+            <div class="cs-stat-num">$120K–$180K</div>
+            <div class="cs-stat-label">Annual revenue potential within 18 months at 25 hrs/week</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FAQ SECTION ── -->
+  <section class="faq-section">
+    <div class="faq-label">[COMMON QUESTIONS]</div>
+    <h2 class="faq-heading">Common Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-question">Do I need a technical background to work with you?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">No. Everything we build is designed to be operated without technical knowledge. If you can use email, you can run what we build.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How is this different from just using ChatGPT?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">ChatGPT is a tool. We build systems. The difference is between owning a hammer and hiring an architect — someone who designs the structure, integrates the right tools, and stays until everything runs correctly.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How quickly will I see results?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Most clients see measurable improvement within the first two weeks of going live. One client reduced manual workflow overhead by 35–45% from day one of deployment.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What if I can't run the system independently after we're done?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">We don't consider the engagement complete until you can. If that takes longer than anticipated, we continue at no additional cost.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What if I invest the time and nothing changes?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">We keep working until it does — at no additional charge. We built the business this way because our results are the only thing that earns the next engagement.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What should I be realistic about before we start?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">AI won't fix a broken business model or replace human judgment. What it will do — when built correctly — is remove the manual work capping your capacity and give your revenue room to grow.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How is my data handled?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">We use only enterprise-grade platforms and never input sensitive client information into public AI tools. Every engagement includes a clear data usage disclosure.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do you work with businesses outside the US?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">We primarily serve US, Canadian, and UK-based businesses and are open to conversations with English-speaking founders globally.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-booking-row">
+        <div class="footer-booking-content">
+          <div class="footer-booking-label">BOOK A STRATEGY SESSION</div>
+          <div class="footer-cta">See exactly where AI fits in your business in 30 minutes.</div>
+          <p class="footer-cta-body">This is a working session, not a sales call. Bring us into your world for 30 minutes. We'll ask the right questions, identify where the gaps are, and give you a clear picture of what's possible.</p>
+          <div class="tag-row">
+            <span class="tag-pill"><span class="tag-dot"></span>30 Minutes</span>
+            <span class="tag-pill"><span class="tag-dot"></span>Real Strategy</span>
+            <span class="tag-pill"><span class="tag-dot"></span>A Clear Next Step</span>
+          </div>
+          <div class="footer-ctas">
+            <button onclick="openCalModal()" class="btn-gold">Book an AI Strategy Call &rarr;</button>
+          </div>
+        </div>
+        <img src="brand_assets/CIRCA GLOW LOGO GOLD DOT.png" alt="" class="footer-glow-logo">
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-logo">
+          <img src="brand_assets/CIRCA GLOW LOGO GOLD DOT.png" alt="Circa">
+        </div>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/debbie-marie-ai/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.35);text-align:center;">
+        &copy; 2026 Copyright &middot; Circa Group AI
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── CAL.COM MODAL ── -->
+  <div id="cal-modal-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.72);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:16px;width:min(780px,95vw);max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(0,0,0,0.4);">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px 16px;border-bottom:1px solid #f0f0f0;">
+        <span style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:#0a0a0a;">Book an AI Strategy Call</span>
+        <button onclick="closeCalModal()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#666;line-height:1;padding:4px 8px;" aria-label="Close">&times;</button>
+      </div>
+      <div style="flex:1;overflow:auto;">
+        <div style="width:100%;height:650px;overflow:scroll" id="my-cal-inline-30min"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cal inline embed code begins -->
+  <script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin:"https://app.cal.com"});
+  Cal.ns["30min"]("inline", {
+    elementOrSelector:"#my-cal-inline-30min",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "debbie-wright-7a48yx/30min",
+  });
+  Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+  <!-- Cal inline embed code ends -->
+
+  <script>
+    function openCalModal() {
+      const overlay = document.getElementById('cal-modal-overlay');
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCalModal() {
+      const overlay = document.getElementById('cal-modal-overlay');
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.getElementById('cal-modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeCalModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeCalModal();
+    });
+  </script>
+
+  <script>
+    // ── PARALLAX HERO GEOMETRY ──
+    const hero = document.querySelector('.hero');
+    const geoArc  = document.getElementById('geoArc');
+    const geoArc2 = document.getElementById('geoArc2');
+    const geoRing = document.getElementById('geoRing');
+
+    document.addEventListener('mousemove', (e) => {
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      if (rect.bottom <= 0) return;
+      const x = (e.clientX / window.innerWidth  - 0.5) * 26;
+      const y = (e.clientY / window.innerHeight - 0.5) * 26;
+      if (geoArc)  geoArc.style.transform  = `translateY(calc(-50% + ${-y * 0.45}px)) translateX(${-x * 0.28}px)`;
+      if (geoArc2) geoArc2.style.transform = `translateY(calc(-50% + ${-y * 0.75}px)) translateX(${-x * 0.45}px)`;
+      if (geoRing) geoRing.style.transform = `translate(${x * 0.55}px, ${y * 0.55}px)`;
+    });
+
+    // ── COUNT-UP ANIMATION ──
+    function countUp(el) {
+      const target = parseInt(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      if (!target) return;
+      const duration = 1500;
+      const start = performance.now();
+      function step(now) {
+        const elapsed = now - start;
+        const t = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3); // cubic easeOut
+        el.textContent = prefix + Math.floor(eased * target) + suffix;
+        if (t < 1) requestAnimationFrame(step);
+        else el.textContent = prefix + target + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+
+    const countEls = document.querySelectorAll('[data-target]');
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !seen.has(entry.target)) {
+          seen.add(entry.target);
+          countUp(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    countEls.forEach(el => io.observe(el));
+
+    // ── SOCIAL PROOF STAGGERED FADE-IN ──
+    const spStats = document.querySelectorAll('.sp-stat');
+    const spIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sp-visible');
+          spIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    spStats.forEach(el => spIO.observe(el));
+
+    // ── FAQ ACCORDION ──
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

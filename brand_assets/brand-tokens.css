@@ -1,0 +1,231 @@
+/* ============================================================
+   CIRCA AI GROUP — Brand Tokens
+   Version 3.0
+   Usage: Import into your global CSS or tailwind base layer.
+   Claude Code: Reference this file for all design decisions.
+   ============================================================ */
+
+:root {
+
+  /* ── COLORS: DARK ── */
+  --color-navy:          #0B1526;  /* Primary background — hero, nav, footer */
+  --color-navy-mid:      #122040;  /* Cards on dark, hover states, depth layers */
+
+  /* ── COLORS: NEUTRAL ── */
+  --color-near-black:    #1C1C1C;  /* All body copy on light backgrounds — never use navy here */
+  --color-white:         #FFFFFF;  /* Cards on cream, text on dark, max contrast moments */
+  --color-cream:         #F9F5EE;  /* Default light background — never use plain white instead */
+  --color-gray:          #8A93A2;  /* Captions, metadata, AI GROUP subline, secondary text */
+
+  /* ── COLORS: GOLD ── */
+  --color-gold:          #C9A84C;  /* Logo A on dark/navy · CTA buttons · Primary highlights */
+  --color-gold-light:    #E8C97A;  /* Gradient endings, decorative borders on dark — never CTA */
+  --color-gold-cognac:   #A67C2E;  /* Logo A on cream/white (transparent PNG) · LinkedIn graphics */
+
+  /* ── COLORS: STATUS ── */
+  --color-success:       #27AE60;  /* Results callouts, positive outcome badges only */
+  --color-warning:       #E67E22;  /* Functional warnings only */
+  --color-error:         #C0392B;  /* Functional errors only */
+
+  /* ── GRADIENTS ── */
+  --gradient-gold:       linear-gradient(135deg, #C9A84C, #E8C97A);  /* CTA buttons */
+  --gradient-navy-hero:  linear-gradient(180deg, #0B1526 0%, #122040 100%);  /* Hero sections */
+  --gradient-gold-glow:  radial-gradient(ellipse at 85% 30%, rgba(201,168,76,0.10) 0%, transparent 55%);  /* Dark section atmosphere */
+
+  /* ── TYPOGRAPHY: FAMILIES ── */
+  --font-headline:       'Montserrat', sans-serif;   /* Headlines, section titles, eyebrows, CTAs */
+  --font-body:           'DM Sans', sans-serif;      /* All body copy, nav, buttons, labels, UI */
+  --font-data:           'DM Mono', monospace;       /* Numbers, stats, revenue figures, scores */
+
+  /* ── TYPOGRAPHY: WEIGHTS ── */
+  --weight-light:        300;
+  --weight-regular:      400;
+  --weight-medium:       500;
+  --weight-semibold:     600;
+  --weight-bold:         700;
+  --weight-extrabold:    800;
+  --weight-black:        900;
+
+  /* ── TYPOGRAPHY: SCALE ── */
+  --text-hero:           clamp(52px, 7vw, 80px);    /* Hero display — Montserrat 900 */
+  --text-h1:             clamp(36px, 5vw, 60px);    /* Page headline — Montserrat 800-900 */
+  --text-h2:             clamp(26px, 3.5vw, 44px);  /* Section title — Montserrat 700-800 */
+  --text-h3:             clamp(20px, 2.5vw, 32px);  /* Card headline — Montserrat 700 */
+  --text-h4:             22px;                       /* Sub-headline — Montserrat 700 */
+  --text-lead:           17px;                       /* Lead body — DM Sans 300, line-height 1.7 */
+  --text-body:           15px;                       /* Standard body — DM Sans 400, line-height 1.7 */
+  --text-small:          13px;                       /* Supporting text — DM Sans 400 */
+  --text-caption:        11px;                       /* Eyebrows/labels — Montserrat 600, uppercase, tracked */
+  --text-data:           clamp(28px, 3vw, 48px);    /* Data callouts — DM Mono 500, gold */
+
+  /* ── TYPOGRAPHY: LETTER SPACING ── */
+  --tracking-eyebrow:    0.2em;   /* All uppercase eyebrow labels */
+  --tracking-subline:    0.4em;   /* AI GROUP subline beneath logo */
+  --tracking-normal:     0;
+
+  /* ── TYPOGRAPHY: LINE HEIGHT ── */
+  --leading-tight:       1.05;   /* Hero headlines */
+  --leading-snug:        1.15;   /* Section headlines */
+  --leading-normal:      1.5;    /* UI text */
+  --leading-relaxed:     1.7;    /* Body copy */
+
+  /* ── SPACING ── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+
+  /* ── BORDER RADIUS ── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-pill: 999px;
+
+  /* ── SHADOWS ── */
+  --shadow-card:    0 2px 14px rgba(11, 21, 38, 0.07);
+  --shadow-hover:   0 10px 28px rgba(11, 21, 38, 0.12);
+  --shadow-strong:  0 20px 48px rgba(11, 21, 38, 0.18);
+
+  /* ── TRANSITIONS ── */
+  --ease-default:  all 0.2s ease;
+  --ease-slow:     all 0.35s ease;
+
+  /* ── LAYOUT ── */
+  --max-width:      1100px;
+  --gutter:         48px;
+  --gutter-mobile:  24px;
+}
+
+
+/* ============================================================
+   GOOGLE FONTS IMPORT — Add to <head> or CSS entry point
+   ============================================================
+   <link href="https://fonts.googleapis.com/css2?
+     family=Montserrat:wght@300;400;500;600;700;800;900&
+     family=DM+Sans:wght@300;400;500;600;700&
+     family=DM+Mono:wght@400;500&
+     display=swap" rel="stylesheet">
+   ============================================================ */
+
+
+/* ============================================================
+   UTILITY CLASSES — Optional convenience layer
+   ============================================================ */
+
+/* Backgrounds */
+.bg-navy       { background-color: var(--color-navy); }
+.bg-navy-mid   { background-color: var(--color-navy-mid); }
+.bg-cream      { background-color: var(--color-cream); }
+.bg-white      { background-color: var(--color-white); }
+.bg-gold       { background-color: var(--color-gold); }
+.bg-gold-grad  { background: var(--gradient-gold); }
+
+/* Text colors */
+.text-white      { color: var(--color-white); }
+.text-navy       { color: var(--color-navy); }
+.text-near-black { color: var(--color-near-black); }
+.text-gray       { color: var(--color-gray); }
+.text-gold       { color: var(--color-gold); }
+.text-gold-cog   { color: var(--color-gold-cognac); }
+
+/* Font families */
+.font-headline { font-family: var(--font-headline); }
+.font-body     { font-family: var(--font-body); }
+.font-data     { font-family: var(--font-data); }
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: var(--font-headline);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-gold-cognac);
+}
+
+/* CTA Button — Primary */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--gradient-gold);
+  color: var(--color-navy);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--ease-default);
+  text-decoration: none;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* CTA Button — Ghost (dark bg) */
+.btn-ghost {
+  display: inline-block;
+  padding: 13px 31px;
+  background: transparent;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-gold);
+  cursor: pointer;
+  transition: var(--ease-default);
+  text-decoration: none;
+}
+.btn-ghost:hover {
+  background: rgba(201, 168, 76, 0.08);
+}
+
+/* Card */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: var(--ease-default);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Card — dark */
+.card-dark {
+  background: var(--color-navy-mid);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+}
+
+/* Data stat */
+.stat-number {
+  font-family: var(--font-data);
+  font-size: var(--text-data);
+  font-weight: var(--weight-medium);
+  color: var(--color-gold-cognac);
+  line-height: 1;
+}
+
+/* Section container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+@media (max-width: 768px) {
+  .container { padding: 0 var(--gutter-mobile); }
+}

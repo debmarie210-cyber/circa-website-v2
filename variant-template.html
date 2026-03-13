@@ -1,0 +1,661 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">DASH0 — Applied AI Engineering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" vid="7">
+    <style vid="8">
+        
+
+        :root {
+            --red: #EB3C3C;
+            --white: #FFFFFF;
+            --black: #090909;
+            --border-light: rgba(255, 255, 255, 0.2);
+            --border-dark: rgba(9, 9, 9, 0.15);
+            
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            --grid-gap: 1px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+        }
+
+        ::selection {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+        .mono {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        .logo-semi {
+            width: 14px;
+            height: 28px;
+            background: currentColor;
+            border-radius: 28px 0 0 28px;
+        }
+
+        .logo-circle {
+            width: 28px;
+            height: 28px;
+            background: currentColor;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.06em;
+            margin-left: 6px;
+        }
+
+        
+        .hairline-top { border-top: 1px solid var(--border-light); }
+        .hairline-bottom { border-bottom: 1px solid var(--border-light); }
+        .hairline-left { border-left: 1px solid var(--border-light); }
+        
+        .dark-theme .hairline-top { border-top-color: var(--border-dark); }
+        .dark-theme .hairline-bottom { border-bottom-color: var(--border-dark); }
+        .dark-theme .hairline-left { border-left-color: var(--border-dark); }
+
+        
+        .hero {
+            background-color: var(--red);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: clamp(4rem, 10vw, 12rem);
+            max-width: 90vw;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .meta-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            opacity: 0.7;
+        }
+
+        .meta-value {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        
+        .bg-geometry {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .geo-semi {
+            position: absolute;
+            width: 50vw;
+            height: 100vw;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 100vw 0 0 100vw;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        .geo-circle {
+            position: absolute;
+            width: 80vw;
+            height: 80vw;
+            border: 2px solid rgba(255,255,255,0.05);
+            border-radius: 50%;
+            top: -20%;
+            left: -10%;
+        }
+
+        
+        .system-ticker {
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 0;
+            border-bottom: 1px solid #222;
+            display: flex;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+            animation: ticker 20s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 2rem;
+        }
+
+        .ticker-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        
+        .approach {
+            background: var(--white);
+            color: var(--black);
+            padding: 8rem 4rem;
+        }
+
+        .grid-12 {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        .approach-header {
+            grid-column: 1 / 5;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .approach-text {
+            grid-column: 6 / 13;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .highlight-red {
+            color: var(--red);
+        }
+
+        
+        .capabilities {
+            background: var(--white);
+            color: var(--black);
+            padding-bottom: 8rem;
+        }
+
+        .cap-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .cap-row {
+            display: grid;
+            grid-template-columns: 1fr 3fr 4fr 1fr;
+            padding: 3rem 4rem;
+            border-bottom: 1px solid var(--border-dark);
+            align-items: center;
+            transition: all 0s; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cap-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--red);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 0;
+        }
+
+        .cap-row:hover::before {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        .cap-row > * {
+            position: relative;
+            z-index: 1;
+            transition: color 0.1s;
+        }
+
+        .cap-row:hover > * {
+            color: var(--white);
+        }
+
+        .cap-num { font-size: 1.5rem; font-weight: 300; }
+        .cap-title { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.02em;}
+        .cap-desc { font-size: 1.125rem; line-height: 1.5; opacity: 0.8; padding-right: 2rem;}
+        
+        .cap-action {
+            justify-self: end;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border-dark);
+            border-radius: 50%;
+        }
+
+        .cap-row:hover .cap-action {
+            border-color: var(--white);
+            background: var(--white);
+            color: var(--red);
+        }
+
+        
+        .evidence {
+            background: var(--black);
+            color: var(--white);
+            padding: 8rem 4rem;
+        }
+
+        .evidence-header {
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px; 
+            background: #222; 
+            border: 1px solid #222;
+        }
+
+        .data-card {
+            background: var(--black);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .data-metric {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            color: var(--red);
+        }
+
+        .data-context {
+            font-size: 1.125rem;
+            line-height: 1.5;
+            color: #AAA;
+        }
+
+        
+        .footer {
+            background: var(--red);
+            color: var(--white);
+            padding: 8rem 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8rem;
+        }
+
+        .footer-cta {
+            font-size: clamp(3rem, 6vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            max-width: 70%;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-primary .icon {
+            width: 12px;
+            height: 12px;
+            background: var(--white);
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover .icon {
+            background: var(--red);
+            border-radius: 12px 0 0 12px; 
+        }
+
+        
+        @media (max-width: 1024px) {
+            .hero-meta { grid-template-columns: repeat(2, 1fr); }
+            .grid-12 { display: flex; flex-direction: column; }
+            .cap-row { grid-template-columns: 1fr; gap: 1rem; padding: 2rem; }
+            .cap-action { display: none; }
+            .evidence-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.5rem 2rem; }
+            .nav-links { display: none; }
+            .hero-content { padding: 2rem; }
+            .approach, .capabilities, .evidence, .footer { padding: 4rem 2rem; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            .bg-geometry { display: none; }
+        }
+    </style>
+</head>
+<body vid="9">
+
+    
+    <header class="hero" vid="10">
+        <div class="bg-geometry" vid="11">
+            <div class="geo-semi" vid="12"></div>
+            <div class="geo-circle" vid="13"></div>
+        </div>
+
+        <nav vid="14">
+            <div class="logo-mark" vid="15">
+                <div class="logo-semi" vid="16"></div>
+                <div class="logo-circle" vid="17"></div>
+                <div class="logo-text" vid="18">dash0</div>
+            </div>
+            <div class="nav-links" vid="19">
+                <a href="#approach" vid="20">Approach</a>
+                <a href="#capabilities" vid="21">Capabilities</a>
+                <a href="#evidence" vid="22">Evidence</a>
+                <a href="#contact" class="mono" vid="23">Init_Contact</a>
+            </div>
+        </nav>
+
+        <div class="hero-content" vid="24">
+            <h1 class="hero-title" vid="25">Architecting<br vid="26">Intelligence.</h1>
+            <div class="hero-meta" vid="27">
+                <div class="meta-block" vid="28">
+                    <span class="mono meta-label" vid="29">Status</span>
+                    <span class="meta-value" vid="30">Deploying Models</span>
+                </div>
+                <div class="meta-block" vid="31">
+                    <span class="mono meta-label" vid="32">Focus</span>
+                    <span class="meta-value" vid="33">Enterprise AI</span>
+                </div>
+                <div class="meta-block" vid="34">
+                    <span class="mono meta-label" vid="35">Topology</span>
+                    <span class="meta-value" vid="36">Deterministic</span>
+                </div>
+                <div class="meta-block" vid="37">
+                    <span class="mono meta-label" vid="38">HQ</span>
+                    <span class="meta-value" vid="39">San Francisco, CA</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="system-ticker mono" vid="40">
+        <div class="ticker-track" vid="41">
+            
+            <div class="ticker-item" vid="42"><div class="ticker-dot" vid="43"></div> SYS.OP.READY</div>
+            <div class="ticker-item" vid="44"><div class="ticker-dot" vid="45"></div> RAG_LATENCY &lt; 45MS</div>
+            <div class="ticker-item" vid="46"><div class="ticker-dot" vid="47"></div> AGENT_ORCHESTRATION_ACTIVE</div>
+            <div class="ticker-item" vid="48"><div class="ticker-dot" vid="49"></div> FINE_TUNING_PIPELINE_STABLE</div>
+            <div class="ticker-item" vid="50"><div class="ticker-dot" vid="51"></div> VECTOR_DB_SYNCED</div>
+            <div class="ticker-item" vid="52"><div class="ticker-dot" vid="53"></div> SYS.OP.READY</div>
+            <div class="ticker-item" vid="54"><div class="ticker-dot" vid="55"></div> RAG_LATENCY &lt; 45MS</div>
+            <div class="ticker-item" vid="56"><div class="ticker-dot" vid="57"></div> AGENT_ORCHESTRATION_ACTIVE</div>
+            <div class="ticker-item" vid="58"><div class="ticker-dot" vid="59"></div> FINE_TUNING_PIPELINE_STABLE</div>
+            <div class="ticker-item" vid="60"><div class="ticker-dot" vid="61"></div> VECTOR_DB_SYNCED</div>
+        </div>
+    </div>
+
+    
+    <section id="approach" class="approach dark-theme" vid="62">
+        <div class="grid-12" vid="63">
+            <div class="approach-header" vid="64">
+                <div class="mono highlight-red" vid="65">[01. THESIS]</div>
+                <div style="font-size: 1.5rem; font-weight: 500;" vid="66">
+                    We move organizations past fragile API wrappers into robust, proprietary AI infrastructure.
+                </div>
+            </div>
+            <div class="approach-text" vid="67">
+                AI is not a feature; it is a structural shift in computation. <span class="highlight-red" vid="68">Dash0 engineers the foundation.</span> We build deterministic systems around probabilistic models, ensuring enterprise-grade reliability, security, and scale.
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="capabilities" class="capabilities dark-theme" vid="69">
+        <div style="padding: 0 4rem 4rem;" vid="70">
+            <div class="mono highlight-red" vid="71">[02. CAPABILITIES]</div>
+        </div>
+        
+        <div class="cap-list" vid="72">
+            <a href="#" class="cap-row" vid="73">
+                <div class="cap-num mono" vid="74">001</div>
+                <div class="cap-title" vid="75">RAG Architectures</div>
+                <div class="cap-desc" vid="76">High-dimensional vector search integrated with hybrid retrieval methodologies. We build deterministic memory for LLMs, eliminating hallucination in critical workflows.</div>
+                <div class="cap-action" vid="77">↗</div>
+            </a>
+            
+            <a href="#" class="cap-row" vid="78">
+                <div class="cap-num mono" vid="79">002</div>
+                <div class="cap-title" vid="80">Model Fine-Tuning</div>
+                <div class="cap-desc" vid="81">Instruction tuning and RLHF pipelines for open-source foundation models (Llama 3, Mistral). Aligning model outputs strictly to your proprietary domain logic.</div>
+                <div class="cap-action" vid="82">↗</div>
+            </a>
+
+            <a href="#" class="cap-row" vid="83">
+                <div class="cap-num mono" vid="84">003</div>
+                <div class="cap-title" vid="85">Agentic Systems</div>
+                <div class="cap-desc" vid="86">Autonomous multi-agent orchestration. Equipping models with secure tool-use, code execution environments, and complex reasoning frameworks (ReAct, DSPy).</div>
+                <div class="cap-action" vid="87">↗</div>
+            </a>
+
+            <a href="#" class="cap-row" vid="88">
+                <div class="cap-num mono" vid="89">004</div>
+                <div class="cap-title" vid="90">Inference Optimization</div>
+                <div class="cap-desc" vid="91">Deployment engineering. Quantization, custom CUDA kernels, and vLLM integration to drastically reduce latency and compute overhead at scale.</div>
+                <div class="cap-action" vid="92">↗</div>
+            </a>
+        </div>
+    </section>
+
+    
+    <section id="evidence" class="evidence" vid="93">
+        <div class="evidence-header" vid="94">
+            <div class="mono highlight-red" vid="95">[03. SYSTEM METRICS]</div>
+            <a href="#" class="btn-primary" style="background: var(--white); color: var(--black);" vid="96">
+                <div class="icon" style="background: var(--black);" vid="97"></div> Read Case Studies
+            </a>
+        </div>
+
+        <div class="evidence-grid" vid="98">
+            <div class="data-card" vid="99">
+                <div class="mono" style="color: #666;" vid="100">CLIENT.FIN_TECH</div>
+                <div class="data-metric" vid="101">99.8%</div>
+                <div class="data-context" vid="102">Accuracy in unstructured document extraction using custom layout-aware RAG pipeline.</div>
+            </div>
+            <div class="data-card" vid="103">
+                <div class="mono" style="color: #666;" vid="104">CLIENT.HEALTH_CARE</div>
+                <div class="data-metric" vid="105">12x</div>
+                <div class="data-context" vid="106">Throughput increase via AWQ quantization and custom inference server deployment.</div>
+            </div>
+            <div class="data-card" vid="107">
+                <div class="mono" style="color: #666;" vid="108">CLIENT.LOGISTICS</div>
+                <div class="data-metric" vid="109">&lt;45ms</div>
+                <div class="data-context" vid="110">P99 Latency achieved for routing agent utilizing hybrid vector/graph retrieval.</div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer id="contact" class="footer" vid="111">
+        <div class="footer-cta" vid="112">
+            Ready to build the structure?<br vid="113">
+            <a href="mailto:init@dash0.ai" style="text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 8px;" vid="114">Initialize Project.</a>
+        </div>
+
+        <div class="footer-bottom" vid="115">
+            <div class="logo-mark" style="transform: scale(1.5); transform-origin: left bottom;" vid="116">
+                <div class="logo-semi" vid="117"></div>
+                <div class="logo-circle" vid="118"></div>
+                <div class="logo-text" vid="119">dash0</div>
+            </div>
+            
+            <div class="footer-links mono" vid="120">
+                <a href="#" vid="121">GITHUB</a>
+                <a href="#" vid="122">X / TWITTER</a>
+                <a href="#" vid="123">SYSTEM_STATUS</a>
+                <a href="#" vid="124">LEGAL</a>
+            </div>
+        </div>
+    </footer>
+
+    <script vid="125">
+        
+        document.addEventListener('mousemove', (e) => {
+            const hero = document.querySelector('.hero');
+            const rect = hero.getBoundingClientRect();
+            
+            
+            if (rect.bottom > 0) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20; 
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+                const semi = document.querySelector('.geo-semi');
+                const circle = document.querySelector('.geo-circle');
+
+                if (semi && circle) {
+                    semi.style.transform = `translate(calc(0px - ${x}px), calc(-50% - ${y}px))`;
+                    circle.style.transform = `translate(${x * 1.5}px, ${y * 1.5}px)`;
+                }
+            }
+        });
+    </script>
+
+</body></html>
