@@ -856,6 +856,83 @@
       .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     }
 
+    /* ── OPERATIONAL IMPACT ── */
+    .impact-block {
+      background: rgba(255,255,255,0.03);
+      padding: 48px 36px;
+      border-right: 1px solid rgba(255,255,255,0.09);
+      transition: background 0.25s ease;
+      cursor: default;
+    }
+    .impact-block:last-child { border-right: none; }
+    .impact-block:hover { background: rgba(255,255,255,0.07); }
+    .impact-block:hover .impact-label { color: #E8C97A; }
+    .impact-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin: 0 0 16px 0;
+    }
+    .impact-word {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 4.5vw, 56px);
+      color: #ffffff;
+      margin: 0 0 14px 0;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .impact-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 18px 0;
+    }
+    .impact-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.75;
+      margin: 0;
+    }
+    .impact-anim {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .impact-anim.impact-visible { opacity: 1; transform: translateY(0); }
+    .impact-anim:nth-child(1) { transition-delay: 0.05s; }
+    .impact-anim:nth-child(2) { transition-delay: 0.18s; }
+    .impact-anim:nth-child(3) { transition-delay: 0.31s; }
+
+    /* ── ABOUT (v2) ── */
+    .cred-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 8px;
+      padding: 28px;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .cred-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(201,168,76,0.3);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .impact-block {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.09);
+      }
+      .impact-block:last-child { border-bottom: none; }
+    }
+
     /* ── FOOTER ── */
     .footer {
       background:
@@ -1413,46 +1490,53 @@
     </div>
   </section>
 
-  <!-- ── BEYOND THE BUILD [04] ── -->
-  <section id="beyond" style="background:#060f1e;padding:100px 24px;border-top:1px solid rgba(255,255,255,0.07);">
+  <!-- ── OPERATIONAL IMPACT [04] ── -->
+  <section id="impact" style="background:#060f1e;padding:100px 24px;border-top:1px solid rgba(255,255,255,0.07);">
     <div style="max-width:1100px;margin:0 auto;">
-      <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#43c2fd;margin:0 0 20px 0;">[04. Beyond the Build]</p>
-      <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);color:#ffffff;line-height:1.15;margin:0 0 18px 0;max-width:680px;">AI Doesn't Stop at Lead Response.</h2>
-      <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:17px;color:rgba(255,255,255,0.62);line-height:1.7;max-width:620px;margin:0 0 64px 0;">
-        Circa AI Group works with business owners across the full spectrum of AI adoption &mdash;
-        from first-time implementation to ongoing optimization. If your operations rely on
-        manual processes, there is almost certainly a faster, smarter way to run them.
+
+      <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#43c2fd;margin:0 0 20px 0;">[04. Operational Impact]</p>
+      <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);color:#ffffff;line-height:1.15;margin:0 0 18px 0;max-width:720px;">Manual Processes Are a Business Liability.</h2>
+      <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:17px;color:rgba(255,255,255,0.62);line-height:1.7;max-width:640px;margin:0 0 72px 0;">
+        Every hour spent on repetitive administrative work is an hour not spent on revenue.
+        We identify where time and money are leaving your business unnoticed &mdash; and build the
+        systems that stop it.
       </p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:32px 28px;">
-          <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 14px 0;">01</p>
-          <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#ffffff;margin:0 0 12px 0;line-height:1.25;">AI Strategy &amp; Roadmapping</h3>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:14px;color:rgba(255,255,255,0.58);line-height:1.7;margin:0;">Not sure where AI fits in your business? We map your operations, identify the highest-leverage opportunities, and deliver a clear sequence of what to automate and when.</p>
+
+      <!-- Three-column impact blocks -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border:1px solid rgba(255,255,255,0.09);border-radius:8px;overflow:hidden;">
+
+        <div class="impact-block impact-anim">
+          <p class="impact-label">01 &mdash; Time</p>
+          <p class="impact-word">Reclaimed.</p>
+          <p class="impact-subtitle">At Scale</p>
+          <p class="impact-body">Intake, scheduling, follow-up, document handling &mdash; the administrative layer that fills your calendar with low-value work is the first thing we remove. What you get back is capacity.</p>
         </div>
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:32px 28px;">
-          <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 14px 0;">02</p>
-          <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#ffffff;margin:0 0 12px 0;line-height:1.25;">Workflow Automation</h3>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:14px;color:rgba(255,255,255,0.58);line-height:1.7;margin:0;">Intake, onboarding, follow-up, scheduling, document collection &mdash; the repetitive work that consumes your day gets redesigned around automation so your attention goes where it actually matters.</p>
+
+        <div class="impact-block impact-anim">
+          <p class="impact-label">02 &mdash; Cost</p>
+          <p class="impact-word">Reduced.</p>
+          <p class="impact-subtitle">Without Cutting Corners</p>
+          <p class="impact-body">Operational overhead shrinks when systems run the work people were hired to do manually. We identify the specific processes costing you the most &mdash; and automate them with precision.</p>
         </div>
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:32px 28px;">
-          <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 14px 0;">03</p>
-          <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#ffffff;margin:0 0 12px 0;line-height:1.25;">AI Tools Implementation</h3>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:14px;color:rgba(255,255,255,0.58);line-height:1.7;margin:0;">The right tools, configured correctly, connected to your existing stack. No bloated software subscriptions you never use. No generic setups that require a tech team to maintain.</p>
+
+        <div class="impact-block impact-anim">
+          <p class="impact-label">03 &mdash; Risk</p>
+          <p class="impact-word">Removed.</p>
+          <p class="impact-subtitle">From the Process</p>
+          <p class="impact-body">Manual processes fail. Steps get skipped, follow-ups get missed, data gets entered wrong. Standardized AI systems eliminate the human error that quietly erodes client experience and revenue.</p>
         </div>
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:32px 28px;">
-          <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 14px 0;">04</p>
-          <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#ffffff;margin:0 0 12px 0;line-height:1.25;">Team Training &amp; Adoption</h3>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:14px;color:rgba(255,255,255,0.58);line-height:1.7;margin:0;">A system no one uses is worthless. We train your team on the tools we build, document every workflow, and stay until adoption is real &mdash; not theoretical.</p>
-        </div>
+
       </div>
-      <div style="margin-top:56px;padding:28px 36px;background:rgba(67,194,253,0.07);border:1px solid rgba(67,194,253,0.2);border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
-        <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0;white-space:nowrap;">Industries Served</p>
-        <div style="width:1px;height:20px;background:rgba(255,255,255,0.15);flex-shrink:0;"></div>
-        <p style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:14px;color:rgba(255,255,255,0.72);margin:0;line-height:1.6;">
-          Accounting Practices &nbsp;&middot;&nbsp; Property Tax Advisory &nbsp;&middot;&nbsp; Senior Living Referral &nbsp;&middot;&nbsp;
-          Insurance Brokers &nbsp;&middot;&nbsp; Financial Advisors &nbsp;&middot;&nbsp; Mortgage Brokers &nbsp;&middot;&nbsp; Real Estate
+
+      <!-- Bottom statement -->
+      <div style="margin-top:48px;padding:32px 40px;border-left:3px solid #C9A84C;background:rgba(201,168,76,0.04);">
+        <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:17px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0;max-width:740px;font-style:italic;">
+          &ldquo;The businesses we work with are not failing. They are performing at a fraction of their capacity
+          because the infrastructure supporting their growth was never built. That is what we come in to fix.&rdquo;
         </p>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C9A84C;margin:18px 0 0 0;">Debbie Marie &mdash; Founder, Circa AI Group</p>
       </div>
+
     </div>
   </section>
 
@@ -1460,43 +1544,45 @@
   <section id="about" style="background:#060f1e;padding:100px 24px;border-top:1px solid rgba(255,255,255,0.07);">
     <div style="max-width:1100px;margin:0 auto;">
       <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+
+        <!-- Left: Copy -->
         <div>
           <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#43c2fd;margin:0 0 20px 0;">[05. About]</p>
-          <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,40px);color:#ffffff;line-height:1.2;margin:0 0 28px 0;">Built by Someone Who Has Run Operations.</h2>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.65);line-height:1.8;margin:0 0 20px 0;">
-            Debbie Marie founded Circa AI Group after two decades as a corporate executive assistant &mdash;
-            managing high-stakes operations, complex schedules, and the kind of behind-the-scenes work
-            that keeps a business running. That experience is the foundation of every system we build.
+          <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,40px);color:#ffffff;line-height:1.2;margin:0 0 28px 0;">One Consultant. Direct Access. Real Accountability.</h2>
+          <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.65);line-height:1.8;margin:0 0 20px 0;">
+            Since 2022, Debbie has focused exclusively on practical AI implementation for small
+            business owners &mdash; not theoretical frameworks, but working systems that reduce manual
+            workload and create real capacity for growth.
           </p>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.65);line-height:1.8;margin:0 0 20px 0;">
-            Since 2022, she has studied AI with a focus on practical application for small business owners &mdash;
-            not theoretical use cases, but real systems that reduce manual workload and open capacity for growth.
-            She has designed and deployed AI solutions for accounting practices, property tax advisory firms,
-            and senior living referral agencies.
+          <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.65);line-height:1.8;margin:0 0 36px 0;">
+            She has designed and deployed AI systems for accounting practices, property tax advisory
+            firms, and senior living referral agencies. When you engage Circa AI Group, you work
+            directly with Debbie &mdash; start to finish.
           </p>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.65);line-height:1.8;margin:0;">
-            Circa AI Group is a boutique practice. When you engage with us, you work directly with Debbie &mdash;
-            not a junior consultant, not an account manager. The person who takes your call is the person
-            who builds your system.
-          </p>
+          <button onclick="openCalModal()" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;color:#C9A84C;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;border:1.5px solid #C9A84C;border-radius:8px;cursor:pointer;transition:background 0.2s ease,transform 0.2s ease;" onmouseover="this.style.background='rgba(201,168,76,0.08)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='transparent';this.style.transform='translateY(0)'">
+            Book a Strategy Call &rarr;
+          </button>
         </div>
+
+        <!-- Right: Credential cards -->
         <div style="display:flex;flex-direction:column;gap:20px;">
-          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:28px;">
-            <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 8px 0;">Background</p>
-            <p style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:15px;color:#ffffff;margin:0 0 6px 0;">20+ Years in Corporate Operations</p>
-            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:13px;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">Executive assistant leadership across high-volume, high-complexity environments.</p>
-          </div>
-          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:28px;">
+          <div class="cred-card">
             <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 8px 0;">Focus</p>
             <p style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:15px;color:#ffffff;margin:0 0 6px 0;">AI for Appointment-Based Service Businesses</p>
-            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:13px;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">Practical systems that remove manual bottlenecks and scale client-facing operations.</p>
+            <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:13px;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">Practical systems built to remove manual bottlenecks and scale client-facing operations.</p>
           </div>
-          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:28px;">
+          <div class="cred-card">
+            <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 8px 0;">Industries</p>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:15px;color:#ffffff;margin:0 0 6px 0;">Proven Across Multiple Verticals</p>
+            <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:13px;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">Accounting &nbsp;&middot;&nbsp; Property Tax Advisory &nbsp;&middot;&nbsp; Senior Living Referral &nbsp;&middot;&nbsp; Insurance &nbsp;&middot;&nbsp; Financial Advisory &nbsp;&middot;&nbsp; Mortgage &nbsp;&middot;&nbsp; Real Estate</p>
+          </div>
+          <div class="cred-card">
             <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#43c2fd;margin:0 0 8px 0;">Practice Model</p>
             <p style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:15px;color:#ffffff;margin:0 0 6px 0;">Boutique. Direct. Accountable.</p>
-            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:13px;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">Every engagement is handled personally. No handoffs. No overhead you're paying for.</p>
+            <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:13px;color:rgba(255,255,255,0.55);margin:0;line-height:1.6;">Every engagement is handled personally. The person who takes your call is the person who builds your system.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -1690,6 +1776,18 @@
       });
     }, { threshold: 0.2 });
     spStats.forEach(el => spIO.observe(el));
+
+    // ── IMPACT BLOCKS FADE-IN ──
+    const impactEls = document.querySelectorAll('.impact-anim');
+    const impactIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('impact-visible');
+          impactIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    impactEls.forEach(el => impactIO.observe(el));
 
     // ── FAQ ACCORDION ──
     document.querySelectorAll('.faq-question').forEach(question => {
