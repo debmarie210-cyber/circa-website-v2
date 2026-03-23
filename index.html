@@ -221,14 +221,45 @@
       border-left: 2px solid rgba(201,168,76,0.28);
       padding-left: 18px;
     }
-    /* ── FLOATING PATHS KEYFRAMES ── */
-    @keyframes pathFlow {
-      0%   { stroke-dashoffset: 3000; }
-      100% { stroke-dashoffset: -3000; }
+    /* ── HERO ORBS ── */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform;
     }
-    @keyframes pathFade {
-      0%, 100% { opacity: 0.18; }
-      50%       { opacity: 0.85; }
+    .hero-orb-1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle at center, rgba(201,168,76,0.18) 0%, transparent 68%);
+      top: -260px; left: 8%;
+      animation: orbDrift1 20s ease-in-out infinite;
+    }
+    .hero-orb-2 {
+      width: 560px; height: 560px;
+      background: radial-gradient(circle at center, rgba(26,77,140,0.35) 0%, transparent 68%);
+      bottom: -160px; right: 6%;
+      animation: orbDrift2 26s ease-in-out infinite;
+    }
+    .hero-orb-3 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle at center, rgba(201,168,76,0.10) 0%, transparent 70%);
+      top: 40%; right: 28%;
+      animation: orbDrift3 18s ease-in-out infinite;
+    }
+    @keyframes orbDrift1 {
+      0%,100% { transform: translate(0,0); }
+      25%      { transform: translate(70px,-50px); }
+      50%      { transform: translate(30px,80px); }
+      75%      { transform: translate(-55px,20px); }
+    }
+    @keyframes orbDrift2 {
+      0%,100% { transform: translate(0,0); }
+      33%      { transform: translate(-65px,55px); }
+      66%      { transform: translate(45px,-45px); }
+    }
+    @keyframes orbDrift3 {
+      0%,100% { transform: translate(0,0); }
+      50%      { transform: translate(-70px,-55px); }
     }
     .live-badge {
       display: inline-flex;
@@ -1121,6 +1152,9 @@
       <div class="geo-arc" id="geoArc"></div>
       <div class="geo-arc-2" id="geoArc2"></div>
       <div class="geo-ring" id="geoRing"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
     </div>
     <div class="hero-content">
       <div class="hero-eyebrow-wrap">
@@ -1773,51 +1807,6 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeCalModal();
     });
-  </script>
-
-  <script>
-    // ── FLOATING SVG PATHS ──
-    (function () {
-      const container = document.querySelector('.hero-geo');
-      if (!container) return;
-
-      function buildPaths(position) {
-        const ns = 'http://www.w3.org/2000/svg';
-        const svg = document.createElementNS(ns, 'svg');
-        svg.setAttribute('viewBox', '0 0 696 316');
-        svg.setAttribute('fill', 'none');
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-        svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
-
-        for (let i = 0; i < 36; i++) {
-          const p = position;
-          const d =
-            `M-${380 - i * 5 * p} -${189 + i * 6}` +
-            `C-${380 - i * 5 * p} -${189 + i * 6} -${312 - i * 5 * p} ${216 - i * 6} ${152 - i * 5 * p} ${343 - i * 6}` +
-            `C${616 - i * 5 * p} ${470 - i * 6} ${684 - i * 5 * p} ${875 - i * 6} ${684 - i * 5 * p} ${875 - i * 6}`;
-
-          const path = document.createElementNS(ns, 'path');
-          path.setAttribute('d', d);
-          path.setAttribute('stroke', '#C9A84C');
-          path.setAttribute('stroke-width', (0.5 + i * 0.04).toFixed(2));
-          path.setAttribute('stroke-linecap', 'round');
-          path.style.strokeDasharray = `${500 + i * 28} 4000`;
-          path.style.opacity = (0.03 + i * 0.014).toFixed(3);
-
-          const dur   = (18 + Math.random() * 12).toFixed(1);
-          const fade  = (10 + Math.random() * 8).toFixed(1);
-          const delay = (-(Math.random() * 25)).toFixed(1);
-          path.style.animation =
-            `pathFlow ${dur}s ${delay}s linear infinite, pathFade ${fade}s ${delay}s ease-in-out infinite`;
-
-          svg.appendChild(path);
-        }
-        return svg;
-      }
-
-      container.appendChild(buildPaths(1));
-      container.appendChild(buildPaths(-1));
-    })();
   </script>
 
   <script>
