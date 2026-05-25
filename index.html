@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Circa AI Group — AI Consulting for SMB Founders</title>
+  <meta name="description" content="Circa AI Group — AI consulting for SMB service businesses. We find where AI saves you the most time and money, then build it.">
   <link rel="icon" href="brand_assets/CIRCA-FAVICON.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     a { color: inherit; text-decoration: none; cursor: pointer; }
     img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
     body {
       font-family: 'DM Sans', sans-serif;
       background-color: #0B1526;
@@ -47,7 +49,7 @@
       flex-shrink: 0;
       margin-right: 48px;
     }
-    .nav-logo img { height: 80px; }
+    .nav-logo img { height: 60px; }
     .nav-logo-sub {
       font-family: 'DM Sans', sans-serif;
       font-size: 9px;
@@ -136,7 +138,7 @@
       justify-content: center;
     }
     .hero-eyebrow {
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.12em;
@@ -155,8 +157,8 @@
       margin: 0 0 22px 0;
     }
     .hero-sub {
-      font-family: 'Lora', Georgia, serif;
-      font-style: italic;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
       font-size: clamp(1rem, 1.6vw, 1.125rem);
       line-height: 1.65;
       color: #5a6578;
@@ -164,7 +166,7 @@
       margin: 0 0 18px 0;
     }
     .hero-proof-bar {
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 12px;
       font-weight: 500;
       text-transform: uppercase;
@@ -179,7 +181,7 @@
       padding: 14px 28px;
       background: linear-gradient(135deg, #C9A84C, #E8C97A);
       color: #0B1526;
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       font-weight: 600;
       border: none;
@@ -197,7 +199,7 @@
       padding: 14px 28px;
       background: transparent;
       color: #1C1C1C;
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       font-weight: 500;
       border: 1px solid rgba(6,15,30,0.15);
@@ -228,7 +230,7 @@
       background: #fafaf9;
     }
     .roi-card-title {
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 13px;
       font-weight: 500;
       color: #1C1C1C;
@@ -246,7 +248,7 @@
     }
     .roi-area-label {
       display: block;
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       font-weight: 500;
       text-transform: uppercase;
@@ -256,7 +258,7 @@
     }
     .roi-op-name {
       display: block;
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       font-weight: 600;
       color: #1C1C1C;
@@ -275,7 +277,7 @@
       align-items: center;
     }
     .roi-metric-label {
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 13px;
       color: #5a6578;
     }
@@ -295,7 +297,7 @@
     }
     .roi-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #43c2fd, #1a9be8);
+      background: linear-gradient(90deg, #C9A84C, #E8C97A);
       border-radius: 3px;
       transition: width 1.2s ease;
     }
@@ -313,7 +315,7 @@
       animation: livePulse 1.8s ease-in-out infinite;
     }
     .roi-status-text {
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       color: #8A93A2;
     }
@@ -332,7 +334,7 @@
       border-top: 1px solid rgba(0,0,0,0.08);
     }
     .trust-strip-text {
-      font-family: 'Inter', 'DM Sans', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 13px;
       color: #8A93A2;
     }
@@ -454,7 +456,7 @@
       background: rgba(255,255,255,0.78);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.92);
+      border: 1px solid rgba(0,0,0,0.06);
       border-radius: 20px;
       padding: 56px 48px;
       box-shadow:
@@ -896,7 +898,7 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 16px;
       line-height: 1.75;
-      color: #3a4455;
+      color: #1C1C1C;
       margin-bottom: 28px;
     }
     .cs-deliverables {
@@ -911,7 +913,7 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
       line-height: 1.6;
-      color: #3a4455;
+      color: #1C1C1C;
       padding-left: 20px;
       position: relative;
     }
@@ -963,7 +965,7 @@
     /* ── FAQ ── */
     .faq-section {
       background: #f0f0ee;
-      padding: 10rem 4rem;
+      padding: 96px 48px;
       color: #1C1C1C;
     }
     .faq-label {
@@ -1035,35 +1037,35 @@
       padding-top: 1.25rem;
     }
     @media (max-width: 768px) {
-      .faq-section { padding: 6rem 1.5rem; }
+      .faq-section { padding: 64px 24px; }
       .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     }
 
     /* ── OPERATIONAL IMPACT ── */
     .impact-block {
-      background: rgba(255,255,255,0.03);
+      background: #ffffff;
       padding: 48px 36px;
-      border-right: 1px solid rgba(255,255,255,0.09);
+      border-right: 1px solid rgba(0,0,0,0.08);
       transition: background 0.25s ease;
       cursor: default;
     }
     .impact-block:last-child { border-right: none; }
-    .impact-block:hover { background: rgba(255,255,255,0.07); }
-    .impact-block:hover .impact-label { color: #E8C97A; }
+    .impact-block:hover { background: #f9f5ee; }
+    .impact-block:hover .impact-label { color: #A67C2E; }
     .impact-label {
       font-family: 'DM Mono', monospace;
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #C9A84C;
+      color: #A67C2E;
       margin: 0 0 16px 0;
     }
     .impact-word {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-size: clamp(26px, 2.8vw, 34px);
-      color: #ffffff;
+      color: #0B1526;
       margin: 0 0 14px 0;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -1072,7 +1074,7 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 14px;
-      color: rgba(255,255,255,0.6);
+      color: #8A93A2;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin: 0 0 18px 0;
@@ -1080,7 +1082,7 @@
     .impact-body {
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
-      color: rgba(255,255,255,0.52);
+      color: #5a6578;
       line-height: 1.75;
       margin: 0;
     }
@@ -1111,7 +1113,7 @@
     @media (max-width: 768px) {
       .impact-block {
         border-right: none !important;
-        border-bottom: 1px solid rgba(255,255,255,0.09);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
       }
       .impact-block:last-child { border-bottom: none; }
     }
@@ -1770,19 +1772,19 @@
   </section>
 
   <!-- ── OPERATIONAL IMPACT [04] ── -->
-  <section id="impact" style="background:#060f1e;padding:100px 24px;border-top:1px solid rgba(255,255,255,0.07);">
+  <section id="impact" style="background:#F9F5EE;padding:100px 48px;border-top:1px solid rgba(0,0,0,0.07);">
     <div style="max-width:1100px;margin:0 auto;">
 
-      <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#43c2fd;margin:0 0 20px 0;">[04. Operational Impact]</p>
-      <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);color:#ffffff;line-height:1.15;margin:0 0 18px 0;max-width:720px;">Manual Processes Are a Business Liability.</h2>
-      <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:17px;color:rgba(255,255,255,0.62);line-height:1.7;max-width:640px;margin:0 0 72px 0;">
+      <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#A67C2E;margin:0 0 20px 0;">[04. Operational Impact]</p>
+      <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);color:#0B1526;line-height:1.15;margin:0 0 18px 0;max-width:720px;">Manual Processes Are a Business Liability.</h2>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:17px;color:#5a6578;line-height:1.7;max-width:640px;margin:0 0 72px 0;">
         Every hour spent on repetitive administrative work is an hour not spent on revenue.
         We identify where time and money are leaving your business unnoticed, and build the
         systems that stop it.
       </p>
 
       <!-- Three-column impact blocks -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border:1px solid rgba(255,255,255,0.09);border-radius:8px;overflow:hidden;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border:1px solid rgba(0,0,0,0.08);border-radius:8px;overflow:hidden;">
 
         <div class="impact-block impact-anim">
           <p class="impact-label">01. Time</p>
@@ -1808,19 +1810,19 @@
       </div>
 
       <!-- Bottom statement -->
-      <div style="margin-top:48px;padding:32px 40px;border-left:3px solid #C9A84C;background:rgba(201,168,76,0.04);">
-        <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:17px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0;max-width:740px;font-style:italic;">
+      <div style="margin-top:48px;padding:32px 40px;border-left:3px solid #A67C2E;background:rgba(166,124,46,0.06);">
+        <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:17px;color:#1C1C1C;line-height:1.75;margin:0;max-width:740px;font-style:italic;">
           &ldquo;The businesses we work with are not failing. They are performing at a fraction of their capacity
           because the infrastructure supporting their growth was never built. That is what we come in to fix.&rdquo;
         </p>
-        <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C9A84C;margin:18px 0 0 0;">Debbie Marie / Founder, Circa AI Group</p>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#A67C2E;margin:18px 0 0 0;">Debbie Marie / Founder, Circa AI Group</p>
       </div>
 
     </div>
   </section>
 
   <!-- ── ABOUT [05] ── -->
-  <section id="about" style="background:#082567;padding:100px 24px;border-top:1px solid rgba(255,255,255,0.1);">
+  <section id="about" style="background:#082567;padding:100px 48px;border-top:1px solid rgba(255,255,255,0.1);">
     <div style="max-width:1100px;margin:0 auto;">
       <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
 
@@ -1955,7 +1957,7 @@
         </div>
       </div>
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.35);text-align:center;">
-        &copy; 2026 Copyright &middot; Circa Group AI
+        &copy; 2026 Circa AI Group
       </div>
     </div>
   </footer>

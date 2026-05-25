@@ -96,8 +96,8 @@
   --shadow-strong:  0 20px 48px rgba(11, 21, 38, 0.18);
 
   /* ── TRANSITIONS ── */
-  --ease-default:  all 0.2s ease;
-  --ease-slow:     all 0.35s ease;
+  --ease-default:  opacity 0.2s ease, transform 0.2s ease;
+  --ease-slow:     opacity 0.35s ease, transform 0.35s ease;
 
   /* ── LAYOUT ── */
   --max-width:      1100px;
