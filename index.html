@@ -166,8 +166,26 @@
       line-height: 1.1;
       letter-spacing: -0.02em;
       color: #1C1C1C;
-      max-width: 560px;
-      margin: 0 0 22px 0;
+      max-width: 620px;
+      margin: 0 0 0 0;
+    }
+    .hero-title-solution {
+      display: block;
+      margin-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.25rem, 2.4vw, 1.625rem);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: #A67C2E;
+    }
+    .hero-title-solution::before {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, #C9A84C, #E8C97A);
+      margin-bottom: 16px;
     }
     .hero-sub {
       font-family: Georgia, 'Times New Roman', serif;
@@ -175,8 +193,8 @@
       font-size: clamp(1rem, 1.6vw, 1.125rem);
       line-height: 1.65;
       color: #5a6578;
-      max-width: 480px;
-      margin: 0 0 18px 0;
+      max-width: 500px;
+      margin: 28px 0 18px 0;
     }
     .hero-proof-bar {
       font-family: 'DM Sans', sans-serif;
@@ -226,14 +244,16 @@
     /* ── ROI FINDER CARD ── */
     .roi-card {
       width: 100%;
-      max-width: 380px;
+      max-width: 360px;
       background: #ffffff;
-      border: 1px solid rgba(6,15,30,0.08);
+      border: 1px solid rgba(6,15,30,0.06);
       border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(6,15,30,0.07), 0 1px 4px rgba(6,15,30,0.04);
+      box-shadow: 0 2px 16px rgba(6,15,30,0.05), 0 1px 3px rgba(6,15,30,0.03);
       overflow: hidden;
       transition: opacity 0.3s ease;
+      opacity: 0.92;
     }
+    .roi-card:hover { opacity: 1; }
     .roi-card-header {
       display: flex;
       justify-content: space-between;
@@ -1321,8 +1341,8 @@
 
       <!-- Left: Text Content -->
       <div class="hero-left">
-        <p class="hero-eyebrow">AI Consulting</p>
-        <h1 class="hero-title">Your practice runs on you. That's not a system.<br><span style="color:#A67C2E;">We build the operating infrastructure that runs it without you.</span></h1>
+        <p class="hero-eyebrow">For Solo Practitioners</p>
+        <h1 class="hero-title">Your practice runs on you. That's not a system.<span class="hero-title-solution">We build the operating infrastructure that runs it without you.</span></h1>
         <p class="hero-sub">AI strategy, custom systems, and measurable ROI. No pilots that go nowhere. No tools you won't use.</p>
         <p class="hero-proof-bar">Strategy to deployment &nbsp;&middot;&nbsp; Measurable ROI &nbsp;&middot;&nbsp; No ongoing lock-in</p>
         <div class="hero-ctas">
