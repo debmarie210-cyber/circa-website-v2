@@ -554,8 +554,8 @@
       .sp-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     }
 
-    /* ── APPROACH SECTION ── */
-    .approach-section {
+    /* ── PROOF SNAPSHOT SECTION ── */
+    .proof-snapshot {
       background:
         radial-gradient(ellipse at 85% 30%, rgba(201,168,76,0.07) 0%, transparent 52%),
         radial-gradient(ellipse at 15% 75%, rgba(26,45,82,0.5) 0%, transparent 48%),
@@ -563,13 +563,68 @@
       padding: 96px 48px;
       color: #FFFFFF;
     }
-    .approach-inner {
+    .proof-snapshot-inner {
       max-width: 1100px;
       margin: 0 auto;
+      text-align: center;
+    }
+    .proof-snapshot-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: #FFFFFF;
+      margin: 0 auto 56px;
+    }
+    .proof-cards {
       display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 88px;
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .proof-card {
+      background: #122040;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 40px 36px;
+      text-align: left;
+    }
+    .proof-card-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .proof-card-name span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #8A93A2;
+      margin-top: 4px;
+    }
+    .proof-card-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .proof-stat-num {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 500;
+      color: #C9A84C;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .proof-stat-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
     }
     .section-label-mono {
       font-family: 'DM Mono', monospace;
@@ -579,42 +634,14 @@
       color: #8A93A2;
       margin-bottom: 32px;
     }
-    .approach-side-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.6);
-    }
-    .approach-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(26px, 3.5vw, 40px);
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.025em;
-      color: #FFFFFF;
-      margin-bottom: 24px;
-    }
-    .approach-body {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.62);
-    }
-    .approach-body span { color: #C9A84C; }
     @media (max-width: 768px) {
-      .approach-section { padding: 64px 24px; }
-      .approach-inner { grid-template-columns: 1fr; gap: 40px; }
+      .proof-snapshot { padding: 64px 24px; }
+      .proof-cards { grid-template-columns: 1fr; }
     }
 
     /* ── SERVICES / FLIP CARD ROADMAP ── */
     .services-section {
-      background:
-        radial-gradient(ellipse at 50% 45%, rgba(67,194,253,0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 90%, rgba(240,180,41,0.06) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 50%, rgba(20,60,120,0.3) 0%, transparent 70%),
-        linear-gradient(180deg, #040c1a 0%, #0a1e3d 40%, #0f2847 65%, #091a30 100%);
+      background: #f0ece2;
       padding: 96px 48px;
       color: #FFFFFF;
     }
@@ -629,7 +656,7 @@
       font-weight: 800;
       line-height: 1.1;
       letter-spacing: -0.025em;
-      color: #FFFFFF;
+      color: #0B1526;
       margin-top: 12px;
     }
     .flip-track {
@@ -774,16 +801,16 @@
     .services-glass-note {
       margin-top: 48px;
       text-align: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(11,21,38,0.04);
+      border: 1px solid rgba(11,21,38,0.08);
       border-radius: 12px;
       padding: 18px 32px;
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
-      color: rgba(255,255,255,0.48);
+      color: rgba(28,28,28,0.6);
     }
     .services-glass-note a {
-      color: #C9A84C;
+      color: #A67C2E;
       transition: opacity 0.2s ease;
     }
     .services-glass-note a:hover { opacity: 0.72; }
@@ -1619,20 +1646,46 @@
     </div>
   </section>
 
-  <!-- ── APPROACH SECTION ── -->
-  <section class="approach-section" id="approach">
-    <div class="approach-inner">
-      <div>
-        <div class="section-label-mono">[02. The Circa Method]</div>
-        <p class="approach-side-text">
-          A custom AI system built around your sales process: discovered, designed, and deployed in under three weeks.
-        </p>
-      </div>
-      <div>
-        <h2 class="approach-title">Most AI initiatives fail because execution is weak.</h2>
-        <p class="approach-body">
-          We don't sell software. We build bespoke automation and embed it in your operations, train your team, and measure real results. From lead reactivation to client retention, <span>we transform service businesses in weeks, not months.</span>
-        </p>
+  <!-- ── PROOF SNAPSHOT SECTION ── -->
+  <section class="proof-snapshot" id="proof">
+    <div class="proof-snapshot-inner">
+      <p class="section-eyebrow" style="color:#C9A84C;">Proof</p>
+      <h2 class="proof-snapshot-title">Real operations. Real numbers.</h2>
+      <div class="proof-cards">
+        <div class="proof-card">
+          <div class="proof-card-name">Tosha Scott <span>Solo CPA</span></div>
+          <div class="proof-card-stats">
+            <div class="proof-stat">
+              <div class="proof-stat-num">35-45%</div>
+              <div class="proof-stat-label">reduction in manual workflow overhead from day one</div>
+            </div>
+            <div class="proof-stat">
+              <div class="proof-stat-num">8 hrs/week</div>
+              <div class="proof-stat-label">reclaimed at full implementation</div>
+            </div>
+            <div class="proof-stat">
+              <div class="proof-stat-num">60%</div>
+              <div class="proof-stat-label">admin time reduction through tax season</div>
+            </div>
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-card-name">Norrita Johnson <span>Property Tax Consultant</span></div>
+          <div class="proof-card-stats">
+            <div class="proof-stat">
+              <div class="proof-stat-num">26 hrs</div>
+              <div class="proof-stat-label">reclaimed every peak week</div>
+            </div>
+            <div class="proof-stat">
+              <div class="proof-stat-num">+100</div>
+              <div class="proof-stat-label">additional properties without adding headcount</div>
+            </div>
+            <div class="proof-stat">
+              <div class="proof-stat-num">$37,500</div>
+              <div class="proof-stat-label">in previously turned-away revenue recovered</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1641,8 +1694,8 @@
   <section class="services-section" id="services">
     <div class="services-inner">
       <div class="services-header-block">
-        <p class="section-eyebrow">The AI Execution Framework</p>
-        <h2 class="services-title">Your Path to Intelligent Growth</h2>
+        <p class="section-eyebrow">How It Works</p>
+        <h2 class="services-title">Five stages. One operating system. Built around how you actually work.</h2>
       </div>
       <div class="flip-cards-row flip-track">
 
@@ -1663,9 +1716,9 @@
               <div>
                 <div class="flip-back-stage">Stage 01</div>
                 <div class="flip-back-title">Discover</div>
-                <div class="flip-back-detail">We map your entire lead flow: how prospects come in, where they stall, and what it's costing you to handle it manually. No assumptions. Just a clear picture of what's happening and what isn't.</div>
+                <div class="flip-back-detail">We map every workflow in your operation: what you do manually, how long it takes, and what it's costing you to keep doing it yourself.</div>
               </div>
-              <div class="flip-back-outcome">Outcome: Full lead flow audit delivered in 72 hours</div>
+              <div class="flip-back-outcome">Outcome: Full operational audit delivered in 72 hours</div>
             </div>
           </div>
         </div>
@@ -1690,9 +1743,9 @@
               <div>
                 <div class="flip-back-stage">Stage 02</div>
                 <div class="flip-back-title">Diagnose</div>
-                <div class="flip-back-detail">We identify exactly where slow response and manual follow-up are losing you clients, and establish what automation addresses first for the fastest return.</div>
+                <div class="flip-back-detail">We identify exactly which workflows a system should be handling instead of you, and sequence them by highest time and revenue impact.</div>
               </div>
-              <div class="flip-back-outcome">Outcome: Prioritized AI opportunity scorecard</div>
+              <div class="flip-back-outcome">Outcome: Your AI opportunity map, prioritized</div>
             </div>
           </div>
         </div>
@@ -1717,9 +1770,9 @@
               <div>
                 <div class="flip-back-stage">Stage 03</div>
                 <div class="flip-back-title">Design</div>
-                <div class="flip-back-detail">Your system is architected around your sales process. Built to integrate cleanly into how your business already operates.</div>
+                <div class="flip-back-detail">Your operating system is architected around how your practice actually runs. Not a template, not a tool stack.</div>
               </div>
-              <div class="flip-back-outcome">Outcome: System blueprint approved before a single line of code</div>
+              <div class="flip-back-outcome">Outcome: Full system blueprint approved before we build anything</div>
             </div>
           </div>
         </div>
@@ -1746,9 +1799,9 @@
               <div>
                 <div class="flip-back-stage">Stage 04</div>
                 <div class="flip-back-title">Deploy</div>
-                <div class="flip-back-detail">We build and launch your lead response and qualification system in 14 to 21 days. Embedded in your stack, monitored from day one, and tested until it runs without friction.</div>
+                <div class="flip-back-detail">We build it, embed it, and stay until it runs without friction.</div>
               </div>
-              <div class="flip-back-outcome">Outcome: Live system running in under three weeks</div>
+              <div class="flip-back-outcome">Outcome: Live system in 30 days</div>
             </div>
           </div>
         </div>
@@ -1773,9 +1826,9 @@
               <div>
                 <div class="flip-back-stage">Stage 05</div>
                 <div class="flip-back-title">Scale</div>
-                <div class="flip-back-detail">We optimize and expand your system as your pipeline grows. Real benchmarks, ongoing support, and full visibility into what the system is doing and why.</div>
+                <div class="flip-back-detail">We expand your system as your capacity grows.</div>
               </div>
-              <div class="flip-back-outcome">Outcome: Compounding ROI month over month</div>
+              <div class="flip-back-outcome">Outcome: More clients. Same hours.</div>
             </div>
           </div>
         </div>
