@@ -891,6 +891,17 @@
       .evidence-grid { grid-template-columns: 1fr; }
     }
 
+    /* ── CASE STUDY DRAWER ── */
+    .cs-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cs-drawer.cs-open {
+      max-height: 4000px;
+      transition: max-height 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     /* ── CASE STUDY ── */
     .cs-section {
       background: #f6f6f6;
@@ -1445,7 +1456,7 @@
         <h1 class="hero-title">You are the only system your business has.<span class="hero-title-solution">We build the infrastructure that changes that.</span></h1>
         <div class="hero-ctas">
           <button onclick="openCalModal()" class="btn-hero-primary">Book an AI Strategy Call</button>
-          <a href="#case-study" class="btn-hero-outline">View case studies</a>
+          <a href="#results" class="btn-hero-outline" onclick="setTimeout(toggleCaseStudies,600)">View case studies</a>
         </div>
       </div>
 
@@ -1848,7 +1859,7 @@
           <div class="section-label-mono">[03. Real Metrics]</div>
           <h2 class="results-title">Results That Show Up in the Numbers</h2>
         </div>
-        <a href="#case-study" class="btn-gold">See the Case Study &rarr;</a>
+        <button class="btn-gold" id="cs-toggle" onclick="toggleCaseStudies()">See the Case Studies &darr;</button>
       </div>
       <div class="evidence-grid">
         <div class="data-card">
@@ -1869,6 +1880,9 @@
       </div>
     </div>
   </section>
+
+  <!-- ── CASE STUDIES DRAWER ── -->
+  <div id="cs-drawer" class="cs-drawer">
 
   <!-- ── CASE STUDY SECTION ── -->
   <section id="case-study" class="cs-section">
@@ -1964,6 +1978,8 @@
 
     </div>
   </section>
+
+  </div><!-- end cs-drawer -->
 
   <!-- ── OPERATIONAL IMPACT [04] ── -->
   <section id="impact" style="background:#F9F5EE;padding:100px 48px;border-top:1px solid rgba(0,0,0,0.07);">
@@ -2199,6 +2215,20 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeCalModal();
     });
+  </script>
+
+  <script>
+    function toggleCaseStudies() {
+      var drawer = document.getElementById('cs-drawer');
+      var btn = document.getElementById('cs-toggle');
+      drawer.classList.toggle('cs-open');
+      if (drawer.classList.contains('cs-open')) {
+        btn.innerHTML = 'Hide Case Studies &uarr;';
+        setTimeout(function() { drawer.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+      } else {
+        btn.innerHTML = 'See the Case Studies &darr;';
+      }
+    }
   </script>
 
   <script>
