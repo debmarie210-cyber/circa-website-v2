@@ -191,11 +191,11 @@
 
     /* ── CIRCULAR BACKGROUND ── */
     .hero-bg-card {
-      background: rgba(255,255,255,0.60);
+      background: rgba(255,255,255,0.70);
       border-radius: 50%;
       box-shadow: 0 2px 20px rgba(11,21,38,0.05);
-      width: 590px;
-      height: 590px;
+      width: 531px;
+      height: 531px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -210,7 +210,7 @@
     .orbit-ring {
       position: absolute;
       inset: 0;
-      border: 1.5px dashed rgba(26,35,64,0.12);
+      border: 1.5px dashed rgba(26,35,64,0.60);
       border-radius: 50%;
     }
     .orbit-center {
@@ -249,12 +249,12 @@
     }
     .orbit-center-sub {
       font-family: 'DM Sans', sans-serif;
-      font-size: 8px;
+      font-size: 7px;
       font-weight: 500;
       color: #C9A84C;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 2px;
+      letter-spacing: 0.08em;
+      margin-top: 1px;
     }
     .orbit-nodes-ring {
       position: absolute;
@@ -272,12 +272,17 @@
       align-items: center;
       gap: 4px;
       animation: orbitCounterSpin 20s linear infinite;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(200,168,78,0.40);
+      border-radius: 12px;
+      padding: 8px 6px 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
     @keyframes orbitCounterSpin {
       to { transform: rotate(-360deg); }
     }
     .orbit-node-dot {
-      width: 36px; height: 36px;
+      width: 43px; height: 43px;
       background: #FFFFFF;
       border: 1.5px solid rgba(26,35,64,0.15);
       border-radius: 50%;
@@ -287,7 +292,7 @@
       box-shadow: 0 2px 8px rgba(26,35,64,0.06);
     }
     .orbit-node-dot svg {
-      width: 15px; height: 15px;
+      width: 18px; height: 18px;
       color: #1a2340;
     }
     .orbit-node-name {
@@ -525,7 +530,10 @@
     @media (max-width: 1024px) {
       .orbit-wrap { width: 400px; height: 400px; }
       .orbit-center { width: 90px; height: 90px; }
-      .hero-bg-card { width: 480px; height: 480px; }
+      .orbit-center-sub { font-size: 6.5px; }
+      .hero-bg-card { width: 432px; height: 432px; }
+      .orbit-node-dot { width: 38px; height: 38px; }
+      .orbit-node-dot svg { width: 16px; height: 16px; }
     }
     .live-badge {
       display: inline-flex;
@@ -602,16 +610,16 @@
     @media (max-width: 768px) {
       .hero-inner { padding: 32px 20px 40px; }
       .orbit-wrap { width: 280px; height: 280px; }
-      .orbit-center { width: 70px; height: 70px; }
-      .orbit-center-label { font-size: 8px; }
-      .orbit-center-sub { font-size: 7px; }
-      .orbit-center-icon { width: 18px; height: 18px; }
-      .orbit-node-dot { width: 26px; height: 26px; }
-      .orbit-node-dot svg { width: 11px; height: 11px; }
-      .orbit-node-name { font-size: 7.5px; }
-      .orbit-node-tag { font-size: 6px; }
-      .orbit-node { width: 68px; }
-      .hero-bg-card { width: 340px; height: 340px; }
+      .orbit-center { width: 66px; height: 66px; }
+      .orbit-center-label { font-size: 7px; }
+      .orbit-center-sub { font-size: 5.5px; letter-spacing: 0.04em; }
+      .orbit-center-icon { width: 16px; height: 16px; margin-bottom: 2px; }
+      .orbit-node-dot { width: 28px; height: 28px; }
+      .orbit-node-dot svg { width: 12px; height: 12px; }
+      .orbit-node-name { font-size: 7px; }
+      .orbit-node-tag { font-size: 5.5px; }
+      .orbit-node { width: 64px; padding: 5px 4px 4px; border-radius: 8px; }
+      .hero-bg-card { width: 306px; height: 306px; }
       .hero-title { max-width: 100%; }
       .hero-ctas  { flex-direction: column; width: 100%; }
       .btn-hero-primary, .btn-hero-outline { width: 100%; justify-content: center; }
@@ -1670,7 +1678,7 @@
             <!-- Node 6: Task Management (bottom-left) -->
             <div class="orbit-node" style="bottom:12%; left:0;">
               <div class="orbit-node-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-              <div class="orbit-node-name">Task Mgmt</div>
+              <div class="orbit-node-name">Task Management</div>
               <div class="orbit-node-tag">Manual</div>
             </div>
             <!-- Node 7: Onboarding (left) -->
