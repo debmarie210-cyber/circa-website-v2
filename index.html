@@ -181,44 +181,24 @@
       letter-spacing: -0.01em;
       color: #A67C2E;
     }
-    .hero-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+    .hero-center {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       flex: 1;
-    }
-    .hero-left {
-      display: flex;
-      align-items: center;
       justify-content: center;
-    }
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
     }
 
-    /* ── BACKGROUND CARDS ── */
+    /* ── CIRCULAR BACKGROUND ── */
     .hero-bg-card {
       background: rgba(255,255,255,0.60);
-      border-radius: 16px;
+      border-radius: 50%;
       box-shadow: 0 2px 20px rgba(11,21,38,0.05);
-      padding: 32px;
+      width: 590px;
+      height: 590px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .hero-right-card {
-      background: rgba(255,255,255,0.60);
-      border-radius: 16px;
-      box-shadow: 0 2px 20px rgba(11,21,38,0.05);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
     }
 
     /* ── ORBIT DIAGRAM ── */
@@ -543,11 +523,9 @@
       color: #8A93A2;
     }
     @media (max-width: 1024px) {
-      .hero-columns { gap: 24px; }
       .orbit-wrap { width: 400px; height: 400px; }
       .orbit-center { width: 90px; height: 90px; }
-      .hero-bg-card { padding: 20px; }
-      .hero-right-card { padding: 24px; }
+      .hero-bg-card { width: 480px; height: 480px; }
     }
     .live-badge {
       display: inline-flex;
@@ -579,7 +557,8 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin-top: 36px;
+      margin-top: 32px;
+      justify-content: center;
     }
     .btn-gold {
       display: inline-flex;
@@ -622,25 +601,18 @@
     }
     @media (max-width: 768px) {
       .hero-inner { padding: 32px 20px 40px; }
-      .hero-columns { grid-template-columns: 1fr; gap: 24px; }
-      .hero-left { order: 2; overflow: hidden; }
-      .hero-right { order: 1; }
-      .orbit-wrap { width: 320px; height: 320px; }
-      .orbit-center { width: 76px; height: 76px; }
+      .orbit-wrap { width: 280px; height: 280px; }
+      .orbit-center { width: 70px; height: 70px; }
       .orbit-center-label { font-size: 8px; }
       .orbit-center-sub { font-size: 7px; }
-      .orbit-center-icon { width: 20px; height: 20px; }
-      .orbit-node-dot { width: 28px; height: 28px; }
-      .orbit-node-dot svg { width: 12px; height: 12px; }
-      .orbit-node-name { font-size: 8px; }
+      .orbit-center-icon { width: 18px; height: 18px; }
+      .orbit-node-dot { width: 26px; height: 26px; }
+      .orbit-node-dot svg { width: 11px; height: 11px; }
+      .orbit-node-name { font-size: 7.5px; }
       .orbit-node-tag { font-size: 6px; }
-      .orbit-node { width: 72px; }
-      .hero-bg-card { padding: 16px; }
-      .hero-right-card { padding: 20px; gap: 24px; }
-      .hero-outcome { max-width: 100%; }
-      .hero-outcome-headline { font-size: 18px; }
+      .orbit-node { width: 68px; }
+      .hero-bg-card { width: 340px; height: 340px; }
       .hero-title { max-width: 100%; }
-      .roi-card   { max-width: 100%; }
       .hero-ctas  { flex-direction: column; width: 100%; }
       .btn-hero-primary, .btn-hero-outline { width: 100%; justify-content: center; }
       .trust-strip { padding: 0 24px 32px; }
@@ -1422,16 +1394,27 @@
       margin-bottom: 0;
     }
     .footer-booking-content { min-width: 0; }
-    .footer-glow-logo {
-      width: clamp(240px, 28vw, 400px);
-      opacity: 0.92;
+    .footer-roi-wrap {
       flex-shrink: 0;
+    }
+    .footer-roi-wrap .roi-card {
+      max-width: 340px;
+      opacity: 0.92;
+    }
+    .footer-roi-wrap .roi-card:hover { opacity: 1; }
+    .footer-glow-logo {
+      display: block;
+      width: clamp(200px, 24vw, 340px);
+      opacity: 0.92;
       pointer-events: none;
       user-select: none;
+      margin: 80px auto 0;
     }
     @media (max-width: 768px) {
       .footer-booking-row { grid-template-columns: 1fr; }
-      .footer-glow-logo { width: 180px; margin: 0 auto; }
+      .footer-roi-wrap { display: flex; justify-content: center; }
+      .footer-roi-wrap .roi-card { max-width: 100%; }
+      .footer-glow-logo { width: 160px; margin: 48px auto 0; }
     }
     .footer-booking-label {
       font-family: 'DM Mono', monospace;
@@ -1493,7 +1476,7 @@
       background: #C9A84C;
       flex-shrink: 0;
     }
-    .footer-ctas { margin-bottom: 80px; }
+    .footer-ctas { margin-bottom: 0; }
     .footer-bottom {
       display: flex;
       justify-content: space-between;
@@ -1637,11 +1620,8 @@
         <h1 class="hero-title">You are the only system your business has.<span class="hero-title-solution">We build the infrastructure that changes that.</span></h1>
       </div>
 
-      <!-- Two-Column Layout -->
-      <div class="hero-columns">
-
-      <!-- Left: Orbit Diagram -->
-      <div class="hero-left">
+      <!-- Centered Orbit Diagram -->
+      <div class="hero-center">
         <div class="hero-bg-card">
         <div class="orbit-wrap">
           <div class="orbit-ring"></div>
@@ -1709,61 +1689,13 @@
 
         </div>
         </div>
-      </div>
-
-      <!-- Right: ROI Card + Outcome -->
-      <div class="hero-right">
-        <div class="hero-right-card">
-        <div class="roi-card" id="roi-card">
-          <div class="roi-card-header">
-            <span class="roi-card-title">AI opportunity scan</span>
-            <span class="roi-card-counter" id="roi-counter">1 / 4</span>
-          </div>
-          <div class="roi-card-body">
-            <div>
-              <span class="roi-area-label" id="roi-area">LEAD MANAGEMENT</span>
-              <span class="roi-op-name" id="roi-op">Lead response</span>
-            </div>
-            <div class="roi-metrics">
-              <div class="roi-metric-row">
-                <span class="roi-metric-label">Current avg. time</span>
-                <span class="roi-metric-val roi-danger" id="roi-current">4h 32m</span>
-              </div>
-              <div class="roi-metric-row">
-                <span class="roi-metric-label">With AI</span>
-                <span class="roi-metric-val roi-success" id="roi-ai">0:03</span>
-              </div>
-              <div class="roi-metric-row">
-                <span class="roi-metric-label">Annual savings</span>
-                <span class="roi-metric-val roi-strong" id="roi-savings">$47,200</span>
-              </div>
-            </div>
-            <div class="roi-bar-track">
-              <div class="roi-bar-fill" id="roi-bar-fill" style="width:92%"></div>
-            </div>
-            <div class="roi-status">
-              <span class="roi-status-dot"></span>
-              <span class="roi-status-text">High-impact opportunity detected</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Outcome statement -->
-        <div class="hero-outcome">
-          <div class="hero-outcome-label">The Result</div>
-          <div class="hero-outcome-headline">Your business runs without you at the center.</div>
-          <div class="hero-outcome-body">We remove you from the middle and build the infrastructure that keeps everything moving.</div>
-        </div>
 
         <!-- CTAs -->
         <div class="hero-ctas">
           <button onclick="openCalModal()" class="btn-hero-primary">Book an AI Strategy Call</button>
           <a href="#results" class="btn-hero-outline" onclick="setTimeout(toggleCaseStudies,600)">View case studies</a>
         </div>
-        </div><!-- end hero-right-card -->
       </div>
-
-      </div><!-- end hero-columns -->
 
     </div>
   </section>
@@ -2423,8 +2355,43 @@
             <button onclick="openCalModal()" class="btn-gold">Book an AI Strategy Call &rarr;</button>
           </div>
         </div>
-        <img src="brand_assets/CIRCA GLOW LOGO GOLD DOT.png" alt="" class="footer-glow-logo">
+        <div class="footer-roi-wrap">
+          <div class="roi-card" id="roi-card">
+            <div class="roi-card-header">
+              <span class="roi-card-title">AI opportunity scan</span>
+              <span class="roi-card-counter" id="roi-counter">1 / 4</span>
+            </div>
+            <div class="roi-card-body">
+              <div>
+                <span class="roi-area-label" id="roi-area">LEAD MANAGEMENT</span>
+                <span class="roi-op-name" id="roi-op">Lead response</span>
+              </div>
+              <div class="roi-metrics">
+                <div class="roi-metric-row">
+                  <span class="roi-metric-label">Current avg. time</span>
+                  <span class="roi-metric-val roi-danger" id="roi-current">4h 32m</span>
+                </div>
+                <div class="roi-metric-row">
+                  <span class="roi-metric-label">With AI</span>
+                  <span class="roi-metric-val roi-success" id="roi-ai">0:03</span>
+                </div>
+                <div class="roi-metric-row">
+                  <span class="roi-metric-label">Annual savings</span>
+                  <span class="roi-metric-val roi-strong" id="roi-savings">$47,200</span>
+                </div>
+              </div>
+              <div class="roi-bar-track">
+                <div class="roi-bar-fill" id="roi-bar-fill" style="width:92%"></div>
+              </div>
+              <div class="roi-status">
+                <span class="roi-status-dot"></span>
+                <span class="roi-status-text">High-impact opportunity detected</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <img src="brand_assets/CIRCA GLOW LOGO GOLD DOT.png" alt="" class="footer-glow-logo">
       <div class="footer-bottom">
         <div class="footer-logo" style="flex-direction:column;align-items:flex-start;">
           <img src="brand_assets/CIRCA GLOW LOGO GOLD DOT.png" alt="Circa">
