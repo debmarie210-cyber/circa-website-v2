@@ -8,7 +8,7 @@
   <link rel="icon" href="brand_assets/CIRCA-FAVICON.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     /* ── RESET ── */
@@ -500,6 +500,88 @@
     .btn-ghost:hover {
       background: rgba(201,168,76,0.08);
       transform: translateY(-1px);
+    }
+    /* ── HERO METRICS BAR ── */
+    .hero-metrics-wrap {
+      margin: 0;
+    }
+    .hero-metrics-gold-strip {
+      height: 3px;
+      background: linear-gradient(90deg, #1B2A4A, #C9A84C, #1B2A4A);
+    }
+    .hero-metrics {
+      background: #1B2A4A;
+      padding: 40px 48px;
+    }
+    .hero-metrics-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+    .hero-metrics-col {
+      text-align: center;
+      padding: 8px 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: metricFadeIn 0.6s ease-out forwards;
+    }
+    .hero-metrics-col:last-child {
+      border-right: none;
+    }
+    .hero-metrics-col:nth-child(1) { animation-delay: 0ms; }
+    .hero-metrics-col:nth-child(2) { animation-delay: 150ms; }
+    .hero-metrics-col:nth-child(3) { animation-delay: 300ms; }
+    @keyframes metricFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-metric-number {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      color: #C9A84C;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .hero-metric-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+    .hero-metric-source {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.25);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+    @media (max-width: 640px) {
+      .hero-metrics { padding: 32px 24px; }
+      .hero-metrics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .hero-metrics-col {
+        padding: 16px 12px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .hero-metrics-col:nth-child(odd) {
+        border-right: 1px solid rgba(255,255,255,0.08);
+      }
+      .hero-metrics-col:last-child {
+        border-bottom: none;
+        grid-column: 1 / -1;
+      }
     }
     @media (max-width: 768px) {
       .hero-inner { padding: 32px 20px 40px; }
@@ -1547,6 +1629,30 @@
         </div>
 
       </div>
+    </div>
+    <!-- ── HERO METRICS BAR ── -->
+    <div class="hero-metrics-wrap">
+      <div class="hero-metrics-gold-strip"></div>
+      <div class="hero-metrics">
+        <div class="hero-metrics-grid">
+          <div class="hero-metrics-col">
+            <div class="hero-metric-number">20+</div>
+            <div class="hero-metric-label">Hours Reclaimed Per Week</div>
+            <div class="hero-metric-source">N.R. Vative Solutions</div>
+          </div>
+          <div class="hero-metrics-col">
+            <div class="hero-metric-number">100</div>
+            <div class="hero-metric-label">New Cases Unlocked in One Season</div>
+            <div class="hero-metric-source">N.R. Vative Solutions</div>
+          </div>
+          <div class="hero-metrics-col">
+            <div class="hero-metric-number">$37.5K</div>
+            <div class="hero-metric-label">Incremental Revenue Captured</div>
+            <div class="hero-metric-source">N.R. Vative Solutions</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-metrics-gold-strip"></div>
     </div>
   </section>
 
