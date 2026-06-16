@@ -28,18 +28,24 @@ const MIME = {
 
 const server = createServer(async (req, res) => {
   const url = req.url === '/' ? '/index.html' : req.url;
-  const filePath = join(__dirname, decodeURIComponent(url.split('?')[0]));
-  const ext = extname(filePath).toLowerCase();
-  const contentType = MIME[ext] || 'text/plain';
+  const clean = decodeURIComponent(url.split('?')[0]);
+  const candidates = [clean];
+  if (!extname(clean)) candidates.push(clean + '.html', clean + '/index.html');
 
-  try {
-    const data = await readFile(filePath);
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.end(data);
-  } catch {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('404 Not Found');
+  for (const candidate of candidates) {
+    const filePath = join(__dirname, candidate);
+    const ext = extname(filePath).toLowerCase();
+    const contentType = MIME[ext] || 'text/plain';
+    try {
+      const data = await readFile(filePath);
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(data);
+      return;
+    } catch { /* try next candidate */ }
   }
+
+  res.writeHead(404, { 'Content-Type': 'text/plain' });
+  res.end('404 Not Found');
 });
 
 server.listen(PORT, '127.0.0.1', () => {

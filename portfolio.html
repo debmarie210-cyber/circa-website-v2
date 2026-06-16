@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Circa AI Group</title>
+  <meta name="description" content="Projects in AI automation, operations, and systems design by Debbie Wright and Circa AI Group.">
+  <link rel="icon" href="brand_assets/CIRCA-FAVICON.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ── */
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #060f1e;
+      color: #f0ece2;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    ::selection { background: #0B1526; color: #C9A84C; }
+
+    /* ── HEADER ── */
+    .port-header {
+      border-bottom: 1px solid rgba(200,168,78,0.15);
+      padding: 56px 48px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .port-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(240,236,226,0.4);
+      margin-bottom: 32px;
+      transition: color 0.2s ease;
+    }
+    .port-back:hover { color: #c8a84e; }
+    .port-back svg { width: 14px; height: 14px; }
+    .port-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c8a84e;
+      margin-bottom: 16px;
+    }
+    .port-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #f0ece2;
+      max-width: 640px;
+    }
+
+    /* ── CARD GRID ── */
+    .port-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 48px 96px;
+      display: grid;
+      gap: 32px;
+    }
+
+    /* ── PROJECT CARD ── */
+    .port-card {
+      border: 1px solid rgba(200,168,78,0.14);
+      border-radius: 4px;
+      padding: 44px;
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .port-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.25s ease;
+    }
+    .port-card:hover {
+      border-color: rgba(200,168,78,0.4);
+      transform: translateY(-2px);
+    }
+    .port-card.revealed:hover {
+      transform: translateY(-2px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .card-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c8a84e;
+      font-weight: 700;
+      border: 1px solid rgba(200,168,78,0.35);
+      padding: 4px 10px;
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+    .card-industry {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(240,236,226,0.35);
+      letter-spacing: 0.04em;
+    }
+    .card-client {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 600;
+      color: #f0ece2;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .card-company {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(240,236,226,0.45);
+      margin-bottom: 30px;
+    }
+
+    /* Problem / Solution columns */
+    .card-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .card-col-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(240,236,226,0.3);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .card-col-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(240,236,226,0.7);
+    }
+
+    /* Results strip */
+    .card-results {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(200,168,78,0.1);
+      padding-top: 28px;
+      margin-bottom: 28px;
+    }
+    .result-stat {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #c8a84e;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .result-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: rgba(240,236,226,0.4);
+      letter-spacing: 0.04em;
+    }
+
+    /* Footer row: tech + live link */
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .card-tech {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tech-pill {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: rgba(240,236,226,0.4);
+      background: rgba(255,255,255,0.04);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .card-live {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      color: #c8a84e;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid rgba(200,168,78,0.35);
+      padding-bottom: 2px;
+      transition: border-color 0.2s ease;
+    }
+    .card-live:hover {
+      border-color: #c8a84e;
+    }
+
+    /* ── PAGE FOOTER ── */
+    .port-footer {
+      border-top: 1px solid rgba(200,168,78,0.1);
+      padding: 40px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .port-footer-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(240,236,226,0.3);
+    }
+    .port-footer-link {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c8a84e;
+      transition: opacity 0.2s ease;
+    }
+    .port-footer-link:hover { opacity: 0.75; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .port-header { padding: 40px 24px 36px; }
+      .port-grid { padding: 40px 24px 72px; gap: 24px; }
+      .port-card { padding: 28px 24px; }
+      .card-columns { grid-template-columns: 1fr; gap: 24px; }
+      .card-results { gap: 24px; }
+      .port-footer { padding: 32px 24px; }
+    }
+    @media (max-width: 480px) {
+      .card-top { flex-direction: column; }
+      .card-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="port-header">
+    <a href="/" class="port-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to site
+    </a>
+    <p class="port-eyebrow">Debbie Wright · Project Portfolio</p>
+    <h1 class="port-title">Projects in AI automation, operations, and systems design.</h1>
+  </header>
+
+  <!-- ── PROJECT CARDS ── -->
+  <section class="port-grid">
+
+    <!-- Norrita Johnson -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Client Work</span>
+        <span class="card-industry">Property Tax Consulting · Texas</span>
+      </div>
+      <h2 class="card-client">Norrita Johnson</h2>
+      <p class="card-company">Vative Solutions</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Norrita was manually tracking hundreds of property tax protest cases across spreadsheets, email threads, and paper files. During peak season, admin work was consuming time that should have gone to taking on new cases and serving existing clients.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Built a full case management system from scratch — a web application with a case intake portal, document checklists, case timelines, an invoice calculator, and a payment ledger. Every active case, document, and payment in one place, accessible from anywhere.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">26 hrs</p><p class="result-label">Reclaimed per week</p></div>
+        <div><p class="result-stat">100</p><p class="result-label">Additional protest cases handled</p></div>
+        <div><p class="result-stat">$37,500</p><p class="result-label">Incremental revenue</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Next.js</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Tailwind CSS</span>
+          <span class="tech-pill">Supabase</span>
+        </div>
+        <a href="https://nrvative-case-manager.vercel.app" target="_blank" rel="noopener noreferrer" class="card-live">View live →</a>
+      </div>
+    </article>
+
+    <!-- Tosha Scott -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Client Work</span>
+        <span class="card-industry">Solo CPA Practice</span>
+      </div>
+      <h2 class="card-client">Tosha Scott</h2>
+      <p class="card-company">Tosha Scott Accounting</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Tosha was launching a solo accounting practice with the technical skills but no operational model. Without a structured intake process, pricing framework, or automation plan, scaling beyond a handful of clients would have required proportional hour increases — a ceiling with no solution.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Delivered a comprehensive AI Business Efficiency Audit: a 16-section operational blueprint covering service architecture, flat-rate pricing, a full client lifecycle workflow, a 9-automation AI implementation map built on the Solution Sphere framework, month-by-month revenue projections, a 30-day launch roadmap, a lean tech stack under $200/month, and a compliance and risk framework.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">40%</p><p class="result-label">Estimated workflow time savings</p></div>
+        <div><p class="result-stat">6.5–9.5 hrs</p><p class="result-label">Saved per week at full implementation</p></div>
+        <div><p class="result-stat">$180K</p><p class="result-label">Revenue ceiling modeled at full capacity</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">AI Audit</span>
+          <span class="tech-pill">Solution Sphere Framework</span>
+          <span class="tech-pill">Workflow Design</span>
+          <span class="tech-pill">Revenue Modeling</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Audit Generator -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Internal Tool</span>
+        <span class="card-industry">Consulting Operations</span>
+      </div>
+      <h2 class="card-client">AI Audit Report Generator</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">A 16-section AI Business Efficiency Audit is the core deliverable of every client engagement. Writing one manually — synthesizing interview notes, mapping automations, building revenue projections, and formatting a professional document — takes 8 to 12 hours per client. At that pace, delivery speed becomes a constraint on how many clients can be served.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Built an AI Audit Report Generator that ingests the Fireflies transcript from the client interview and outputs a fully structured, client-ready audit report following the Solution Sphere framework. Covers all 9 sections: executive summary, service architecture, workflow design, automation opportunity map, revenue model, 30-day roadmap, tech stack, success metrics, and compliance framework. Also generates a companion presentation deck via NotebookLM with slide-by-slide speaker notes for the client delivery call.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">10+ hrs</p><p class="result-label">Saved per audit report</p></div>
+        <div><p class="result-stat">Minutes</p><p class="result-label">From transcript to first draft</p></div>
+        <div><p class="result-stat">2 outputs</p><p class="result-label">Full report + presentation deck</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Claude API</span>
+          <span class="tech-pill">Fireflies</span>
+          <span class="tech-pill">NotebookLM</span>
+          <span class="tech-pill">Solution Sphere Framework</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Proposal Generator -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Internal Tool</span>
+        <span class="card-industry">Consulting Operations</span>
+      </div>
+      <h2 class="card-client">AI Proposal Generator</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Every client engagement follows a 12-step process from discovery call to delivery. The proposal sits at Step 4 — after the audit is complete and before the contract is signed. Writing a custom proposal manually after every audit added hours of work between a high-value deliverable and a signed contract, slowing the sales cycle at its most critical moment.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Built an AI Proposal Generator that pulls data from both the pre-audit discovery interview and the completed AI Audit Report to produce a tailored proposal. Covers engagement scope, deliverables, timeline with milestones, investment, and next steps. Structured to under-promise and overdeliver on timeline so every engagement starts with a client who feels ahead of schedule. Output is ready to present at Step 4 of the 12-step client process — same day the audit is delivered.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">12-step</p><p class="result-label">Client process automated end-to-end</p></div>
+        <div><p class="result-stat">Same day</p><p class="result-label">Proposal ready after audit delivery</p></div>
+        <div><p class="result-stat">Faster</p><p class="result-label">Discovery to signed contract</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Claude API</span>
+          <span class="tech-pill">Fireflies</span>
+          <span class="tech-pill">Proposal Automation</span>
+          <span class="tech-pill">Solution Sphere Framework</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Circa Ops -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Internal Tool</span>
+        <span class="card-industry">AI Consulting Operations</span>
+      </div>
+      <h2 class="card-client">Solution Sphere Platform + Circa Website</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Running an AI consulting practice without its own operating infrastructure created a credibility gap. The business that builds AI systems for clients needed to demonstrate those same systems internally.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Built the Solution Sphere Platform — a private ops tool with Supabase authentication (Phase 1 complete) — alongside the full Circa AI Group website, including brand system, hero copy, case study metrics bar, and an end-to-end GitHub → Vercel → Cloudflare deployment pipeline.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">Phase 1</p><p class="result-label">Auth complete and live</p></div>
+        <div><p class="result-stat">1</p><p class="result-label">End-to-end deployment pipeline</p></div>
+        <div><p class="result-stat">2</p><p class="result-label">Live case studies with verified metrics</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Next.js</span>
+          <span class="tech-pill">Supabase</span>
+          <span class="tech-pill">Vercel</span>
+          <span class="tech-pill">Cloudflare</span>
+          <span class="tech-pill">GitHub</span>
+        </div>
+        <a href="https://circaaigroup.com" target="_blank" rel="noopener noreferrer" class="card-live">View live →</a>
+      </div>
+    </article>
+
+    <!-- Obsidian Wiki -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Internal Tool</span>
+        <span class="card-industry">Knowledge Management</span>
+      </div>
+      <h2 class="card-client">Obsidian Knowledge Base</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Institutional knowledge about clients, frameworks, and systems lived across browser tabs, chat histories, and memory. Every new engagement started from zero instead of compounding on what already existed.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Built a structured Obsidian-based second brain wiki — a private knowledge base pre-loaded with Circa AI Group's full business context: the Solution Sphere framework, client notes, ICP profiles, offer architecture, and operational playbooks. Functions as a living internal wiki that grows with every engagement.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">1</p><p class="result-label">Unified knowledge system</p></div>
+        <div><p class="result-stat">100%</p><p class="result-label">Business context captured and searchable</p></div>
+        <div><p class="result-stat">0</p><p class="result-label">Repeated research from scratch</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Obsidian</span>
+          <span class="tech-pill">Markdown</span>
+          <span class="tech-pill">Linked Notes</span>
+          <span class="tech-pill">Knowledge Architecture</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lead Gen Pipeline -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Internal Tool</span>
+        <span class="card-industry">Sales Operations</span>
+      </div>
+      <h2 class="card-client">Lead Generation Pipeline</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Identifying and reaching qualified prospects at scale requires either significant manual effort or expensive third-party tools. Neither option made sense for a lean solo consulting practice that needed a replicable outbound system.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Built a three-agent podcaster lead scraper pipeline: Agent 1 scrapes show directories for qualifying criteria, Agent 2 enriches each lead with contact data and context, Agent 3 drafts personalized outreach sequences. The full pipeline runs end-to-end with minimal manual input.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">3-agent</p><p class="result-label">Automated pipeline</p></div>
+        <div><p class="result-stat">~0 hrs</p><p class="result-label">Manual research per lead</p></div>
+        <div><p class="result-stat">1</p><p class="result-label">Replicable outbound system</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Claude API</span>
+          <span class="tech-pill">Web Scraping</span>
+          <span class="tech-pill">Outreach Automation</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Ikigai Tool -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Framework Tool</span>
+        <span class="card-industry">Brand Strategy Tool</span>
+      </div>
+      <h2 class="card-client">Ikigai Brand Assessment</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Solo practitioners often struggle to articulate what makes their practice distinct — not for lack of self-awareness, but because they have never had a structured way to surface it. Generic brand exercises produce generic answers.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Built an interactive Ikigai-based brand assessment tool as a React component. Prospects and clients work through four intersecting dimensions — what they're good at, what they love, what the market needs, and what they can be paid for — to surface a positioning statement grounded in their actual strengths rather than what sounds good in a bio.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">4</p><p class="result-label">Positioning dimensions mapped</p></div>
+        <div><p class="result-stat">1</p><p class="result-label">Reusable client-facing tool</p></div>
+        <div><p class="result-stat">Interactive</p><p class="result-label">React component, no static PDF</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">Tailwind CSS</span>
+          <span class="tech-pill">Brand Strategy</span>
+          <span class="tech-pill">Ikigai Framework</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- LinkedIn Content System -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Content System</span>
+        <span class="card-industry">Thought Leadership</span>
+      </div>
+      <h2 class="card-client">LinkedIn Content Framework</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">LinkedIn content for consultants defaults to either generic advice or self-promotional announcements. Neither builds authority with a specific ICP. Publishing without a repeatable content system means inconsistency — the fastest way to lose traction on the platform.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Developed a 10-angle thought leadership content framework scored against Circa AI Group's ICP targeting CPAs, property tax consultants, and insurance brokers. Each angle has a defined purpose, example structure, and scoring rationale. Functions as an editorial calendar backbone that produces relevant, non-repetitive content across any posting cadence.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">10</p><p class="result-label">Distinct content angles</p></div>
+        <div><p class="result-stat">3</p><p class="result-label">ICPs targeted simultaneously</p></div>
+        <div><p class="result-stat">1</p><p class="result-label">Repeatable editorial system</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Content Strategy</span>
+          <span class="tech-pill">ICP Targeting</span>
+          <span class="tech-pill">Editorial Framework</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CPA EA Workshop -->
+    <article class="port-card">
+      <div class="card-top">
+        <span class="card-tag">Product</span>
+        <span class="card-industry">Training &amp; Certification</span>
+      </div>
+      <h2 class="card-client">CPA Executive Assistant Workshop</h2>
+      <p class="card-company">Circa AI Group</p>
+      <div class="card-columns">
+        <div>
+          <p class="card-col-label">The Problem</p>
+          <p class="card-col-text">Virtual and executive assistants are being displaced by AI tools they don't know how to use. Agencies offering traditional VA services face a positioning problem: the market is shifting toward operators who can configure and manage AI workflows, not just execute tasks.</p>
+        </div>
+        <div>
+          <p class="card-col-label">What Was Built</p>
+          <p class="card-col-text">Designed the CPA Executive Assistant workshop product — a training program for VA/EA agencies that repositions their staff as AI-powered operators. Covers workflow automation, prompt engineering for admin tasks, tool configuration, and client communication systems. Delivered via Pathwright with a structured curriculum and certification pathway.</p>
+        </div>
+      </div>
+      <div class="card-results">
+        <div><p class="result-stat">1</p><p class="result-label">Certification pathway designed</p></div>
+        <div><p class="result-stat">New</p><p class="result-label">Revenue stream for VA/EA agencies</p></div>
+        <div><p class="result-stat">AI-ready</p><p class="result-label">Operator positioning for graduates</p></div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tech">
+          <span class="tech-pill">Pathwright</span>
+          <span class="tech-pill">Curriculum Design</span>
+          <span class="tech-pill">Workflow Automation</span>
+          <span class="tech-pill">Certification Framework</span>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="port-footer">
+    <p class="port-footer-text">© 2026 Circa AI Group</p>
+    <a href="/" class="port-footer-link">← Back to circaaigroup.com</a>
+  </footer>
+
+  <script>
+    // Staggered scroll-reveal using IntersectionObserver (same pattern as main site)
+    const cards = document.querySelectorAll('.port-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = `${i * 80}ms`;
+      observer.observe(card);
+    });
+
+    // Fallback: reveal any remaining cards after 1.5s (accessibility + screenshot safety)
+    setTimeout(() => {
+      cards.forEach(card => card.classList.add('revealed'));
+    }, 1500);
+  </script>
+
+</body>
+</html>
