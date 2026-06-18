@@ -1876,12 +1876,183 @@
     </div>
   </section>
 
-  <!-- ── CAPABILITIES SECTION ── -->
+  <!-- ── OPERATIONAL FREEDOM METHOD ── -->
   <style>
+    .ofm {
+      background: #F8F7F5;
+      padding: 100px 48px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .ofm-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .ofm-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .ofm-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 16px;
+    }
+    .ofm-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: #0B1526;
+      margin-bottom: 20px;
+    }
+    .ofm-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #5a6578;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    /* Timeline track */
+    .ofm-timeline {
+      position: relative;
+      padding-left: 56px;
+    }
+    .ofm-timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, #C9A84C 8%, #C9A84C 92%, transparent);
+    }
+    /* Cards */
+    .ofm-card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px 40px 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 16px rgba(11,21,38,0.05), 0 1px 4px rgba(11,21,38,0.03);
+      border: 1px solid rgba(0,0,0,0.04);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.25s ease;
+    }
+    .ofm-card.ofm-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .ofm-card:nth-child(1) { transition-delay: 0s; }
+    .ofm-card:nth-child(2) { transition-delay: 0.15s; }
+    .ofm-card:nth-child(3) { transition-delay: 0.3s; }
+    .ofm-card:last-child { margin-bottom: 0; }
+    .ofm-card:hover {
+      box-shadow: 0 10px 40px rgba(11,21,38,0.1), 0 4px 14px rgba(11,21,38,0.06);
+      transform: translateY(-3px);
+    }
+    .ofm-card.ofm-visible:hover { transform: translateY(-3px); }
+    /* Node on the line */
+    .ofm-node {
+      position: absolute;
+      left: -56px;
+      top: 36px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #C9A84C;
+      background: #F8F7F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: #C9A84C;
+      z-index: 2;
+    }
+    .ofm-card-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .ofm-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(201,168,76,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ofm-card-icon svg {
+      width: 20px;
+      height: 20px;
+      color: #C9A84C;
+    }
+    .ofm-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 700;
+      color: #0B1526;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+    .ofm-card p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #4a5568;
+    }
+    /* Closing callout */
+    .ofm-closing {
+      margin-top: 48px;
+      padding: 32px 36px;
+      background: #ffffff;
+      border-radius: 14px;
+      border-left: 4px solid #C9A84C;
+      box-shadow: 0 2px 12px rgba(11,21,38,0.04);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+    }
+    .ofm-closing.ofm-close-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .ofm-closing p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 600;
+      line-height: 1.5;
+      color: #0B1526;
+      letter-spacing: -0.01em;
+    }
+    .ofm-closing .ofm-em {
+      color: #A67C2E;
+      font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .ofm { padding: 64px 24px; }
+      .ofm-timeline { padding-left: 44px; }
+      .ofm-timeline::before { left: 14px; }
+      .ofm-node { left: -44px; width: 32px; height: 32px; font-size: 11px; top: 28px; }
+      .ofm-card { padding: 28px 24px; }
+      .ofm-closing { padding: 24px 24px 24px 28px; margin-top: 36px; }
+    }
+    /* ── (legacy capabilities — replaced) ── */
     .capabilities {
       background: #ffffff;
       color: #0a0a0a;
       padding-bottom: 8rem;
+      display: none;
     }
     .cap-list {
       display: flex;
@@ -1968,28 +2139,71 @@
     }
   </style>
 
-  <section id="capabilities" class="capabilities">
-    <div style="padding: 5rem 4rem 3rem;">
-      <div style="font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;color:#C9A84C;">[WHAT WE BUILD]</div>
-    </div>
-    <div class="cap-list">
-      <div class="cap-row">
-        <div class="cap-num">001</div>
-        <div class="cap-title">The Client Layer</div>
-        <div class="cap-desc">Every touchpoint a client has with your business before they pay you: intake, scheduling, follow-up, communication. Right now you handle all of it manually. We automate it completely.</div>
-        <div class="cap-action">↗</div>
+  <!-- ── OPERATIONAL FREEDOM METHOD ── -->
+  <section id="capabilities" class="ofm">
+    <div class="ofm-inner">
+      <div class="ofm-header">
+        <p class="ofm-eyebrow">[Our Method]</p>
+        <h2 class="ofm-title">The Operational Freedom Method</h2>
+        <p class="ofm-subtitle">Three layers of systems, built in order, so the business runs without you holding it together.</p>
       </div>
-      <div class="cap-row">
-        <div class="cap-num">002</div>
-        <div class="cap-title">The Work Layer</div>
-        <div class="cap-desc">The actual delivery of your service takes longer than it should because there's no AI working alongside you. We build the tools that compress the time your expertise requires.</div>
-        <div class="cap-action">↗</div>
+
+      <div class="ofm-timeline">
+        <!-- Card 1 -->
+        <div class="ofm-card">
+          <div class="ofm-node">01</div>
+          <div class="ofm-card-top">
+            <div class="ofm-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Growth Systems</h3>
+          </div>
+          <p>Growth Systems handle how work comes in. Lead intake, onboarding, scheduling, follow-up — the stuff that used to depend on you remembering to send an email.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="ofm-card">
+          <div class="ofm-node">02</div>
+          <div class="ofm-card-top">
+            <div class="ofm-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <h3>Execution Systems</h3>
+          </div>
+          <p>Execution Systems handle how the work actually gets done. Case files, project tracking, document generation — the parts of service delivery that used to live in your head or your inbox.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="ofm-card">
+          <div class="ofm-node">03</div>
+          <div class="ofm-card-top">
+            <div class="ofm-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+            <h3>Operating Systems</h3>
+          </div>
+          <p>Operating Systems handle the business itself. Invoicing, reporting, SOPs — the infrastructure that lets someone else step in without calling you first.</p>
+        </div>
       </div>
-      <div class="cap-row">
-        <div class="cap-num">003</div>
-        <div class="cap-title">The Systems Layer</div>
-        <div class="cap-desc">Nothing in your business talks to anything else. Information moves when you move it. We build the connections that make your entire operation run without you pushing it forward.</div>
-        <div class="cap-action">↗</div>
+
+      <div class="ofm-closing">
+        <p>Each layer gets built on what's already there. Most clients start with <span class="ofm-em">whichever one is causing the most damage right now.</span></p>
       </div>
     </div>
   </section>
@@ -2712,6 +2926,31 @@
         });
       }, { threshold: 0.2 });
       calloutIO.observe(calloutEl);
+    }
+
+    // ── OFM CARD + CLOSING SCROLL REVEAL ──
+    const ofmCards = document.querySelectorAll('.ofm-card');
+    const ofmIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ofm-visible');
+          ofmIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    ofmCards.forEach(el => ofmIO.observe(el));
+
+    const ofmClosing = document.querySelector('.ofm-closing');
+    if (ofmClosing) {
+      const ofmCloseIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('ofm-close-visible');
+            ofmCloseIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      ofmCloseIO.observe(ofmClosing);
     }
 
     // ── FAQ ACCORDION ──
