@@ -621,22 +621,56 @@
       max-width: 660px;
       margin: 0 auto 40px;
     }
-    .ai-gap-body {
-      max-width: 620px;
-      margin: 0 auto 56px;
+    .ai-gap-narrative {
+      max-width: 680px;
+      margin: 0 auto 60px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .ai-gap-narrative.narrative-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .ai-gap-prose {
       text-align: left;
+      margin-bottom: 32px;
     }
-    .ai-gap-body p {
+    .ai-gap-prose p {
       font-family: 'DM Sans', sans-serif;
-      font-size: 15.5px;
-      line-height: 1.75;
-      color: #3a3f4a;
-      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #4a4f5a;
+      margin-bottom: 22px;
     }
-    .ai-gap-body p:last-child {
-      margin-bottom: 0;
-      font-weight: 500;
-      color: #1a2340;
+    .ai-gap-prose p:last-child { margin-bottom: 0; }
+    .ai-gap-pullquote {
+      position: relative;
+      padding: 28px 0 28px 32px;
+      border-left: 3px solid #C9A84C;
+      margin-top: 36px;
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+    }
+    .ai-gap-narrative.narrative-visible .ai-gap-pullquote {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .ai-gap-pullquote p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 600;
+      line-height: 1.45;
+      color: #0B1526;
+      letter-spacing: -0.01em;
+    }
+    .ai-gap-pullquote .pullquote-term {
+      color: #A67C2E;
+    }
+    @media (max-width: 768px) {
+      .ai-gap-narrative { max-width: 100%; }
+      .ai-gap-pullquote { padding: 24px 0 24px 24px; }
     }
     .sp-glass {
       background: rgba(255,255,255,0.78);
@@ -1682,10 +1716,14 @@
     <div class="ai-gap-inner">
       <p class="section-eyebrow">The Real Cost</p>
       <h2 class="ai-gap-title">What running a business with no infrastructure actually costs.</h2>
-      <div class="ai-gap-body">
-        <p>Your business runs on you. Every client question, every status update, every detail about where things stand lives in your head or buried in a text thread somewhere.</p>
-        <p>Bring in another client and your capacity drops instead of growing. More email to answer, more decisions only you can make, more things you have to remember because nobody wrote them down. Hire someone and they still need you to explain the process every time, because the process only exists in your head.</p>
-        <p>This is founder dependency. It shows up as a ceiling on how big the business can get before it breaks you.</p>
+      <div class="ai-gap-narrative">
+        <div class="ai-gap-prose">
+          <p>Your business runs on you. Every client question, every status update, every detail about where things stand lives in your head or buried in a text thread somewhere.</p>
+          <p>Bring in another client and your capacity drops instead of growing. More email to answer, more decisions only you can make, more things you have to remember because nobody wrote them down. Hire someone and they still need you to explain the process every time, because the process only exists in your head.</p>
+        </div>
+        <div class="ai-gap-pullquote">
+          <p>This is <span class="pullquote-term">founder dependency.</span> It shows up as a ceiling on how big the business can get before it breaks you.</p>
+        </div>
       </div>
       <div class="sp-glass">
         <div class="sp-grid">
@@ -2526,6 +2564,20 @@
       });
     }, { threshold: 0.2 });
     impactEls.forEach(el => impactIO.observe(el));
+
+    // ── NARRATIVE SCROLL REVEAL ──
+    const narrativeEl = document.querySelector('.ai-gap-narrative');
+    if (narrativeEl) {
+      const narrativeIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('narrative-visible');
+            narrativeIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      narrativeIO.observe(narrativeEl);
+    }
 
     // ── FAQ ACCORDION ──
     document.querySelectorAll('.faq-question').forEach(question => {
