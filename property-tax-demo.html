@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Tax Case Manager — Circa AI Group</title>
+  <meta name="description" content="See the case management system Circa AI Group built for a property tax consulting practice — case intake, document tracking, timelines, and invoicing in one private web app.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="brand_assets/CIRCA-FAVICON.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ── */
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #F9F5EE;
+      color: #1C1C1C;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    ::selection { background: #0B1526; color: #C9A84C; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #F9F5EE;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .navbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      margin-right: 48px;
+    }
+    .nav-logo img { height: 80px; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+      margin-right: 40px;
+    }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1C1C1C;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #C9A84C;
+      transition: width 0.2s ease;
+    }
+    .nav-links a:hover { color: #A67C2E; }
+    .nav-links a:hover::after { width: 100%; }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      color: #0B1526;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-gold:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 13px 31px;
+      background: transparent;
+      color: #A67C2E;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border: 1.5px solid #A67C2E;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-ghost:hover { background: rgba(166,124,46,0.08); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .ptc-hero {
+      background: linear-gradient(180deg, #F9F5EE 0%, #f0ece2 100%);
+      padding: 80px 48px 64px;
+      position: relative;
+    }
+    .ptc-hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .ptc-hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #A67C2E;
+      margin-bottom: 20px;
+    }
+    .ptc-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: #0B1526;
+      margin-bottom: 16px;
+    }
+    .ptc-hero-tagline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 500;
+      font-style: italic;
+      color: #A67C2E;
+      margin-bottom: 28px;
+    }
+    .ptc-hero-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #4a5568;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+    .ptc-hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── STAT STRIP ── */
+    .ptc-stats {
+      background: #f0ece2;
+      padding: 48px 48px 72px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .ptc-stats-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+    .ptc-stat-num {
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      font-size: clamp(28px, 3.5vw, 40px);
+      color: #A67C2E;
+      margin-bottom: 8px;
+    }
+    .ptc-stat-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: #5a6578;
+      line-height: 1.5;
+    }
+
+    /* ── MOCKUP SECTION ── */
+    .ptc-demo {
+      background:
+        radial-gradient(ellipse at 85% 20%, rgba(201,168,76,0.07) 0%, transparent 52%),
+        radial-gradient(ellipse at 15% 80%, rgba(26,45,82,0.5) 0%, transparent 48%),
+        #0B1526;
+      padding: 100px 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .ptc-demo-inner { max-width: 1000px; margin: 0 auto; }
+    .ptc-demo-header { text-align: center; margin-bottom: 56px; }
+    .ptc-demo-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 16px;
+    }
+    .ptc-demo-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+    .ptc-demo-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Browser chrome */
+    .ptc-browser {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #122040;
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .ptc-browser.ptc-visible { opacity: 1; transform: translateY(0); }
+    .ptc-browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      background: #0d1830;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ptc-browser-dots { display: flex; gap: 7px; flex-shrink: 0; }
+    .ptc-browser-dots span {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: rgba(255,255,255,0.16);
+    }
+    .ptc-browser-url {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+    .ptc-browser-url svg { width: 11px; height: 11px; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+
+    /* App shell */
+    .ptc-app { display: flex; min-height: 480px; }
+    .ptc-app-side {
+      width: 200px;
+      flex-shrink: 0;
+      background: #0d1830;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      padding: 20px 14px;
+      display: none;
+    }
+    .ptc-app-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 8px 18px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ptc-app-brand-mark {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: linear-gradient(135deg, #C9A84C, #A67C2E);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; color: #0B1526;
+    }
+    .ptc-app-brand-text { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: #fff; letter-spacing: -0.01em; }
+    .ptc-app-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 2px;
+    }
+    .ptc-app-nav a svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .ptc-app-nav a.active {
+      background: rgba(201,168,76,0.12);
+      color: #E8C97A;
+    }
+    .ptc-app-nav a .ptc-badge {
+      margin-left: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.55);
+      padding: 1px 7px;
+      border-radius: 999px;
+    }
+    .ptc-app-nav a.active .ptc-badge { background: rgba(201,168,76,0.25); color: #E8C97A; }
+
+    .ptc-app-main { flex: 1; min-width: 0; padding: 22px 20px; }
+    .ptc-app-toprow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .ptc-app-toprow-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: #fff; }
+    .ptc-app-toprow-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
+    .ptc-app-newcase {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      color: #0B1526;
+      font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 12px;
+      border-radius: 7px; white-space: nowrap;
+    }
+
+    .ptc-app-minirow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .ptc-app-minicard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 9px;
+      padding: 12px 14px;
+    }
+    .ptc-app-minicard-num { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 18px; color: #fff; }
+    .ptc-app-minicard-label { font-family: 'DM Sans', sans-serif; font-size: 10.5px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    .ptc-table-wrap {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+    .ptc-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+    .ptc-table th {
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      white-space: nowrap;
+    }
+    .ptc-table td {
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      white-space: nowrap;
+    }
+    .ptc-table tr:last-child td { border-bottom: none; }
+    .ptc-table td.ptc-owner { color: rgba(255,255,255,0.45); }
+    .ptc-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .ptc-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; }
+    .ptc-pill--gold { background: rgba(201,168,76,0.14); color: #E8C97A; }
+    .ptc-pill--gold::before { background: #E8C97A; }
+    .ptc-pill--blue { background: rgba(67,194,253,0.14); color: #43c2fd; }
+    .ptc-pill--blue::before { background: #43c2fd; }
+    .ptc-pill--green { background: rgba(39,174,96,0.16); color: #4fd08a; }
+    .ptc-pill--green::before { background: #4fd08a; }
+    .ptc-pill--gray { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+    .ptc-pill--gray::before { background: rgba(255,255,255,0.4); }
+
+    /* ── PROBLEM ── */
+    .ptc-problem { background: #F9F5EE; padding: 100px 48px; border-top: 1px solid rgba(0,0,0,0.06); }
+    .ptc-problem-inner { max-width: 1100px; margin: 0 auto; }
+    .ptc-problem-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #A67C2E; margin-bottom: 20px;
+    }
+    .ptc-problem-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; letter-spacing: -0.025em;
+      color: #0B1526; max-width: 720px; margin-bottom: 48px;
+    }
+    .ptc-vignettes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .ptc-vig {
+      background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-top: 3px solid #C9A84C;
+      border-radius: 0 0 14px 14px; padding: 28px 26px;
+      box-shadow: 0 2px 12px rgba(11,21,38,0.06);
+    }
+    .ptc-vig h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #0B1526; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .ptc-vig p { font-family: 'DM Sans', sans-serif; font-size: 14.5px; line-height: 1.7; color: #5a6578; }
+    .ptc-problem-bridge {
+      margin-top: 48px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic; font-weight: 600;
+      font-size: clamp(19px, 2.2vw, 24px);
+      color: #A67C2E;
+    }
+
+    /* ── MODULES ── */
+    .ptc-modules {
+      background: #F8F7F5;
+      padding: 100px 48px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+    .ptc-modules-inner { max-width: 860px; margin: 0 auto; }
+    .ptc-modules-header { text-align: center; margin-bottom: 64px; }
+    .ptc-modules-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #A67C2E;
+      margin-bottom: 16px;
+    }
+    .ptc-modules-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: #0B1526;
+    }
+    .ptc-timeline { position: relative; padding-left: 60px; }
+    .ptc-timeline::before {
+      content: '';
+      position: absolute;
+      left: 22px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, transparent, #C9A84C 5%, #C9A84C 95%, transparent);
+    }
+    .ptc-mod {
+      position: relative;
+      background: #ffffff;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 16px rgba(11,21,38,0.05), 0 1px 4px rgba(11,21,38,0.03);
+      border: 1px solid rgba(0,0,0,0.04);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.25s ease;
+    }
+    .ptc-mod.ptc-visible { opacity: 1; transform: translateY(0); }
+    .ptc-mod:nth-child(1) { transition-delay: 0s; }
+    .ptc-mod:nth-child(2) { transition-delay: 0.1s; }
+    .ptc-mod:nth-child(3) { transition-delay: 0.2s; }
+    .ptc-mod:nth-child(4) { transition-delay: 0.3s; }
+    .ptc-mod:nth-child(5) { transition-delay: 0.4s; }
+    .ptc-mod:last-child { margin-bottom: 0; }
+    .ptc-mod:hover { box-shadow: 0 10px 40px rgba(11,21,38,0.1), 0 4px 14px rgba(11,21,38,0.06); transform: translateY(-3px); }
+    .ptc-mod.ptc-visible:hover { transform: translateY(-3px); }
+    .ptc-mod.flagship { border: 2px solid #C9A84C; box-shadow: 0 2px 16px rgba(201,168,76,0.12), 0 1px 4px rgba(11,21,38,0.03); }
+    .ptc-mod.flagship:hover { box-shadow: 0 10px 40px rgba(201,168,76,0.18), 0 4px 14px rgba(11,21,38,0.06); }
+    .ptc-node {
+      position: absolute; left: -60px; top: 32px;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid #C9A84C; background: #F8F7F5;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: #C9A84C;
+      z-index: 2;
+    }
+    .flagship .ptc-node { background: #C9A84C; color: #ffffff; border-color: #C9A84C; }
+    .ptc-mod-header { padding: 32px 36px 28px; cursor: pointer; display: flex; align-items: flex-start; gap: 16px; position: relative; }
+    .ptc-mod-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(201,168,76,0.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .ptc-mod-icon svg { width: 20px; height: 20px; color: #C9A84C; }
+    .ptc-mod-text { flex: 1; }
+    .ptc-mod-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+    .ptc-mod h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(18px, 2.5vw, 22px); font-weight: 700; color: #0B1526; letter-spacing: -0.01em; line-height: 1.25; }
+    .ptc-flagship-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 12px;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      border-radius: 100px;
+      font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0B1526;
+    }
+    .ptc-mod-desc { font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; color: #5a6578; }
+    .ptc-toggle {
+      position: absolute; right: 36px; top: 36px;
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1); background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.3s ease, border-color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .ptc-toggle svg { width: 14px; height: 14px; color: #8A93A2; transition: color 0.2s ease; }
+    .ptc-mod.open .ptc-toggle { transform: rotate(180deg); border-color: #C9A84C; }
+    .ptc-mod.open .ptc-toggle svg { color: #C9A84C; }
+    .ptc-mod-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .ptc-mod.open .ptc-mod-body { max-height: 400px; }
+    .ptc-mod-body-inner { padding: 0 36px 32px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 24px; }
+    .ptc-mod-body ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .ptc-mod-body li { font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.5; color: #4a5568; padding-left: 20px; position: relative; }
+    .ptc-mod-body li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #C9A84C; }
+
+    /* ── INTERACTIVE CALCULATOR ── */
+    .ptc-calc-section { background: #F8F7F5; padding: 100px 48px; border-top: 1px solid rgba(0,0,0,0.05); }
+    .ptc-calc-inner { max-width: 900px; margin: 0 auto; }
+    .ptc-calc-header { text-align: center; margin-bottom: 48px; }
+    .ptc-calc-card {
+      background: #ffffff; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px;
+      padding: 36px 40px; box-shadow: 0 8px 32px rgba(11,21,38,0.08);
+    }
+    .ptc-calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .ptc-calc-field label {
+      display: block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #0B1526; margin-bottom: 8px;
+    }
+    .ptc-calc-field input, .ptc-calc-field select {
+      width: 100%; padding: 12px 14px; font-family: 'DM Sans', sans-serif; font-size: 15px;
+      border: 1px solid rgba(0,0,0,0.12); border-radius: 8px; background: #F9F5EE; color: #1C1C1C;
+    }
+    .ptc-calc-field input:focus, .ptc-calc-field select:focus { outline: 2px solid #C9A84C; border-color: #C9A84C; }
+    .ptc-calc-out { margin-top: 24px; background: #0B1526; border-radius: 12px; padding: 24px 26px; color: #F9F5EE; }
+    .ptc-calc-row {
+      display: flex; justify-content: space-between; font-family: 'DM Sans', sans-serif; font-size: 14.5px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .ptc-calc-row:last-child { border-bottom: none; padding-top: 14px; }
+    .ptc-calc-row .val { font-family: 'DM Mono', monospace; font-weight: 500; }
+    .ptc-calc-total { font-family: 'DM Mono', monospace; font-weight: 600; font-size: 22px; color: #E8C97A; }
+    .ptc-calc-note { margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-style: italic; color: #8A93A2; text-align: center; }
+
+    /* ── FAQ ── */
+    .faq-section { background: #f0f0ee; padding: 96px 48px; color: #1C1C1C; border-top: 1px solid rgba(0,0,0,0.05); }
+    .faq-label { font-size: 0.75rem; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.12em; color: #A67C2E; margin-bottom: 1rem; text-align: center; }
+    .faq-heading { font-family: 'Montserrat', sans-serif; font-size: clamp(2.25rem, 4vw, 3.25rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; color: #0B1526; text-align: center; margin-bottom: 3.5rem; }
+    .faq-list { display: flex; flex-direction: column; max-width: 860px; margin: 0 auto; }
+    .faq-item { border-top: 1px solid rgba(0,0,0,0.12); padding: 2rem 0; transition: border-color 0.2s ease; }
+    .faq-item.open { border-top-color: #A67C2E; }
+    .faq-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.12); }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; color: #1C1C1C; transition: color 0.2s ease; }
+    .faq-item.open .faq-question { color: #A67C2E; }
+    .faq-toggle { color: #A67C2E; font-size: 1.5rem; font-weight: 300; transition: transform 0.3s ease, color 0.2s ease; flex-shrink: 0; margin-left: 2rem; line-height: 1; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; line-height: 1.7; color: #5a6578; }
+    .faq-item.open .faq-answer { max-height: 300px; padding-top: 1.1rem; }
+
+    /* ── RESULTS (case study) ── */
+    .ptc-results { background: #0B1526; padding: 100px 48px; position: relative; overflow: hidden; }
+    .ptc-results::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(ellipse at 18% 50%, rgba(201,168,76,0.06) 0%, transparent 48%);
+      pointer-events: none;
+    }
+    .ptc-results-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .ptc-results-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #C9A84C;
+      margin-bottom: 24px;
+    }
+    .ptc-results-dot { width: 6px; height: 6px; border-radius: 50%; background: #C9A84C; }
+    .ptc-results-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: clamp(28px, 3.8vw, 52px);
+      color: #F9F5EE; line-height: 1.1; letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .ptc-results-client {
+      font-family: 'DM Sans', sans-serif; font-size: 15px; color: rgba(249,245,238,0.55);
+      margin-bottom: 56px;
+    }
+    .ptc-results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .ptc-results-narrative p {
+      font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.75; color: rgba(249,245,238,0.78);
+      margin-bottom: 24px;
+    }
+    .ptc-deliverables { list-style: none; }
+    .ptc-deliverables li {
+      font-family: 'DM Sans', sans-serif; font-size: 14.5px; line-height: 1.6; color: rgba(249,245,238,0.7);
+      padding-left: 22px; position: relative; margin-bottom: 12px;
+    }
+    .ptc-deliverables li::before { content: '→'; position: absolute; left: 0; color: #C9A84C; }
+    .ptc-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ptc-stats-card {
+      background: #122040; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .ptc-stats-card--gold { background: linear-gradient(135deg, #C9A84C, #A67C2E); border: none; }
+    .ptc-stats-num { font-family: 'DM Mono', monospace; font-weight: 500; font-size: clamp(24px, 2.6vw, 30px); color: #fff; margin-bottom: 8px; }
+    .ptc-stats-card--gold .ptc-stats-num { color: #0B1526; }
+    .ptc-stats-lbl { font-family: 'DM Sans', sans-serif; font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.55); }
+    .ptc-stats-card--gold .ptc-stats-lbl { color: rgba(11,21,38,0.75); }
+
+    /* ── FOOTER CTA ── */
+    .ptc-footer-cta { background: #0B1526; padding: 80px 48px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); }
+    .ptc-footer-cta::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 80%; height: 100%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .ptc-footer-cta-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+    .ptc-footer-cta h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -0.025em; color: #ffffff; margin-bottom: 16px; }
+    .ptc-footer-cta p { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+
+    /* ── FOOTER ── */
+    .ptc-footer { background: #0B1526; padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .ptc-footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .ptc-footer-logo { display: flex; align-items: center; gap: 10px; }
+    .ptc-footer-logo img { height: 50px; }
+    .ptc-footer-copy { font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.35); }
+    .ptc-footer-link { font-family: 'DM Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); transition: color 0.2s ease; }
+    .ptc-footer-link:hover { color: #C9A84C; }
+
+    /* ── MOBILE ── */
+    @media (min-width: 700px) {
+      .ptc-app-side { display: block; }
+    }
+    @media (max-width: 768px) {
+      .navbar-inner { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-logo { margin-right: auto; }
+      .ptc-hero { padding: 56px 24px 48px; }
+      .ptc-stats { padding: 40px 24px 56px; }
+      .ptc-stats-inner { grid-template-columns: 1fr; gap: 28px; }
+      .ptc-problem { padding: 64px 24px; }
+      .ptc-vignettes { grid-template-columns: 1fr; }
+      .ptc-demo { padding: 64px 24px; }
+      .ptc-app-main { padding: 18px 14px; }
+      .ptc-app-minirow { grid-template-columns: 1fr; }
+      .ptc-modules { padding: 64px 24px; }
+      .ptc-calc-section { padding: 64px 24px; }
+      .ptc-calc-card { padding: 28px 22px; }
+      .ptc-calc-grid { grid-template-columns: 1fr; }
+      .faq-section { padding: 64px 24px; }
+      .ptc-timeline { padding-left: 48px; }
+      .ptc-timeline::before { left: 16px; }
+      .ptc-node { left: -48px; width: 34px; height: 34px; font-size: 11px; top: 28px; }
+      .ptc-mod-header { padding: 24px 20px 20px; flex-direction: column; }
+      .ptc-mod-body-inner { padding: 0 20px 24px; padding-top: 20px; }
+      .ptc-mod-body ul { grid-template-columns: 1fr; }
+      .ptc-toggle { right: 20px; top: 24px; }
+      .ptc-results { padding: 64px 24px; }
+      .ptc-results-grid { grid-template-columns: 1fr; gap: 40px; }
+      .ptc-stats-grid { grid-template-columns: 1fr 1fr; }
+      .ptc-footer-cta { padding: 64px 24px; }
+      .ptc-footer { padding: 32px 24px; }
+      .ptc-footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="nav-logo">
+        <img src="brand_assets/NEWCIRCALOGOTRANS.png" alt="Circa AI Group">
+      </a>
+      <div class="nav-links">
+        <a href="/#capabilities">Approach</a>
+        <a href="/#proof">Results</a>
+        <a href="/executive-support">Executive Support</a>
+        <a href="/chief-os-training">Chief OS Training</a>
+      </div>
+      <a href="/#contact" class="btn-gold">Book a Systems Audit &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="ptc-hero">
+    <div class="ptc-hero-inner">
+      <p class="ptc-hero-eyebrow">Product Walkthrough &middot; Built for N.R. Vative Solutions</p>
+      <h1>The Property Tax Case Manager.</h1>
+      <p class="ptc-hero-tagline">Every protest case, one system, zero spreadsheets.</p>
+      <p class="ptc-hero-intro">Norrita Johnson runs N.R. Vative Solutions, a property tax consulting practice handling hundreds of protest cases every season. She was tracking all of it across spreadsheets, email threads, and paper files. We built her a private web application instead — a case intake portal, document checklists, case timelines, an invoice calculator, and a payment ledger, all in one place, accessible from anywhere.</p>
+      <div class="ptc-hero-ctas">
+        <a href="#demo" class="btn-gold">See the System Below &darr;</a>
+        <a href="/#contact" class="btn-ghost">Book a Systems Audit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STAT STRIP ── -->
+  <section class="ptc-stats">
+    <div class="ptc-stats-inner">
+      <div>
+        <p class="ptc-stat-num">26 hrs/wk</p>
+        <p class="ptc-stat-label">Reclaimed from admin work</p>
+      </div>
+      <div>
+        <p class="ptc-stat-num">+100</p>
+        <p class="ptc-stat-label">Additional protest cases handled</p>
+      </div>
+      <div>
+        <p class="ptc-stat-num">$37,500</p>
+        <p class="ptc-stat-label">Incremental revenue captured</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROBLEM ── -->
+  <section class="ptc-problem">
+    <div class="ptc-problem-inner">
+      <p class="ptc-problem-eyebrow">[The Real Cost of Admin]</p>
+      <h2 class="ptc-problem-title">You Win at Hearings. Your Calendar Loses to Everything Else.</h2>
+      <div class="ptc-vignettes">
+        <div class="ptc-vig">
+          <h3>The 9pm Invoice Session</h3>
+          <p>The hearing went your way this afternoon. Now you're at the kitchen table with a calculator, working out the savings, applying the right rate, and hoping the math holds up.</p>
+        </div>
+        <div class="ptc-vig">
+          <h3>The Status-Update Pile</h3>
+          <p>Twelve emails today. Nine of them ask the same question: where does my case stand. Each reply is five minutes you don't get back.</p>
+        </div>
+        <div class="ptc-vig">
+          <h3>The Deadline You Almost Missed</h3>
+          <p>A protest deadline surfaced at 11pm, two days before filing closed. You caught it. The spreadsheet didn't &mdash; and next season there will be more cases, not fewer.</p>
+        </div>
+      </div>
+      <p class="ptc-problem-bridge">None of this work requires you. It only requires a system.</p>
+    </div>
+  </section>
+
+  <!-- ── LIVE WALKTHROUGH / MOCKUP ── -->
+  <section class="ptc-demo" id="demo">
+    <div class="ptc-demo-inner">
+      <div class="ptc-demo-header">
+        <p class="ptc-demo-eyebrow">[Live Walkthrough]</p>
+        <h2 class="ptc-demo-title">Built to Run an Entire Protest Season.</h2>
+        <p class="ptc-demo-sub">A private, single-tenant web app — not a template, not a spreadsheet. Every case Norrita's practice touches lives here.</p>
+      </div>
+
+      <div class="ptc-browser" id="ptcBrowser">
+        <div class="ptc-browser-bar">
+          <div class="ptc-browser-dots"><span></span><span></span><span></span></div>
+          <div class="ptc-browser-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            app.nrvative-solutions.com/cases
+          </div>
+        </div>
+        <div class="ptc-app">
+          <aside class="ptc-app-side">
+            <div class="ptc-app-brand">
+              <div class="ptc-app-brand-mark">NR</div>
+              <div class="ptc-app-brand-text">Vative Solutions</div>
+            </div>
+            <nav class="ptc-app-nav">
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Dashboard</a>
+              <a class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Cases<span class="ptc-badge">142</span></a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Documents</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>Timeline</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="12" y2="15"/></svg>Invoices</a>
+              <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.4-1.34-2.5-3-2.5s-3 1-3 2.3c0 3 6 1.4 6 4.3 0 1.4-1.34 2.4-3 2.4s-3-1-3-2.4"/></svg>Payments</a>
+            </nav>
+          </aside>
+          <div class="ptc-app-main">
+            <div class="ptc-app-toprow">
+              <div>
+                <div class="ptc-app-toprow-title">Active Cases</div>
+                <div class="ptc-app-toprow-sub">2026 Protest Season</div>
+              </div>
+              <div class="ptc-app-newcase">+ New Case</div>
+            </div>
+            <div class="ptc-app-minirow">
+              <div class="ptc-app-minicard"><div class="ptc-app-minicard-num">142</div><div class="ptc-app-minicard-label">Active cases</div></div>
+              <div class="ptc-app-minicard"><div class="ptc-app-minicard-num">18</div><div class="ptc-app-minicard-label">Hearings this week</div></div>
+              <div class="ptc-app-minicard"><div class="ptc-app-minicard-num">34</div><div class="ptc-app-minicard-label">Avg. days to resolution</div></div>
+            </div>
+            <div class="ptc-table-wrap">
+              <table class="ptc-table">
+                <thead>
+                  <tr><th>Property</th><th>Owner</th><th>County</th><th>Assessed Value</th><th>Status</th><th>Deadline</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>4821 Bellaire Blvd</td><td class="ptc-owner">R. Alvarez</td><td>Harris</td><td>$412,000</td><td><span class="ptc-pill ptc-pill--gold">Hearing Scheduled</span></td><td>May 14</td></tr>
+                  <tr><td>1190 Preston Rd</td><td class="ptc-owner">K. Mitchell</td><td>Collin</td><td>$687,500</td><td><span class="ptc-pill ptc-pill--blue">Awaiting Response</span></td><td>May 19</td></tr>
+                  <tr><td>337 Riverside Dr</td><td class="ptc-owner">T. Nguyen</td><td>Travis</td><td>$255,900</td><td><span class="ptc-pill ptc-pill--gray">Comps Research</span></td><td>May 26</td></tr>
+                  <tr><td>902 Highland Park</td><td class="ptc-owner">D. Foster</td><td>Dallas</td><td>$1,120,000</td><td><span class="ptc-pill ptc-pill--green">Settled</span></td><td>&mdash;</td></tr>
+                  <tr><td>2266 Camp Bowie</td><td class="ptc-owner">S. Whitfield</td><td>Tarrant</td><td>$389,300</td><td><span class="ptc-pill ptc-pill--gold">Hearing Scheduled</span></td><td>May 21</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MODULES ── -->
+  <section class="ptc-modules" id="modules">
+    <div class="ptc-modules-inner">
+      <div class="ptc-modules-header">
+        <p class="ptc-modules-eyebrow">[What We Built]</p>
+        <h2 class="ptc-modules-title">Five Core Components. One System.</h2>
+      </div>
+
+      <div class="ptc-timeline">
+
+        <!-- 01 Case Intake Portal (Flagship) -->
+        <div class="ptc-mod flagship">
+          <div class="ptc-node">01</div>
+          <div class="ptc-mod-header" onclick="togglePtcMod(this)">
+            <div class="ptc-mod-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="ptc-mod-text">
+              <div class="ptc-mod-title-row">
+                <h3>Case Intake Portal</h3>
+                <span class="ptc-flagship-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Flagship</span>
+              </div>
+              <p class="ptc-mod-desc">Turn a new referral into an active case in minutes.</p>
+            </div>
+            <button class="ptc-toggle" aria-label="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          </div>
+          <div class="ptc-mod-body">
+            <div class="ptc-mod-body-inner">
+              <ul>
+                <li>Client-facing intake form</li>
+                <li>Automatic case numbering</li>
+                <li>Property + owner data capture</li>
+                <li>County + jurisdiction routing</li>
+                <li>Instant confirmation email</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Document Checklists -->
+        <div class="ptc-mod">
+          <div class="ptc-node">02</div>
+          <div class="ptc-mod-header" onclick="togglePtcMod(this)">
+            <div class="ptc-mod-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 12.5"/></svg>
+            </div>
+            <div class="ptc-mod-text">
+              <h3>Document Checklists</h3>
+              <p class="ptc-mod-desc">Never chase a missing form again.</p>
+            </div>
+            <button class="ptc-toggle" aria-label="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          </div>
+          <div class="ptc-mod-body">
+            <div class="ptc-mod-body-inner">
+              <ul>
+                <li>Auto-generated checklist per case type</li>
+                <li>Document upload tracking</li>
+                <li>Missing-document alerts</li>
+                <li>Deadline-linked reminders</li>
+                <li>Client-facing upload portal</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 Case Timelines -->
+        <div class="ptc-mod">
+          <div class="ptc-node">03</div>
+          <div class="ptc-mod-header" onclick="togglePtcMod(this)">
+            <div class="ptc-mod-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14.5"/></svg>
+            </div>
+            <div class="ptc-mod-text">
+              <h3>Case Timelines</h3>
+              <p class="ptc-mod-desc">See exactly where every case stands, at a glance.</p>
+            </div>
+            <button class="ptc-toggle" aria-label="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          </div>
+          <div class="ptc-mod-body">
+            <div class="ptc-mod-body-inner">
+              <ul>
+                <li>Stage-by-stage progress tracker</li>
+                <li>Comps research &rarr; hearing &rarr; settlement</li>
+                <li>Deadline countdowns</li>
+                <li>Bottleneck flagging</li>
+                <li>Season-wide pipeline view</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 Invoice Calculator -->
+        <div class="ptc-mod">
+          <div class="ptc-node">04</div>
+          <div class="ptc-mod-header" onclick="togglePtcMod(this)">
+            <div class="ptc-mod-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="10" y2="11"/><line x1="14" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="10" y2="15"/><line x1="14" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="10" y2="19"/><line x1="14" y1="19" x2="16" y2="19"/></svg>
+            </div>
+            <div class="ptc-mod-text">
+              <h3>Invoice Calculator</h3>
+              <p class="ptc-mod-desc">Fees calculated automatically off the settlement.</p>
+            </div>
+            <button class="ptc-toggle" aria-label="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          </div>
+          <div class="ptc-mod-body">
+            <div class="ptc-mod-body-inner">
+              <ul>
+                <li>Contingency-fee auto-calculation</li>
+                <li>Exemption lookup integration</li>
+                <li>One-click invoice generation</li>
+                <li>County-specific fee rules</li>
+                <li>PDF export</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 Payment Ledger -->
+        <div class="ptc-mod">
+          <div class="ptc-node">05</div>
+          <div class="ptc-mod-header" onclick="togglePtcMod(this)">
+            <div class="ptc-mod-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.4-1.34-2.5-3-2.5s-3 1-3 2.3c0 3 6 1.4 6 4.3 0 1.4-1.34 2.4-3 2.4s-3-1-3-2.4"/></svg>
+            </div>
+            <div class="ptc-mod-text">
+              <h3>Payment Ledger</h3>
+              <p class="ptc-mod-desc">Every payment, every case, reconciled in one place.</p>
+            </div>
+            <button class="ptc-toggle" aria-label="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          </div>
+          <div class="ptc-mod-body">
+            <div class="ptc-mod-body-inner">
+              <ul>
+                <li>Payment status per case</li>
+                <li>Outstanding balance tracking</li>
+                <li>Season revenue rollups</li>
+                <li>Export for bookkeeping</li>
+                <li>Client payment history</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTERACTIVE CALCULATOR ── -->
+  <section class="ptc-calc-section" id="calculator">
+    <div class="ptc-calc-inner">
+      <div class="ptc-calc-header">
+        <p class="ptc-modules-eyebrow">[Try It]</p>
+        <h2 class="ptc-modules-title">Contingency Math, Correct Every Time.</h2>
+        <p class="ptc-demo-sub" style="margin-top:16px;">This calculator runs the same fee logic behind Norrita's invoices &mdash; tested against her real past cases to the penny.</p>
+      </div>
+      <div class="ptc-calc-card">
+        <div class="ptc-calc-grid">
+          <div class="ptc-calc-field">
+            <label for="ptc-c-initial">Initial appraised value</label>
+            <input id="ptc-c-initial" type="number" value="425000" min="0" step="1000">
+          </div>
+          <div class="ptc-calc-field">
+            <label for="ptc-c-final">Final appraised value</label>
+            <input id="ptc-c-final" type="number" value="398000" min="0" step="1000">
+          </div>
+          <div class="ptc-calc-field">
+            <label for="ptc-c-rate">Combined tax rate %</label>
+            <input id="ptc-c-rate" type="number" value="2.7" min="0" step="0.1">
+          </div>
+          <div class="ptc-calc-field">
+            <label for="ptc-c-type">Client type</label>
+            <select id="ptc-c-type">
+              <option value="0.40">Standard &middot; 40%</option>
+              <option value="0.50">65 Plus &middot; 50%</option>
+            </select>
+          </div>
+        </div>
+        <div class="ptc-calc-out" aria-live="polite">
+          <div class="ptc-calc-row"><span>Original tax</span><span class="val" id="ptc-o-orig">$0.00</span></div>
+          <div class="ptc-calc-row"><span>New tax</span><span class="val" id="ptc-o-new">$0.00</span></div>
+          <div class="ptc-calc-row"><span>Your tax savings</span><span class="val" id="ptc-o-save" style="color:#E8C97A;">$0.00</span></div>
+          <div class="ptc-calc-row"><span>Contingency fee</span><span class="val" id="ptc-o-fee">$0.00</span></div>
+          <div class="ptc-calc-row"><span>Admin fee credit</span><span class="val" id="ptc-o-admin">&minus;$25.00</span></div>
+          <div class="ptc-calc-row"><span style="font-family:'Montserrat',sans-serif;font-weight:700;">Total due</span><span class="ptc-calc-total" id="ptc-o-total">$0.00</span></div>
+        </div>
+        <p class="ptc-calc-note">The full system also handles minimal-savings and no-win flat-fee scenarios automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESULTS / CASE STUDY ── -->
+  <section class="ptc-results" id="results">
+    <div class="ptc-results-inner">
+      <div class="ptc-results-eyebrow"><span class="ptc-results-dot"></span>Real Results &middot; Client Case Study</div>
+      <h2 class="ptc-results-title">$37,500 in Revenue Growth Potential.</h2>
+      <p class="ptc-results-client">Norrita Johnson &mdash; Property Tax Consultant Scaling from 275 to 375 Properties</p>
+
+      <div class="ptc-results-grid">
+        <div class="ptc-results-narrative">
+          <p>Norrita was manually tracking hundreds of property tax protest cases across spreadsheets, email threads, and paper files. During peak season, admin work was consuming time that should have gone to taking on new cases and serving existing clients.</p>
+          <p>We built a full case management system from scratch — a web application with a case intake portal, document checklists, case timelines, an invoice calculator, and a payment ledger. Every active case, document, and payment in one place, accessible from anywhere.</p>
+          <ul class="ptc-deliverables">
+            <li>60&ndash;70% reduction in administrative overhead during peak season</li>
+            <li>Season-wide visibility into every case's stage and deadline</li>
+            <li>Automated invoicing tied directly to settlement outcomes</li>
+            <li>A system built to scale past 375 properties without adding headcount</li>
+          </ul>
+        </div>
+        <div class="ptc-stats-grid">
+          <div class="ptc-stats-card"><div class="ptc-stats-num">26 hrs</div><div class="ptc-stats-lbl">Reclaimed per week</div></div>
+          <div class="ptc-stats-card"><div class="ptc-stats-num">100</div><div class="ptc-stats-lbl">Additional protest cases handled</div></div>
+          <div class="ptc-stats-card ptc-stats-card--gold"><div class="ptc-stats-num">60&ndash;70%</div><div class="ptc-stats-lbl">Reduction in administrative overhead</div></div>
+          <div class="ptc-stats-card ptc-stats-card--gold"><div class="ptc-stats-num">$37.5K</div><div class="ptc-stats-lbl">Incremental revenue captured</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq-section">
+    <p class="faq-label">[Before You Book]</p>
+    <h2 class="faq-heading">Common Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">Do I have to change the tools I already use?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">No. The system replaces the spreadsheet and the mental tracking, not your email or your filing process with the appraisal district. You keep working the way you work; the system keeps the record.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">My fee structure is different. Will the invoice math still work?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">The calculator above is built around one consultant's real rates and client types. Yours would be built around your own fee structure during the engagement, and tested against your past cases before it goes live.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How long does setup take?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">A scoped single-module build delivers in about 14 days. The full case manager and invoice engine together typically takes a few weeks, and you test it against your own past cases before anything goes live.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is my client data secure?<span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes. Each account sees only its own cases, enforced at the database level, and your invoice records stay in your own system. Nothing is shared across clients or practices.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER CTA ── -->
+  <section class="ptc-footer-cta">
+    <div class="ptc-footer-cta-inner">
+      <h2>Want This Built for Your Practice?</h2>
+      <p>If you're a property tax consultant running cases through spreadsheets and email during peak season, we can build you the same system &mdash; tailored to how you actually work.</p>
+      <a href="/#contact" class="btn-gold">Book a Systems Audit &rarr;</a>
+      <p style="margin-top:20px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:rgba(255,255,255,0.45);">No pitch deck. Just the system, live, with your numbers in it.</p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="ptc-footer">
+    <div class="ptc-footer-inner">
+      <div class="ptc-footer-logo">
+        <img src="brand_assets/CIRCA GLOW LOGO GOLD DOT.png" alt="Circa AI Group">
+      </div>
+      <span class="ptc-footer-copy">&copy; 2026 Circa AI Group</span>
+      <a href="https://www.linkedin.com/in/debbie-marie-ai/" target="_blank" rel="noopener" class="ptc-footer-link">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── MODULE EXPAND/COLLAPSE ──
+    function togglePtcMod(header) {
+      const card = header.closest('.ptc-mod');
+      const wasOpen = card.classList.contains('open');
+      document.querySelectorAll('.ptc-mod.open').forEach(m => m.classList.remove('open'));
+      if (!wasOpen) card.classList.add('open');
+    }
+    const flagship = document.querySelector('.ptc-mod.flagship');
+    if (flagship) flagship.classList.add('open');
+
+    // ── SCROLL REVEAL ──
+    const ptcRevealIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ptc-visible');
+          ptcRevealIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.ptc-mod, .ptc-browser').forEach(el => ptcRevealIO.observe(el));
+
+    // Fallback for full-page screenshots / no-JS scroll
+    setTimeout(() => {
+      document.querySelectorAll('.ptc-mod, .ptc-browser').forEach(el => el.classList.add('ptc-visible'));
+    }, 2000);
+
+    // ── INVOICE CALCULATOR ──
+    (function(){
+      const fmt = n => '$' + Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+      const r2 = n => Math.round(n*100)/100;
+      const el = id => document.getElementById(id);
+      if (!el('ptc-c-initial')) return;
+      function calc(){
+        const initial = parseFloat(el('ptc-c-initial').value)||0;
+        const finalV  = parseFloat(el('ptc-c-final').value)||0;
+        const rate    = (parseFloat(el('ptc-c-rate').value)||0)/100;
+        const cRate   = parseFloat(el('ptc-c-type').value);
+        const orig = r2(initial*rate);
+        const nw   = r2(finalV*rate);
+        const save = r2(orig-nw);
+        let fee, total, adminTxt;
+        if (save > 0 && r2(save*cRate) > 25) {
+          fee = r2(save*cRate);
+          total = r2(fee-25);
+          adminTxt = '−$25.00';
+        } else {
+          fee = save > 0 ? r2(save*cRate) : 0;
+          total = 25;
+          adminTxt = '+$25.00 flat';
+          if (fee <= 25) fee = 0;
+        }
+        el('ptc-o-orig').textContent = fmt(orig);
+        el('ptc-o-new').textContent  = fmt(nw);
+        el('ptc-o-save').textContent = fmt(Math.max(save,0));
+        el('ptc-o-fee').textContent  = fmt(fee);
+        el('ptc-o-admin').textContent = adminTxt;
+        el('ptc-o-total').textContent = fmt(total);
+      }
+      ['ptc-c-initial','ptc-c-final','ptc-c-rate','ptc-c-type'].forEach(id=>{
+        el(id).addEventListener('input',calc);
+        el(id).addEventListener('change',calc);
+      });
+      calc();
+    })();
+
+    // ── FAQ ACCORDION ──
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
