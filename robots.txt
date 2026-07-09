@@ -1,4 +1,4 @@
-# Circa AI Group — https://circaaigroup.com
+# Circa AI Group — https://www.circaaigroup.com
 # All crawlers welcome, including AI assistants and their training/search bots.
 
 User-agent: *
@@ -37,4 +37,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://circaaigroup.com/sitemap.xml
+Sitemap: https://www.circaaigroup.com/sitemap.xml
