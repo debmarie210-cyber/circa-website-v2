@@ -1,3 +1,6 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/executive-support", "destination": "/who-we-serve", "permanent": true }
+  ]
 }

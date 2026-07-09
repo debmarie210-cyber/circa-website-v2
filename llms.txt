@@ -1,0 +1,23 @@
+# Circa AI Group
+
+> AI consulting and automation for small service businesses. Circa AI Group designs and builds AI-powered operating systems — client intake, follow-up, document handling, deadline tracking, and executive support — for accounting firms, property tax consultants, insurance agencies, law firms, and professional services firms in the US, Canada, and UK. Founded by Debbie Marie, who spent 20 years running executive operations for C-suite offices before bringing that discipline to AI automation.
+
+Key facts:
+- The engagement model is called The Operational Freedom Method™: five stages (Discover, Diagnose, Design, Deploy, Scale) across three system layers (Growth Systems, Execution Systems, Operating Systems).
+- Clients work directly with the founder from start to finish. Every engagement starts with a free 30-minute discovery call — a working session that maps the client's first three AI opportunities.
+- Guarantee: an engagement is not complete until the client can run the system without the consultant; if it takes longer, work continues at no additional cost.
+- Documented client results include a 60% admin-time reduction through tax season for a solo CPA and 26 hours reclaimed per peak week for a property tax consultancy, with $37,500 in projected recaptured revenue.
+- The Chief of Staff Operating System is a private executive support system (communications, planning, travel, knowledge, workflow) built for CEOs; companion training equips a client's EA or VA to run it.
+- No technical background is required to operate anything Circa builds.
+
+## Pages
+
+- [Home](https://circaaigroup.com/): What Circa AI Group builds, The Operational Freedom Method, client results, process, and FAQ
+- [Who We Serve](https://circaaigroup.com/who-we-serve): Industry use cases — accounting & tax, property tax consulting, insurance, legal, professional services — and the Chief of Staff Operating System for CEOs
+- [Training](https://circaaigroup.com/chief-os-training): Chief of Staff Operating System training for executive assistants and virtual assistants
+- [Portfolio](https://circaaigroup.com/portfolio): Case studies and systems built by Circa AI Group
+
+## Contact
+
+- Book a discovery call: https://circaaigroup.com/#contact
+- LinkedIn: https://www.linkedin.com/in/debbie-marie-ai/
