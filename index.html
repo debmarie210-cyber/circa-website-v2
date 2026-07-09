@@ -222,6 +222,35 @@
     .drift-3 { animation: shapeDrift3 9s ease-in-out infinite; }
     .drift-4 { animation: shapeDrift4 7s ease-in-out infinite; }
     .drift-5 { animation: shapeDrift5 11s ease-in-out infinite; }
+    /* System side: calm, regular rhythm — order reads as a steady pulse */
+    @keyframes vizNodeRing {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.25); opacity: 0.12; }
+    }
+    .viz-node-ring {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: vizNodeRing 2s ease-in-out infinite;
+    }
+    @keyframes vizBoltGlow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+    .viz-bolt { animation: vizBoltGlow 2s ease-in-out infinite; }
+    @keyframes vizOutputBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.35); }
+    }
+    .viz-output-dot {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: vizOutputBeat 2s ease-in-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .drift-1, .drift-2, .drift-3, .drift-4, .drift-5,
+      .viz-node-ring, .viz-bolt, .viz-output-dot,
+      .flip-connector::after { animation: none !important; }
+    }
     /* ── HERO BUTTONS ── */
     .btn-hero-primary {
       display: inline-flex;
@@ -239,8 +268,16 @@
       white-space: nowrap;
       text-decoration: none;
     }
-    .btn-hero-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-hero-primary:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 10px 28px rgba(201,168,76,0.28); }
     .btn-hero-primary:active { transform: translateY(0); }
+    .hero-offer-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      color: #8A93A2;
+      margin-top: 14px;
+      line-height: 1.6;
+      max-width: 460px;
+    }
     .btn-hero-outline {
       display: inline-flex;
       align-items: center;
@@ -911,6 +948,42 @@
       color: rgba(255,255,255,0.6);
       line-height: 1.5;
     }
+    .proof-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+    .proof-cs-link {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      border-bottom: 1px solid rgba(201,168,76,0.5);
+      padding: 0 0 3px;
+      transition: color 0.2s ease;
+    }
+    .proof-cs-link:hover { color: #C9A84C; }
+    .proof-cs-link:focus-visible { outline: 2px solid #C9A84C; outline-offset: 3px; }
+    .proof-guarantee {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 8px;
+      margin: 24px auto 0;
+      max-width: 560px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+      text-align: left;
+    }
+    .proof-guarantee svg { flex-shrink: 0; margin-top: 2px; color: #C9A84C; }
     .section-label-mono {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
@@ -984,45 +1057,29 @@
       scrollbar-width: none;
     }
     .flip-cards-row::-webkit-scrollbar { display: none; }
-    .flip-card-wrap {
+    .stage-card {
       flex: 1 1 0;
       min-width: 200px;
-      perspective: 900px;
-      height: 360px;
-    }
-    .flip-card {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.34, 1.3, 0.64, 1);
-    }
-    .flip-card-wrap:hover .flip-card,
-    .flip-card-wrap:focus-within .flip-card {
-      transform: rotateY(180deg);
-    }
-    .flip-face {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+      background: linear-gradient(180deg, #122040 0%, #0e1a35 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 2px solid rgba(201,168,76,0.2);
       border-radius: 16px;
       padding: 24px 20px;
       display: flex;
       flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
-    .flip-front {
-      background: linear-gradient(180deg, #122040 0%, #0e1a35 100%);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-bottom: 2px solid rgba(201,168,76,0.2);
-      align-items: flex-start;
-      justify-content: space-between;
+    .stage-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.45);
+      box-shadow: 0 14px 36px rgba(11,21,38,0.18);
     }
-    .flip-back {
-      background: linear-gradient(145deg, #1a2f58, #0d1e3c);
-      border: 1px solid rgba(201,168,76,0.3);
-      transform: rotateY(180deg);
+    .stage-card-top {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 16px;
     }
     .flip-stage-num {
       font-family: 'DM Mono', monospace;
@@ -1031,56 +1088,34 @@
       color: #C9A84C;
       text-transform: uppercase;
     }
-    .flip-icon {
-      width: 36px;
-      height: 36px;
-      color: rgba(255,255,255,0.65);
+    .stage-icon {
+      width: 26px;
+      height: 26px;
+      color: rgba(255,255,255,0.55);
       flex-shrink: 0;
     }
-    .flip-name {
+    .stage-name {
       font-family: 'Montserrat', sans-serif;
       font-size: 16px;
       font-weight: 700;
       letter-spacing: -0.01em;
       color: #FFFFFF;
-      margin-bottom: 4px;
-    }
-    .flip-hint {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      color: rgba(255,255,255,0.28);
-      letter-spacing: 0.03em;
-    }
-    .flip-back-stage {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      color: #C9A84C;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .flip-back-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: #FFFFFF;
       margin-bottom: 10px;
-      letter-spacing: -0.01em;
     }
-    .flip-back-detail {
+    .stage-detail {
       font-family: 'DM Sans', sans-serif;
       font-size: 12.5px;
       line-height: 1.65;
       color: rgba(255,255,255,0.62);
       flex: 1;
     }
-    .flip-back-outcome {
+    .stage-outcome {
       font-family: 'DM Mono', monospace;
       font-size: 10px;
       color: #C9A84C;
       border-top: 1px solid rgba(201,168,76,0.22);
       padding-top: 10px;
-      margin-top: 12px;
+      margin-top: 14px;
       line-height: 1.4;
     }
     .services-glass-note {
@@ -1102,7 +1137,6 @@
     @media (max-width: 900px) {
       .services-section { padding: 64px 24px; }
       .flip-cards-row { flex-direction: column; gap: 16px; }
-      .flip-card-wrap { height: 260px; flex: none; }
       .flip-connector { display: none; }
     }
 
@@ -1609,6 +1643,14 @@
       flex-shrink: 0;
     }
     .footer-ctas { margin-bottom: 0; }
+    .footer-guarantee {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+      max-width: 480px;
+      margin: 16px 0 0;
+    }
     .footer-bottom {
       display: flex;
       justify-content: space-between;
@@ -1670,7 +1712,7 @@
       </div>
       <div class="nav-links">
         <a href="#capabilities">Approach</a>
-        <a href="#results">Results</a>
+        <a href="#proof">Results</a>
         <a href="/who-we-serve">Who We Serve</a>
         <a href="/chief-os-training">Training</a>
       </div>
@@ -1689,14 +1731,15 @@
           <h1 class="hero-title">You are the only <span class="hero-title-solution">system</span> your business has.</h1>
           <p class="hero-subtitle">We build the infrastructure that changes that — turning manual work into automated systems that save time, increase capacity, and drive revenue.</p>
           <div class="hero-ctas">
-            <button onclick="openCalModal()" class="btn-hero-dark">Book a Discovery Call</button>
+            <button onclick="openCalModal()" class="btn-hero-primary">Book a Discovery Call</button>
             <a href="#services" class="btn-hero-ghost">See how it works <span class="arrow">&rarr;</span></a>
           </div>
+          <p class="hero-offer-note">30 minutes. A working session, not a sales call — you leave with your first 3 AI wins mapped.</p>
         </div>
 
         <!-- Right: Infrastructure Illustration -->
         <div class="hero-right">
-          <svg class="hero-illustration" viewBox="0 0 580 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="hero-illustration" id="heroViz" viewBox="0 0 580 400" fill="none" xmlns="http://www.w3.org/2000/svg">
 
             <!-- Connection lines from shapes to center node -->
             <line x1="95" y1="68" x2="295" y2="200" stroke="#1a2340" stroke-width="1.2" opacity="0.18"/>
@@ -1738,12 +1781,36 @@
             <!-- Open rectangle -->
             <rect class="drift-1" x="108" y="108" width="14" height="10" rx="1" stroke="#1a2340" stroke-width="1.3" fill="none" transform="rotate(-15 115 113)"/>
 
+            <!-- Flow particles: chaos in — irregular timing, dark -->
+            <circle r="2.6" fill="#1a2340" opacity="0.55">
+              <animateMotion dur="2.9s" repeatCount="indefinite" begin="0s" path="M95 68 L295 200"/>
+            </circle>
+            <circle r="2.2" fill="#1a2340" opacity="0.5">
+              <animateMotion dur="3.7s" repeatCount="indefinite" begin="1.1s" path="M55 155 L295 200"/>
+            </circle>
+            <circle r="2.4" fill="#1a2340" opacity="0.5">
+              <animateMotion dur="2.3s" repeatCount="indefinite" begin="0.6s" path="M75 265 L295 200"/>
+            </circle>
+            <circle r="2" fill="#1a2340" opacity="0.45">
+              <animateMotion dur="3.3s" repeatCount="indefinite" begin="1.9s" path="M160 300 L295 200"/>
+            </circle>
+            <circle r="2.2" fill="#1a2340" opacity="0.45">
+              <animateMotion dur="2.6s" repeatCount="indefinite" begin="1.5s" path="M190 55 L295 200"/>
+            </circle>
+            <circle r="2" fill="#1a2340" opacity="0.4">
+              <animateMotion dur="3.1s" repeatCount="indefinite" begin="0.9s" path="M120 340 L295 200"/>
+            </circle>
+
             <!-- Center convergence node — gold -->
             <circle cx="295" cy="200" r="14" fill="#c8a84e"/>
-            <circle cx="295" cy="200" r="20" stroke="#c8a84e" stroke-width="1" fill="none" opacity="0.3"/>
+            <circle class="viz-node-ring" cx="295" cy="200" r="20" stroke="#c8a84e" stroke-width="1" fill="none" opacity="0.3"/>
 
             <!-- Connection from center to system box -->
             <line x1="315" y1="200" x2="380" y2="200" stroke="#1a2340" stroke-width="1.5" opacity="0.25"/>
+            <!-- Order out: one steady, metronome-regular stream -->
+            <circle r="2.6" fill="#c8a84e">
+              <animateMotion dur="2s" repeatCount="indefinite" begin="0s" path="M315 200 L380 200"/>
+            </circle>
 
             <!-- System box — 2x2 grid -->
             <rect x="380" y="130" width="150" height="140" rx="16" stroke="#1a2340" stroke-width="2" fill="none"/>
@@ -1762,7 +1829,7 @@
             <!-- Icon 2: AI Intelligence (top-right) — lightning bolt — GOLD FILLED -->
             <g transform="translate(465, 148)">
               <rect x="-4" y="-4" width="36" height="36" rx="5" stroke="#c8a84e" stroke-width="1.5" fill="none" opacity="0.5"/>
-              <polygon points="14,0 4,16 12,16 10,28 22,10 14,10" fill="#c8a84e"/>
+              <polygon class="viz-bolt" points="14,0 4,16 12,16 10,28 22,10 14,10" fill="#c8a84e"/>
             </g>
 
             <!-- Icon 3: Systems/Data (bottom-left) — database cylinder -->
@@ -1780,7 +1847,10 @@
 
             <!-- Output line from box + terminal dot -->
             <line x1="530" y1="200" x2="560" y2="200" stroke="#c8a84e" stroke-width="2"/>
-            <circle cx="566" cy="200" r="5" fill="#c8a84e"/>
+            <circle r="2.4" fill="#c8a84e">
+              <animateMotion dur="2s" repeatCount="indefinite" begin="1s" path="M530 200 L560 200"/>
+            </circle>
+            <circle class="viz-output-dot" cx="566" cy="200" r="5" fill="#c8a84e"/>
 
           </svg>
         </div>
@@ -1795,17 +1865,17 @@
           <div class="hero-metrics-col">
             <div class="hero-metric-number">20+</div>
             <div class="hero-metric-label">Hours Reclaimed Per Week</div>
-            <div class="hero-metric-source">N.R. Vative Solutions</div>
+            <div class="hero-metric-source">Norrita Johnson, N.R. Vative Solutions</div>
           </div>
           <div class="hero-metrics-col">
-            <div class="hero-metric-number">100</div>
-            <div class="hero-metric-label">New Cases Unlocked in One Season</div>
-            <div class="hero-metric-source">N.R. Vative Solutions</div>
+            <div class="hero-metric-number">60%</div>
+            <div class="hero-metric-label">Admin Time Cut Through Tax Season</div>
+            <div class="hero-metric-source">Tosha Scott, Solo CPA</div>
           </div>
           <div class="hero-metrics-col">
             <div class="hero-metric-number">$37.5K</div>
-            <div class="hero-metric-label">Incremental Revenue Captured</div>
-            <div class="hero-metric-source">N.R. Vative Solutions</div>
+            <div class="hero-metric-label">Turned-Away Revenue Recaptured</div>
+            <div class="hero-metric-source">Norrita Johnson, N.R. Vative Solutions</div>
           </div>
         </div>
       </div>
@@ -2250,186 +2320,15 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── SERVICES / FLIP CARD ROADMAP ── -->
-  <section class="services-section" id="services">
-    <div class="services-inner">
-      <div class="services-header-block">
-        <p class="section-eyebrow">How It Works</p>
-        <h2 class="services-title">Five stages. One operating system. Built around how you actually work.</h2>
+      <div class="proof-cta-row">
+        <button onclick="openCalModal()" class="btn-gold">Book a Discovery Call &rarr;</button>
+        <button class="proof-cs-link" id="cs-toggle" onclick="toggleCaseStudies()">Read the full case studies &darr;</button>
       </div>
-      <div class="flip-cards-row flip-track">
-
-        <!-- Card 1: Discover -->
-        <div class="flip-card-wrap" tabindex="0">
-          <div class="flip-card">
-            <div class="flip-face flip-front">
-              <div class="flip-stage-num">Stage 01</div>
-              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
-              <div>
-                <div class="flip-name">Discover</div>
-                <div class="flip-hint">hover to explore ↻</div>
-              </div>
-            </div>
-            <div class="flip-face flip-back">
-              <div>
-                <div class="flip-back-stage">Stage 01</div>
-                <div class="flip-back-title">Discover</div>
-                <div class="flip-back-detail">We map every workflow in your operation: what you do manually, how long it takes, and what it's costing you to keep doing it yourself.</div>
-              </div>
-              <div class="flip-back-outcome">Outcome: Full operational audit delivered in 72 hours</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-connector"></div>
-
-        <!-- Card 2: Diagnose -->
-        <div class="flip-card-wrap" tabindex="0">
-          <div class="flip-card">
-            <div class="flip-face flip-front">
-              <div class="flip-stage-num">Stage 02</div>
-              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 2v8L4.72 20.55A1 1 0 0 0 5.64 22h12.72a1 1 0 0 0 .92-1.45L14 10V2"/>
-                <line x1="8.5" y1="2" x2="15.5" y2="2"/>
-              </svg>
-              <div>
-                <div class="flip-name">Diagnose</div>
-                <div class="flip-hint">hover to explore ↻</div>
-              </div>
-            </div>
-            <div class="flip-face flip-back">
-              <div>
-                <div class="flip-back-stage">Stage 02</div>
-                <div class="flip-back-title">Diagnose</div>
-                <div class="flip-back-detail">We identify exactly which workflows a system should be handling instead of you, and sequence them by highest time and revenue impact.</div>
-              </div>
-              <div class="flip-back-outcome">Outcome: Your AI opportunity map, prioritized</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-connector"></div>
-
-        <!-- Card 3: Design -->
-        <div class="flip-card-wrap" tabindex="0">
-          <div class="flip-card">
-            <div class="flip-face flip-front">
-              <div class="flip-stage-num">Stage 03</div>
-              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
-              </svg>
-              <div>
-                <div class="flip-name">Design</div>
-                <div class="flip-hint">hover to explore ↻</div>
-              </div>
-            </div>
-            <div class="flip-face flip-back">
-              <div>
-                <div class="flip-back-stage">Stage 03</div>
-                <div class="flip-back-title">Design</div>
-                <div class="flip-back-detail">Your operating system is architected around how your practice actually runs. Not a template, not a tool stack.</div>
-              </div>
-              <div class="flip-back-outcome">Outcome: Full system blueprint approved before we build anything</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-connector"></div>
-
-        <!-- Card 4: Deploy -->
-        <div class="flip-card-wrap" tabindex="0">
-          <div class="flip-card">
-            <div class="flip-face flip-front">
-              <div class="flip-stage-num">Stage 04</div>
-              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-              </svg>
-              <div>
-                <div class="flip-name">Deploy</div>
-                <div class="flip-hint">hover to explore ↻</div>
-              </div>
-            </div>
-            <div class="flip-face flip-back">
-              <div>
-                <div class="flip-back-stage">Stage 04</div>
-                <div class="flip-back-title">Deploy</div>
-                <div class="flip-back-detail">We build it, embed it, and stay until it runs without friction.</div>
-              </div>
-              <div class="flip-back-outcome">Outcome: Live system in 30 days</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-connector"></div>
-
-        <!-- Card 5: Scale -->
-        <div class="flip-card-wrap" tabindex="0">
-          <div class="flip-card">
-            <div class="flip-face flip-front">
-              <div class="flip-stage-num">Stage 05</div>
-              <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                <polyline points="16 7 22 7 22 13"/>
-              </svg>
-              <div>
-                <div class="flip-name">Scale</div>
-                <div class="flip-hint">hover to explore ↻</div>
-              </div>
-            </div>
-            <div class="flip-face flip-back">
-              <div>
-                <div class="flip-back-stage">Stage 05</div>
-                <div class="flip-back-title">Scale</div>
-                <div class="flip-back-detail">We expand your system as your capacity grows.</div>
-              </div>
-              <div class="flip-back-outcome">Outcome: More clients. Same hours.</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="services-glass-note">
-        Not sure where to start? <a href="#" onclick="openCalModal();return false;">Book a Discovery Call</a> and we'll map your first 3 AI wins in 30 minutes.
-      </div>
-    </div>
-  </section>
-
-  <!-- ── RESULTS SECTION ── -->
-  <section class="results-section" id="results">
-    <div class="results-inner">
-      <div class="results-header">
-        <div>
-          <div class="section-label-mono">[03. Real Metrics]</div>
-          <h2 class="results-title">Results That Show Up in the Numbers</h2>
-        </div>
-        <button class="btn-gold" id="cs-toggle" onclick="toggleCaseStudies()">See the Case Studies &darr;</button>
-      </div>
-      <div class="evidence-grid">
-        <div class="data-card">
-          <div class="data-client">Client.Operations</div>
-          <div class="data-metric">35&ndash;45%</div>
-          <div class="data-context">Workflow time reduction achieved within two weeks of deployment.</div>
-        </div>
-        <div class="data-card">
-          <div class="data-client">Client.Revenue</div>
-          <div class="data-metric">$120K+</div>
-          <div class="data-context">Projected annual revenue unlocked through targeted automation.</div>
-        </div>
-        <div class="data-card">
-          <div class="data-client">BCG / McKinsey</div>
-          <div class="data-metric">70%</div>
-          <div class="data-context">Of AI initiatives fail due to poor execution, not the technology itself.</div>
-        </div>
-      </div>
+      <p class="proof-guarantee">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        Our guarantee: the engagement isn't complete until the system runs without you. If it takes longer, we keep working at no additional cost.
+      </p>
     </div>
   </section>
 
@@ -2533,75 +2432,127 @@
 
   </div><!-- end cs-drawer -->
 
-  <!-- ── OPERATIONAL IMPACT [04] ── -->
-  <section id="impact" style="background:#F9F5EE;padding:100px 48px;border-top:1px solid rgba(0,0,0,0.07);">
-    <div style="max-width:1100px;margin:0 auto;">
+  <!-- ── SERVICES / FLIP CARD ROADMAP ── -->
+  <section class="services-section" id="services">
+    <div class="services-inner">
+      <div class="services-header-block">
+        <p class="section-eyebrow">How It Works</p>
+        <h2 class="services-title">Five stages. One operating system. Built around how you actually work.</h2>
+      </div>
+      <div class="flip-cards-row flip-track">
 
-      <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#A67C2E;margin:0 0 20px 0;">[04. Operational Impact]</p>
-      <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);color:#0B1526;line-height:1.15;margin:0 0 18px 0;max-width:720px;">Manual Processes Are a Business Liability.</h2>
-      <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:17px;color:#5a6578;line-height:1.7;max-width:640px;margin:0 0 72px 0;">
-        Every hour spent on repetitive administrative work is an hour not spent on revenue.
-        We identify where time and money are leaving your business unnoticed, and build the
-        systems that stop it.
-      </p>
-
-      <!-- Three-column impact blocks -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border:1px solid rgba(0,0,0,0.08);border-radius:8px;overflow:hidden;">
-
-        <div class="impact-block impact-anim">
-          <p class="impact-label">01. Time</p>
-          <p class="impact-word">Reclaimed.</p>
-          <p class="impact-subtitle">At Scale</p>
-          <p class="impact-body">Intake, scheduling, follow-up, document handling: the administrative layer that fills your calendar with low-value work is the first thing we remove. What you get back is capacity.</p>
+        <!-- Card 1: Discover -->
+        <div class="stage-card">
+          <div class="stage-card-top">
+            <div class="flip-stage-num">Stage 01</div>
+            <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <div class="stage-name">Discover</div>
+          <div class="stage-detail">We map every workflow in your operation: what you do manually, how long it takes, and what it's costing you to keep doing it yourself.</div>
+          <div class="stage-outcome">Outcome: Full operational audit delivered in 72 hours</div>
         </div>
 
-        <div class="impact-block impact-anim">
-          <p class="impact-label">02. Cost</p>
-          <p class="impact-word">Reduced.</p>
-          <p class="impact-subtitle">Without Cutting Corners</p>
-          <p class="impact-body">Operational overhead shrinks when systems run the work people were hired to do manually. We identify the specific processes costing you the most and automate them with precision.</p>
+        <div class="flip-connector"></div>
+
+        <!-- Card 2: Diagnose -->
+        <div class="stage-card">
+          <div class="stage-card-top">
+            <div class="flip-stage-num">Stage 02</div>
+            <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2v8L4.72 20.55A1 1 0 0 0 5.64 22h12.72a1 1 0 0 0 .92-1.45L14 10V2"/>
+              <line x1="8.5" y1="2" x2="15.5" y2="2"/>
+            </svg>
+          </div>
+          <div class="stage-name">Diagnose</div>
+          <div class="stage-detail">We identify exactly which workflows a system should be handling instead of you, and sequence them by highest time and revenue impact.</div>
+          <div class="stage-outcome">Outcome: Your AI opportunity map, prioritized</div>
         </div>
 
-        <div class="impact-block impact-anim">
-          <p class="impact-label">03. Risk</p>
-          <p class="impact-word">Removed.</p>
-          <p class="impact-subtitle">From the Process</p>
-          <p class="impact-body">Manual processes fail. Steps get skipped, follow-ups get missed, data gets entered wrong. Standardized AI systems eliminate the human error that quietly erodes client experience and revenue.</p>
+        <div class="flip-connector"></div>
+
+        <!-- Card 3: Design -->
+        <div class="stage-card">
+          <div class="stage-card-top">
+            <div class="flip-stage-num">Stage 03</div>
+            <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+          </div>
+          <div class="stage-name">Design</div>
+          <div class="stage-detail">Your operating system is architected around how your practice actually runs. Not a template, not a tool stack.</div>
+          <div class="stage-outcome">Outcome: Full system blueprint approved before we build anything</div>
+        </div>
+
+        <div class="flip-connector"></div>
+
+        <!-- Card 4: Deploy -->
+        <div class="stage-card">
+          <div class="stage-card-top">
+            <div class="flip-stage-num">Stage 04</div>
+            <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+            </svg>
+          </div>
+          <div class="stage-name">Deploy</div>
+          <div class="stage-detail">We build it, embed it, and stay until it runs without friction.</div>
+          <div class="stage-outcome">Outcome: Live system in 30 days</div>
+        </div>
+
+        <div class="flip-connector"></div>
+
+        <!-- Card 5: Scale -->
+        <div class="stage-card">
+          <div class="stage-card-top">
+            <div class="flip-stage-num">Stage 05</div>
+            <svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+              <polyline points="16 7 22 7 22 13"/>
+            </svg>
+          </div>
+          <div class="stage-name">Scale</div>
+          <div class="stage-detail">We expand your system as your capacity grows.</div>
+          <div class="stage-outcome">Outcome: More clients. Same hours.</div>
         </div>
 
       </div>
-
-      <!-- Bottom statement -->
-      <div style="margin-top:48px;padding:32px 40px;border-left:3px solid #A67C2E;background:rgba(166,124,46,0.06);">
-        <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:17px;color:#1C1C1C;line-height:1.75;margin:0;max-width:740px;font-style:italic;">
-          &ldquo;The businesses we work with are not failing. They are performing at a fraction of their capacity
-          because the infrastructure supporting their growth was never built. That is what we come in to fix.&rdquo;
-        </p>
-        <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#A67C2E;margin:18px 0 0 0;">Debbie Marie / Founder, Circa AI Group</p>
+      <div class="services-glass-note">
+        Not sure where to start? <a href="#" onclick="openCalModal();return false;">Book a Discovery Call</a> and we'll map your first 3 AI wins in 30 minutes.
       </div>
-
     </div>
   </section>
 
-  <!-- ── ABOUT [05] ── -->
-  <section id="about" style="background:#082567;padding:100px 48px;border-top:1px solid rgba(255,255,255,0.1);">
+  <!-- ── ABOUT [04] ── -->
+  <section id="about" style="background:#0B1526;padding:100px 48px;border-top:1px solid rgba(255,255,255,0.1);">
     <div style="max-width:1100px;margin:0 auto;">
       <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
 
         <!-- Left: Copy -->
         <div>
-          <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin:0 0 20px 0;">[05. About]</p>
+          <p style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin:0 0 20px 0;">[04. About]</p>
           <h2 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,40px);color:#ffffff;line-height:1.2;margin:0 0 28px 0;">Hands-on partnership.</h2>
           <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.72);line-height:1.8;margin:0 0 20px 0;">
             Since 2022, Debbie has focused exclusively on practical AI implementation for small
             business owners. Not theoretical frameworks, but working systems that reduce manual
             workload and create real capacity for growth.
           </p>
-          <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.72);line-height:1.8;margin:0 0 36px 0;">
+          <p style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:16px;color:rgba(255,255,255,0.72);line-height:1.8;margin:0 0 28px 0;">
             She has designed and deployed AI systems for accounting practices, property tax advisory
             firms, and senior living referral agencies. When you engage Circa AI Group, you work
             directly with Debbie from start to finish.
           </p>
+          <div style="margin:0 0 36px 0;padding:24px 28px;border-left:3px solid #C9A84C;background:rgba(201,168,76,0.08);border-radius:0 10px 10px 0;">
+            <p style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-style:italic;font-size:19px;color:rgba(255,255,255,0.9);line-height:1.6;margin:0;">
+              &ldquo;The businesses we work with are not failing. They are performing at a fraction of their capacity
+              because the infrastructure supporting their growth was never built. That is what we come in to fix.&rdquo;
+            </p>
+            <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C9A84C;margin:14px 0 0 0;">Debbie Marie / Founder</p>
+          </div>
           <button onclick="openCalModal()" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;color:#C9A84C;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;border:1.5px solid #C9A84C;border-radius:8px;cursor:pointer;transition:background 0.2s ease,transform 0.2s ease;" onmouseover="this.style.background='rgba(201,168,76,0.12)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='transparent';this.style.transform='translateY(0)'">
             Book a Discovery Call &rarr;
           </button>
@@ -2695,7 +2646,7 @@
     <div class="footer-inner">
       <div class="footer-booking-row">
         <div class="footer-booking-content">
-          <div class="footer-booking-label">BOOK A STRATEGY SESSION</div>
+          <div class="footer-booking-label">BOOK A DISCOVERY CALL</div>
           <div class="footer-cta">See exactly where AI fits in your business in 30 minutes.</div>
           <p class="footer-cta-body">This is a working session, not a sales call. Bring us into your world for 30 minutes. We'll ask the right questions, identify where the gaps are, and give you a clear picture of what's possible.</p>
           <div class="tag-row">
@@ -2705,6 +2656,7 @@
           </div>
           <div class="footer-ctas">
             <button onclick="openCalModal()" class="btn-gold">Book a Discovery Call &rarr;</button>
+            <p class="footer-guarantee">Backed by our guarantee: the engagement isn't complete until the system runs without you — if it takes longer, we keep working at no additional cost.</p>
           </div>
         </div>
         <div class="footer-roi-wrap">
@@ -2810,10 +2762,10 @@
       var btn = document.getElementById('cs-toggle');
       drawer.classList.toggle('cs-open');
       if (drawer.classList.contains('cs-open')) {
-        btn.innerHTML = 'Hide Case Studies &uarr;';
+        btn.innerHTML = 'Hide the case studies &uarr;';
         setTimeout(function() { drawer.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
       } else {
-        btn.innerHTML = 'See the Case Studies &darr;';
+        btn.innerHTML = 'Read the full case studies &darr;';
       }
     }
   </script>
@@ -2892,18 +2844,6 @@
     }, { threshold: 0.2 });
     spStats.forEach(el => spIO.observe(el));
 
-    // ── IMPACT BLOCKS FADE-IN ──
-    const impactEls = document.querySelectorAll('.impact-anim');
-    const impactIO = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('impact-visible');
-          impactIO.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    impactEls.forEach(el => impactIO.observe(el));
-
     // ── TIMELINE CARD + CALLOUT SCROLL REVEAL ──
     const tlCards = document.querySelectorAll('.timeline-card');
     const tlIO = new IntersectionObserver((entries) => {
@@ -2952,6 +2892,24 @@
         });
       }, { threshold: 0.2 });
       ofmCloseIO.observe(ofmClosing);
+    }
+
+    // ── REVEAL FALLBACK: never leave a section invisible if an observer misses ──
+    setTimeout(() => {
+      document.querySelectorAll('.sp-stat').forEach(el => el.classList.add('sp-visible'));
+      document.querySelectorAll('.timeline-card').forEach(el => el.classList.add('tl-visible'));
+      document.querySelectorAll('.founder-callout').forEach(el => el.classList.add('callout-visible'));
+      document.querySelectorAll('.ofm-card').forEach(el => el.classList.add('ofm-visible'));
+      document.querySelectorAll('.ofm-closing').forEach(el => el.classList.add('ofm-close-visible'));
+      document.querySelectorAll('[data-target]').forEach(el => {
+        if (!seen.has(el)) { seen.add(el); countUp(el); }
+      });
+    }, 2500);
+
+    // ── REDUCED MOTION: pause hero SVG particle flow ──
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const viz = document.getElementById('heroViz');
+      if (viz && viz.pauseAnimations) viz.pauseAnimations();
     }
 
     // ── FAQ ACCORDION ──
