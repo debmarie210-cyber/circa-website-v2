@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who We Serve — Circa AI Group</title>
+  <meta name="description" content="AI systems for accounting firms, property tax consultants, insurance agencies, law firms, and professional services — plus the Chief of Staff Operating System for CEOs.">
+  <link rel="icon" href="brand_assets/CIRCA-FAVICON.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ── */
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid #C9A84C; outline-offset: 2px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #F9F5EE;
+      color: #1C1C1C;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    ::selection { background: #0B1526; color: #C9A84C; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #F9F5EE;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .navbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      margin-right: 48px;
+    }
+    .nav-logo img { height: 80px; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+      margin-right: 40px;
+    }
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1C1C1C;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #C9A84C;
+      transition: width 0.2s ease;
+    }
+    .nav-links a:hover { color: #A67C2E; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: #A67C2E; font-weight: 600; }
+    .nav-links a.active::after { width: 100%; }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      color: #0B1526;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-gold:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-gold:active { transform: translateY(0); }
+
+    /* ── HERO ── */
+    .ws-hero {
+      background: linear-gradient(180deg, #F9F5EE 0%, #f0ece2 100%);
+      padding: 88px 48px 76px;
+    }
+    .ws-hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .ws-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #A67C2E;
+      margin-bottom: 20px;
+    }
+    .ws-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #0B1526;
+      margin-bottom: 16px;
+    }
+    .ws-hero-tagline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 500;
+      font-style: italic;
+      color: #A67C2E;
+      margin-bottom: 28px;
+    }
+    .ws-hero-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #4a5568;
+      max-width: 620px;
+      margin: 0 auto 36px;
+    }
+
+    /* ── INDUSTRY GRID ── */
+    .ws-industries {
+      background: #F8F7F5;
+      padding: 96px 48px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+    .ws-industries-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .ws-section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .ws-section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: #0B1526;
+      margin-bottom: 16px;
+    }
+    .ws-section-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #5a6578;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .ws-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .ws-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 2px 16px rgba(11,21,38,0.05), 0 1px 4px rgba(11,21,38,0.03);
+      padding: 36px 36px 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.25s ease;
+    }
+    .ws-card.ws-visible { opacity: 1; transform: translateY(0); }
+    .ws-card:nth-child(2) { transition-delay: 0.08s; }
+    .ws-card:nth-child(4) { transition-delay: 0.08s; }
+    .ws-card:nth-child(6) { transition-delay: 0.08s; }
+    .ws-card:hover {
+      box-shadow: 0 10px 40px rgba(11,21,38,0.1), 0 4px 14px rgba(11,21,38,0.06);
+      transform: translateY(-3px);
+    }
+    .ws-card.ws-visible:hover { transform: translateY(-3px); }
+    .ws-card-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .ws-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(201,168,76,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ws-card-icon svg { width: 20px; height: 20px; color: #C9A84C; }
+    .ws-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #0B1526;
+      line-height: 1.25;
+    }
+    .ws-card-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.4;
+      color: #0B1526;
+      margin-bottom: 20px;
+      padding-left: 16px;
+      border-left: 3px solid #C9A84C;
+    }
+    .ws-card-quote::before { content: '\201C'; color: #C9A84C; }
+    .ws-card-quote::after { content: '\201D'; color: #C9A84C; }
+    .ws-card-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #A67C2E;
+      margin-bottom: 10px;
+    }
+    .ws-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .ws-card li {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: #4a5568;
+      padding-left: 20px;
+      position: relative;
+    }
+    .ws-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #C9A84C;
+    }
+    .ws-card-result {
+      margin-top: auto;
+      padding: 16px 0 24px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #A67C2E;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .ws-card-result svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #C9A84C;
+    }
+
+    /* "Your industry" card */
+    .ws-card.ws-card-open {
+      background: transparent;
+      border: 1.5px dashed rgba(166,124,46,0.4);
+      box-shadow: none;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      padding: 36px;
+    }
+    .ws-card.ws-card-open:hover {
+      box-shadow: none;
+      border-color: #C9A84C;
+    }
+    .ws-card-open h3 { margin-bottom: 12px; }
+    .ws-card-open p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #5a6578;
+      max-width: 360px;
+      margin-bottom: 24px;
+    }
+    .ws-link-gold {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #A67C2E;
+      border-bottom: 2px solid #C9A84C;
+      padding-bottom: 2px;
+      transition: color 0.2s ease;
+    }
+    .ws-link-gold:hover { color: #0B1526; }
+
+    /* ── CEO FLAGSHIP BAND ── */
+    .ws-ceo {
+      background: #0B1526;
+      padding: 96px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ws-ceo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 55%;
+      height: 100%;
+      background: radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.09) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .ws-ceo-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .ws-ceo-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 16px;
+    }
+    .ws-ceo h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .ws-ceo-lead {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(19px, 2.4vw, 24px);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.5;
+      color: #E8C97A;
+      margin-bottom: 20px;
+    }
+    .ws-ceo-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15.5px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 32px;
+    }
+    .ws-ceo-ctas {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .ws-ceo-training {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(201,168,76,0.5);
+      padding-bottom: 2px;
+      transition: color 0.2s ease;
+    }
+    .ws-ceo-training:hover { color: #C9A84C; }
+
+    /* Component list */
+    .ws-comp-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .ws-comp {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .ws-comp:first-child { padding-top: 0; }
+    .ws-comp:last-child { border-bottom: none; padding-bottom: 0; }
+    .ws-comp-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: #C9A84C;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .ws-comp h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ws-comp p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+    }
+    .ws-flagship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      border-radius: 100px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0B1526;
+    }
+
+    /* ── FINAL CTA ── */
+    .ws-final {
+      background: #F9F5EE;
+      padding: 88px 48px;
+      text-align: center;
+    }
+    .ws-final-inner { max-width: 600px; margin: 0 auto; }
+    .ws-final h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: #0B1526;
+      margin-bottom: 16px;
+    }
+    .ws-final p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #4a5568;
+      margin-bottom: 32px;
+    }
+
+    /* ── FOOTER ── */
+    .ws-footer {
+      background: #0B1526;
+      padding: 40px 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .ws-footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ws-footer-logo img { height: 50px; }
+    .ws-footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+    .ws-footer-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s ease;
+    }
+    .ws-footer-link:hover { color: #C9A84C; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      .ws-grid { grid-template-columns: 1fr; }
+      .ws-ceo-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .navbar-inner { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-logo { margin-right: auto; }
+      .ws-hero { padding: 56px 24px 48px; }
+      .ws-industries { padding: 64px 24px; }
+      .ws-card { padding: 28px 24px 0; }
+      .ws-card.ws-card-open { padding: 32px 24px; }
+      .ws-ceo { padding: 64px 24px; }
+      .ws-final { padding: 64px 24px; }
+      .ws-footer { padding: 32px 24px; }
+      .ws-footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="nav-logo">
+        <img src="brand_assets/NEWCIRCALOGOTRANS.png" alt="Circa AI Group">
+      </a>
+      <div class="nav-links">
+        <a href="/#capabilities">Approach</a>
+        <a href="/#proof">Results</a>
+        <a href="/who-we-serve" class="active">Who We Serve</a>
+        <a href="/chief-os-training">Chief OS Training</a>
+      </div>
+      <a href="/#contact" class="btn-gold">Book a Systems Audit &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="ws-hero">
+    <div class="ws-hero-inner">
+      <p class="ws-eyebrow">Who We Serve</p>
+      <h1>Systems built for how your industry actually works.</h1>
+      <p class="ws-hero-tagline">Find yourself below.</p>
+      <p class="ws-hero-intro">Every service business hits the same wall: the owner becomes the system. What that looks like — and what we automate first — depends on the business you run. Here's where our clients were stuck, and what we built.</p>
+      <a href="#industries" class="btn-gold">See the Industries &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ── INDUSTRIES ── -->
+  <section class="ws-industries" id="industries">
+    <div class="ws-industries-inner">
+      <div class="ws-section-header">
+        <p class="ws-eyebrow">[The Industries]</p>
+        <h2 class="ws-section-title">Same Bottleneck. Different Business.</h2>
+        <p class="ws-section-sub">If one of these sounds like something you've said out loud, that's where we start.</p>
+      </div>
+
+      <div class="ws-grid">
+
+        <!-- Accounting & Tax -->
+        <div class="ws-card">
+          <div class="ws-card-top">
+            <div class="ws-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2"/>
+                <line x1="8" y1="6" x2="16" y2="6"/>
+                <line x1="8" y1="11" x2="8" y2="11.01"/><line x1="12" y1="11" x2="12" y2="11.01"/><line x1="16" y1="11" x2="16" y2="11.01"/>
+                <line x1="8" y1="15" x2="8" y2="15.01"/><line x1="12" y1="15" x2="12" y2="15.01"/><line x1="16" y1="15" x2="16" y2="15.01"/>
+                <line x1="8" y1="19" x2="12" y2="19"/>
+              </svg>
+            </div>
+            <h3>Accounting &amp; Tax Firms</h3>
+          </div>
+          <p class="ws-card-quote">Every return has five emails behind it, and I'm the one sending all of them.</p>
+          <p class="ws-card-label">What We Build</p>
+          <ul>
+            <li>Client document collection that chases for you</li>
+            <li>Status updates that send themselves</li>
+            <li>Deadline tracking across every return and engagement</li>
+          </ul>
+          <p class="ws-card-result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Solo CPA client: 60% less admin time through tax season.
+          </p>
+        </div>
+
+        <!-- Property Tax -->
+        <div class="ws-card">
+          <div class="ws-card-top">
+            <div class="ws-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/>
+                <line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/>
+                <line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/>
+                <path d="M10 21v-3h4v3"/>
+              </svg>
+            </div>
+            <h3>Property Tax Consultants</h3>
+          </div>
+          <p class="ws-card-quote">Appeal season doubles the caseload, and I can't clone myself.</p>
+          <p class="ws-card-label">What We Build</p>
+          <ul>
+            <li>Case tracking from filing to hearing</li>
+            <li>Evidence and appeal packet preparation</li>
+            <li>Deadline monitoring across every jurisdiction</li>
+          </ul>
+          <p class="ws-card-result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Client result: 100 more properties and $37,500 recovered — no new hires.
+          </p>
+        </div>
+
+        <!-- Insurance -->
+        <div class="ws-card">
+          <div class="ws-card-top">
+            <div class="ws-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>Insurance Agencies</h3>
+          </div>
+          <p class="ws-card-quote">Renewals slip through because follow-up depends on me remembering.</p>
+          <p class="ws-card-label">What We Build</p>
+          <ul>
+            <li>Renewal pipelines that follow up on their own</li>
+            <li>Quote intake and turnaround tracking</li>
+            <li>Policyholder communication and carrier documents, organized</li>
+          </ul>
+          <p class="ws-card-result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Renewals that never depend on memory.
+          </p>
+        </div>
+
+        <!-- Legal -->
+        <div class="ws-card">
+          <div class="ws-card-top">
+            <div class="ws-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18"/><path d="M5 7l7-4 7 4"/>
+                <path d="M2 13l3-6 3 6a3 3 0 0 1-6 0z"/>
+                <path d="M16 13l3-6 3 6a3 3 0 0 1-6 0z"/>
+                <path d="M8 21h8"/>
+              </svg>
+            </div>
+            <h3>Law Firms &amp; Legal Services</h3>
+          </div>
+          <p class="ws-card-quote">Half my week goes to work no client is paying for.</p>
+          <p class="ws-card-label">What We Build</p>
+          <ul>
+            <li>Client intake that qualifies and organizes itself</li>
+            <li>Case status updates without the phone calls</li>
+            <li>Document assembly and filing deadline tracking</li>
+          </ul>
+          <p class="ws-card-result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Billable hours back from admin work.
+          </p>
+        </div>
+
+        <!-- Consulting -->
+        <div class="ws-card">
+          <div class="ws-card-top">
+            <div class="ws-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                <path d="M2 13h20"/>
+              </svg>
+            </div>
+            <h3>Consultants &amp; Professional Services</h3>
+          </div>
+          <p class="ws-card-quote">Every new client makes my calendar worse, not my business better.</p>
+          <p class="ws-card-label">What We Build</p>
+          <ul>
+            <li>Client onboarding that runs itself</li>
+            <li>Proposal and scope workflows from templates you approve</li>
+            <li>Delivery tracking and follow-up that don't need reminders</li>
+          </ul>
+          <p class="ws-card-result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Capacity that grows with your client list.
+          </p>
+        </div>
+
+        <!-- Your industry -->
+        <div class="ws-card ws-card-open">
+          <h3>Don't See Your Industry?</h3>
+          <p>If your business runs on your memory, your inbox, and your follow-up, the bottleneck looks the same — and the system gets built around how <em>you</em> work.</p>
+          <a href="/#contact" class="ws-link-gold">Book a Systems Audit &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CEO FLAGSHIP ── -->
+  <section class="ws-ceo" id="chief-of-staff">
+    <div class="ws-ceo-inner">
+      <div>
+        <p class="ws-ceo-eyebrow">[For CEOs — Every Industry]</p>
+        <h2>The Chief of Staff Operating System</h2>
+        <p class="ws-ceo-lead">The systems above fix how your business runs. This one fixes how you run.</p>
+        <p class="ws-ceo-body">Whatever industry you're in, you also occupy a seat — and that seat drowns in email, scheduling, travel, and follow-up before strategy ever gets a turn. We build a private executive support system that runs your office the way a chief of staff would: five components, one system, built around your day.</p>
+        <div class="ws-ceo-ctas">
+          <a href="/#contact" class="btn-gold">Book a Systems Audit &rarr;</a>
+          <a href="/chief-os-training" class="ws-ceo-training">Prefer to run it yourself? Chief OS Training &rarr;</a>
+        </div>
+      </div>
+
+      <div class="ws-comp-list">
+        <div class="ws-comp">
+          <span class="ws-comp-num">01</span>
+          <div>
+            <h4>Executive Communications</h4>
+            <p>Email triage, drafting, and follow-up tracking — your inbox under control.</p>
+          </div>
+        </div>
+        <div class="ws-comp">
+          <span class="ws-comp-num">02</span>
+          <div>
+            <h4>Executive Planning</h4>
+            <p>Calendar management, meeting prep, and briefing documents before you ask.</p>
+          </div>
+        </div>
+        <div class="ws-comp">
+          <span class="ws-comp-num">03</span>
+          <div>
+            <h4>Travel Command Center
+              <span class="ws-flagship-badge">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Flagship
+              </span>
+            </h4>
+            <p>Flights, hotels, itineraries, loyalty programs, documents — every trip in one place.</p>
+          </div>
+        </div>
+        <div class="ws-comp">
+          <span class="ws-comp-num">04</span>
+          <div>
+            <h4>Executive Knowledge</h4>
+            <p>Contacts, vendors, projects, and procedures — findable in seconds, not buried in email.</p>
+          </div>
+        </div>
+        <div class="ws-comp">
+          <span class="ws-comp-num">05</span>
+          <div>
+            <h4>Executive Workflow</h4>
+            <p>Recurring responsibilities and approvals that move without your follow-up.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="ws-final">
+    <div class="ws-final-inner">
+      <p class="ws-eyebrow">[Next Step]</p>
+      <h2>Not Sure Where You Fit?</h2>
+      <p>Every engagement starts with a systems audit. We map where your hours actually go, then show you which system takes the most back first — before you commit to anything.</p>
+      <a href="/#contact" class="btn-gold">Book a Systems Audit &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="ws-footer">
+    <div class="ws-footer-inner">
+      <div class="ws-footer-logo">
+        <img src="brand_assets/CIRCA GLOW LOGO GOLD DOT.png" alt="Circa AI Group">
+      </div>
+      <span class="ws-footer-copy">&copy; 2026 Circa AI Group</span>
+      <a href="https://www.linkedin.com/in/debbie-marie-ai/" target="_blank" rel="noopener" class="ws-footer-link">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── SCROLL REVEAL ──
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ws-visible');
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.ws-card').forEach(el => revealIO.observe(el));
+
+    // Fallback for full-page screenshots
+    setTimeout(() => {
+      document.querySelectorAll('.ws-card').forEach(el => el.classList.add('ws-visible'));
+    }, 600);
+  </script>
+
+</body>
+</html>
